@@ -1,0 +1,357 @@
+*{
+box-sizing: border-box; /* el ancho incluye el borde y el padding*/ 
+margin: 0;
+padding: 0;
+font-family: Trebuchet, Arial, sans-serif;
+/*background-color: #24252A;*/
+}
+
+/*BARRA COMUN*/
+header{
+    background: #ffffff;
+    width: 100%;
+    height: 60px;
+    border: none;
+    position: fixed;
+    z-index: 100;
+    top: 0;    
+   
+}
+
+body{
+    background: #f2f2f2;
+    font-family: sans-serif;
+
+}
+
+#cabecera{
+    width: 80%;
+    height: 80px;
+    border: 0px solid #a5ff2f;
+    margin: auto;
+    
+}
+
+#encabezado1{
+    width: 49%;
+    height: auto;
+    float: left;
+    border: 0px solid #0b3b29;
+}
+
+#encabezado2{
+    width: 45%;
+    height: auto;
+    float: right;
+    border: 0px solid #c23587;
+}
+
+#logo{
+    width: auto; overflow: hidden;
+    height: auto; overflow: hidden;
+    float: left;
+    margin-top:5px;
+    border: 0px solid #000000;   
+}
+
+#menu{
+    width: 30%;
+    height: 40px;
+    float: right;
+    border: 0px solid red;
+    margin-top: 10px;    
+}
+
+#inicio{
+    width: 45%;
+    height: 45px;
+    border: 0px solid black;
+    border-bottom-style: solid; 
+    border-bottom-width: 5px;    
+    border-bottom-color:#304FFE;
+    float: left;  
+}
+
+#perfil{
+    width: 45%;
+    height: 45px;
+    border: 0px solid black;
+    float: right;    
+}
+
+#inicio .inicio{
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+}
+
+#perfil .perfil{
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+}
+
+#perfil:hover{    
+    background:  #f2f2f2;
+    background-size: contain; 
+    border-radius: 5px 5px 5px 5px;    
+    transition:all 0.5s;
+}
+
+#buscar{
+    width: 80%;
+    position: relative;
+    float: left;
+    border: 0px solid white;
+    margin: auto;      
+}
+
+.cont{
+    height:100%;
+    padding-top:0px;
+    float:left;
+}
+.cont label{
+    color:#304FFE;
+    font-size:12.9px;
+    font-family: sans-serif;
+}
+
+input[type="search"]{
+    width:250px;
+    margin:10px;
+    padding:10px 16px;
+    border-radius:32px;
+    outline:none;
+    border:2px solid #ccd1d1;
+    background:#f2f2f2;
+    transition:all 0.5s;
+}
+input[type="search"]:focus{
+    background:#fff;
+    width:330px;
+}
+
+#sesion ul{ 
+    
+    margin-top: 30px;
+    list-style: none; 
+    float: right;           
+}
+
+.usuario{  
+    margin-top:10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    float: right;
+    
+}
+
+#Seccion_sesion{
+ 
+  width: 25%;
+  height: auto;
+  text-align: center;
+  position: relative;
+  background-color:transparent;
+   padding-top: 10%;
+  left: 67%;
+  top: 100%;
+}
+.opciones_s{
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  height: 80%;  
+  text-align: center;
+}
+
+
+
+/*BARRA COMUN*/
+
+button{
+
+font-weight: 500;
+font-size: 16px;
+color: white;
+text-decoration: none;
+}
+
+
+
+  
+/* Div que tiene el contenido de abajo*/
+.p_fotos{
+  padding-top: 65px;
+display: flex;
+}
+
+
+
+
+.h1{
+ 
+ width: 35%; /*espacio de la ventaja */
+ align-items: center;
+   padding-top: 3%;
+  display: flex; /* disposicioón flex*/
+  flex-direction: column;  /* direccion colummnas*/ 
+  padding-left: 7%;
+}
+
+.h2{
+    background-color:transparent;
+ width: 70%;/*espacio de la ventaja */
+ padding-left: 0.6%;
+
+}
+
+.f_perfil{
+align-items: center;
+border-radius: 50%;
+border: 3px solid gray;
+
+
+
+}
+
+.profile_m{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  width: 80%;
+  height: 60%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+}
+
+/* Botones material desing*/
+
+
+
+
+.btn_edit, .btn_elim, .btn_Comen, .b_cambiarfoto, .c_contraseña{
+  background-color: rgb(48, 79, 254);
+  padding: 0;
+  margin: 30px auto;
+  border-radius: 2px;
+  border: 0px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  outline: none;
+  overflow: hidden;
+  position: relative; /*Posicionado relativo a su posicion normal*/
+
+}
+.btn_elim{
+background-color: rgb(211, 47, 47 );
+
+}
+
+.btn_edit{
+  background-color: rgb(0, 200, 83 );
+}
+
+
+.b_cambiarfoto span,.c_contraseña span{
+  display: block;
+  padding: 14px 24px;
+}
+
+.btn_edit span, .btn_elim span, .btn_Comen span{
+  display: block;
+  padding: 6px 20px;
+
+}
+
+/* EVENTOS BOTONES*/
+
+
+.btn_edit:before, .btn_elim:before,.btn_Comen:before, .b_cambiarfoto:before ,.c_contraseña:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+  border-radius: 100%;
+   
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn_edit:active:before, .btn_elim:active:before, .btn_Comen:active:before,.b_cambiarfoto:active:before ,.c_contraseña:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+
+}
+
+
+/* Lado derecho*/
+
+.heder_h2 h2{
+  align-items: right;
+  background-color: rgb(48, 79, 254);
+  display: inline-block;
+  padding-top: 1px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.mi_blogs{
+  margin: 0;
+  padding: 0;
+ /* box-shadow: 0 1px 4px rgba(0, 0, 0, .6);*/
+ background-color: white;
+ width:86%;
+ padding-right: 1px;
+ padding-left: 1px;
+ padding-top: 1px;
+ overflow: hidden;
+
+}
+
+.b1{
+  border-radius: 7px;
+  
+  width: 100%;
+  padding-bottom: 0;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+ 
+  display: flex;
+  margin-bottom: 20px;
+
+}
+.foto_titulo{
+padding-left: 2px;
+width: 30%;
+
+}
+
+.foto_b{
+  width: 100%;
+}
+
+.descrip{
+  padding-left: 10px;
+  width: 100%;
+  padding-bottom: 0;
+  display: block;
+  margin-bottom: 0;
+ 
+}
+
+/* BODY DE REGISTRO */
+

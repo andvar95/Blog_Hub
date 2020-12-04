@@ -1,0 +1,91 @@
+body{
+  margin:0;
+  padding-top: 2%;
+
+  background-color:white;
+  font-family: Trebuchet, Arial, sans-serif;
+  text-align: center;
+}
+
+    .Ventana_Registro{
+     
+      background-color: white;
+      
+    padding:2%;
+      width: 24%;
+      height: 40%;
+      border-radius: 10px;
+     }
+     
+     .titulo{
+       text-align: left;
+       padding: 12px;
+     }
+     .logo{
+       text-align: center;
+      
+     }
+
+     .form_R{
+       text-align: center;
+     }
+     h1{
+       color:#304FFE;
+     }
+
+     .usuario, .email, .pass{
+      width: 90%;
+      height: 40px;
+      outline: none;
+      border:none;
+      border-bottom: 1px solid blue;
+      font-size: 16px;    
+     }
+
+     
+     .b_Registro, .ir_login{
+      background-color: rgb(48, 79, 254);
+      padding: 0;
+      margin: 30px auto;
+      border-radius: 20px;
+      border: 0px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+      outline: none;
+      overflow: hidden;
+      position: relative; /*Posicionado relativo a su posicion normal*/
+      color: white;
+     }
+
+     .b_Registro span, .ir_login span {
+      display: block;
+      padding: 14px 85px;
+    }
+
+    .b_Registro:before , .ir_login:before {
+      content: "";
+      
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      
+      display: block;
+      width: 0;
+      padding-top: 0;
+      border-radius: 100%;
+       
+      background-color: rgba(236, 240, 241, .3);
+      
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    
+    .b_Registro:active:before, .ir_login:active:before{
+      width: 120%;
+      padding-top: 120%;
+      
+      transition: width .2s ease-out, padding-top .2s ease-out;
+    
+    }

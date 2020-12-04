@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Hub</title>
+    <link rel="icon" type="img/png" href="Imag/favicon.png"/>
+    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
+    <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="js/funciones.js"></script>
+    <script>
+        tinymce.init({
+            selector: "#body_blog",
+            plugins: 'image',
+            menubar: 'insert',
+        });
+    </script>
+    <link rel="stylesheet" href="css/estilosBlogPropio.css">
+</head>
+<body>
+    <div class="container">
+        <!-- <nav class="nav-main">
+            <nav class="logo_back">
+                <a href="#"><img src="Imagenes/back_arrow_50px.png" alt="back" class="back"></a>
+            </nav>
+            <nav class="logo_blog">
+                <a href="#"><img src="Imagenes/logo.png" alt="logo_blog" class="logo_blog_icon"></a>
+            </nav>
+            <ul class="nav-menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Perfil</a></li>
+            </ul>
+            <div class="search-bar">
+                <img src="Imagenes/search_20px.png" alt="" class="icon-search">
+                <Input type="search" placeholder="keyword"></Input>
+            </div>
+            <div class="menu2">
+                <label for="" class="username">Usuario</label>
+                <br>
+                <a href="#">Cerrar Sesión</a>
+            </div>
+        </nav> -->
+        <header class="header">
+            <div id="cabecera">
+                <div id="encabezado1">
+                    <div id="logo">
+                        <img src="img/logo2.png">
+                    </div>
+                    <div id="menu">
+                        <div id="inicio">
+                            <img src="img/icons8_home_24px_6.png" href="" class="inicio">                      
+                        </div>
+                        <div id="perfil">
+                            <img src="img/icons8_staff_24px_1.png" href="" class="perfil">
+                        </div>
+                    </div>
+                </div>
+            
+                <div id=encabezado2>
+                    <div id="buscar">
+                        <div class="cont">
+                            <input type="search" placeholder="Busca en Hub Blog"  title="Presione Esc para supender la búsqueda">
+                        </div>                    
+                    </div>
+                    <div id="sesion">
+                        <img src="img/avatar.jpg" class="usuario" alt="Imagen del avatar" onclick="ver();">
+                        <div id="Seccion_sesion">
+                            
+                            <div class="opciones_s">
+                            <div><img src="img/user.png"><a> Perfil </a></div>
+                            <br>
+                            <div><img src="img/Exit.png"> <a>Salir</a></div>  
+                            <br>                  
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </header>
+        <br>
+        <header class="sencond_line">
+            <nav class="second_nav">
+                <div class="titulo">
+                    <label for="">Titulo</label>
+                    <br>
+                    <Input type="text" placeholder="Titulo del blog"></Input>
+                </div>
+                <div class="botones">
+                    <a href="Vista_Vista_Previa.html" target="_blank"><button class="b_preview" type="button"><span>Vista Previa</span></button></Input></a>
+                    <button class="b_update" type="button"><span>Actualizar</span></button>
+                </div>
+            </nav>
+        </header>
+        <br><br>
+        <nav class="body">
+            <!-- <div class="option_bar">
+                <ul class="fuente">
+                    <li><span class="icon-font"></span></li>
+                    <li><span class="icon-font-size"></span></li>
+                </ul>
+                <ul class="texto">
+                    <li><span class="icon-bold"></span></li>
+                    <li><span class="icon-underline"></span></li>
+                    <li><span class="icon-italic"></span></li>
+                    <li><span class="icon-strikethrough"></span></li>
+                    <li><span class="icon-paragraph-left"></span></li>
+                    <li><span class="icon-paragraph-center"></span></li>
+                    <li><span class="icon-paragraph-right"></span></li>
+                    <li><span class="icon-paragraph-right"></span></li>
+                    <li><span class="icon-paragraph-justify"></span></li>
+                    <li><span class="icon-indent-increase"></span></li>
+                    <li><span class="icon-indent-decrease"></span></li>
+                </ul>
+                <ul class="adjuntar">
+                    <li><span class="icon-link"></span></li>
+                    <li><span class="icon-image"></span></li>
+                </ul>
+            </div> -->
+            <br>
+            <div class="fondo_hoja">
+                <div class="hoja">
+                    <textarea name="body_blog" id="body_blog" cols="90" rows="30"></textarea>
+                </div>
+            </div>
+            <div class="container-menu">
+                <ul class="menu">
+                    <li><a href="#"><span class="icono derecha icon-circle-down"></span>Palabras Clave</a>
+                        <ul>
+                        <label for="">Palabras Clave</label>
+                        <br>
+                        <Input type="text" placeholder="Separe por comas"></Input>  
+                        </ul>                  
+                    </li>
+                    <li><a href="#"><span class="icono derecha icon-circle-down"></span>Visibilidad</a>
+                        <ul>
+                        <input type="radio" name="tipo" id="public">
+                        <label for="public">Publico</label>
+                        <br>
+                        <input type="radio" name="tipo" id="private">
+                        <label for="private">Privado</label>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="icono derecha icon-circle-down"></span>Publicación</a>
+                        <ul class="fecha">
+                            <Input type="date"></Input>
+                            <!-- <iframe src="https://calendar.google.com/calendar/embed?height=162&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FBogota&amp;src=YW5kcmVzc3J5b2RhbUBnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%2333B679&amp;showTitle=0&amp;showDate=1&amp;showNav=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="236" height="162" frameborder="0" scrolling="no"></iframe> -->
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="icono derecha icon-circle-down"></span>Comentarios</a>
+                        <ul>
+                        <input type="radio" name="enabled" id="enabled">
+                        <label for="public">Permitir</label>
+                        <br>
+                        <input type="radio" name="enabled" id="disable">
+                        <label for="private">No Permitir</label>
+                        </ul>                    
+                    </li>
+                    <li><a href="#"><span class="icono derecha icon-circle-down"></span>Otras</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

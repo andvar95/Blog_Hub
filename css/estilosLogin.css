@@ -1,0 +1,134 @@
+body{
+    margin: 0;
+    padding: 0;
+    background:url(img/6.jpg) no-repeat center top;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 90vh;
+    
+}
+
+.login-box{
+    width: 320px;
+    height: 420px;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 40px 30px;    
+}
+
+.login-box .avatar{
+    width: 100px;
+    height: 100px;
+    
+    display: block;
+    margin: auto;      
+}
+   
+.login-box input{
+    font-size: 16px; 
+    width: 100%;
+    margin-top: 20px;
+    
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #304FFE;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;    
+}
+
+/*.login-box input[type="submit"]*/
+button{
+
+    font-weight: 100;
+    font-size: 7px;
+    color: white;
+    text-decoration: none;
+    }
+.login{
+    border: none;
+    outline: none;
+    padding-bottom: 7%;
+
+    height: 40px;
+    background: #304FFE;
+    color: #ffffff;
+    font-size: 13px;
+    border-radius: 20px;
+    margin-top: 10px; 
+    margin-bottom: 8px;  
+    position: relative; /*Posicionado relativo a su posicion normal*/
+    overflow: hidden;
+ 
+
+   }
+
+   .login span {
+    display: block;
+    padding: 14px 70px;
+  }
+
+  .login:before {
+    content: "";
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    display: block;
+    width: 0;
+    padding-top: 0;
+    border-radius: 100%;
+     
+    background-color: rgba(236, 240, 241, .3);
+    
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .login:active:before{
+    width: 120%;
+    padding-top: 120%;
+    
+    transition: width .2s ease-out, padding-top .2s ease-out;
+  
+  }
+
+.login-box a{     
+    text-decoration: none;    
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgrey; 
+}
+
+.recordar{
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.registrarse{
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-box a:hover {
+   color: #304FFE;
+   text-decoration: underline;
+}

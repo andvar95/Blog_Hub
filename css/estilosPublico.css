@@ -1,0 +1,409 @@
+*{
+  box-sizing: border-box; /* el ancho incluye el borde y el padding*/ 
+  margin: 0;
+  padding: 0;
+  font-family: Trebuchet, Arial, sans-serif;
+}
+
+header{
+    background: #ffffff;
+    width: 100%;
+    height: 60px;
+    border: none;
+    position: fixed;
+    z-index: 100;
+    top: 0;    
+}
+
+body{
+    background: #f2f2f2;
+    font-family: sans-serif;
+
+}
+
+#cabecera{
+    width: 80%;
+    height: 80px;
+    border: 0px solid #a5ff2f;
+    margin: auto;
+    
+}
+
+#encabezado1{
+    width: 49%;
+    height: auto;
+    float: left;
+    border: 0px solid #0b3b29;
+}
+
+#encabezado2{
+    width: 45%;
+    height: auto;
+    float: right;
+    border: 0px solid #c23587;
+}
+
+#logo{
+    width: auto; overflow: hidden;
+    height: auto; overflow: hidden;
+    float: left;
+    margin-top:5px;
+    border: 0px solid #000000;   
+}
+
+#menu{
+    width: 30%;
+    height: 40px;
+    float: right;
+    border: 0px solid red;
+    margin-top: 10px;    
+}
+
+#inicio{
+    width: 45%;
+    height: 45px;
+    border: 0px solid black;
+    border-bottom-style: solid; 
+    border-bottom-width: 5px;    
+    border-bottom-color:#304FFE;
+    float: left;  
+}
+
+#perfil{
+    width: 45%;
+    height: 45px;
+    border: 0px solid black;
+    float: right;    
+}
+
+#inicio .inicio{
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+}
+
+#perfil .perfil{
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+}
+
+#perfil:hover{    
+    background:  #f2f2f2;
+    background-size: contain; 
+    border-radius: 5px 5px 5px 5px;    
+    transition:all 0.5s;
+}
+
+#buscar{
+    width: 80%;
+    position: relative;
+    float: left;
+    border: 0px solid white;
+    margin: auto;      
+}
+
+.cont{
+    height:100%;
+    padding-top:0px;
+    float:left;
+}
+.cont label{
+    color:#304FFE;
+    font-size:12.9px;
+    font-family: sans-serif;
+}
+
+input[type="search"]{
+    width:250px;
+    margin:10px;
+    padding:10px 16px;
+    border-radius:32px;
+    outline:none;
+    border:2px solid #ccd1d1;
+    background:#f2f2f2;
+    transition:all 0.5s;
+}
+input[type="search"]:focus{
+    background:#fff;
+    width:330px;
+}
+
+#sesion ul{ 
+    
+    margin-top: 30px;
+    list-style: none; 
+    float: right;           
+}
+
+.usuario{  
+    margin-top:10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    float: right;
+}
+
+#Seccion_sesion{
+ 
+  width: 25%;
+
+  text-align: center;
+  position: relative;
+  background-color:transparent;
+   padding-top: 10%;
+  left: 67%;
+  top: 100%;
+  border:1px solid black;
+}
+.opciones_s{
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  height: 80%;  
+  text-align: center;
+  border:1px solid blue;
+}
+
+
+
+/* The dropdown container 
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+
+  /* Dropdown button
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: blue;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: white;
+  
+    margin: 0; /* Important for vertical align on mobile phones 
+  }
+
+  /* Add a red background color to navbar links on hover 
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: blue;
+  }
+
+  /* Dropdown content (hidden by default) 
+  .dropdown-content {
+    display: none;
+   
+    background-color: #f9f9f9;
+ 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  
+  }
+
+  /* Links inside the dropdown 
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+   
+  }
+
+  /* Add a grey background color to dropdown links on hover 
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  /* Show the dropdown menu on hover 
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+*/
+
+
+
+  .container {
+    width: 80%;
+    height: auto; overflow: hidden;
+    border: 0px solid;
+    margin: auto;
+    padding-top: 65px;
+  }
+
+  /* lateral izquierda*/
+  .containe2 {
+  
+    width: 26%;
+    height: auto;
+     overflow: hidden;
+    margin-top: 20px;
+    float: left;
+ 
+ 
+  }
+
+
+
+  #categorias, #ultimos-post{
+    border-radius: 10px;
+    width: 100%;
+    border: 0px solid #cccccc;
+    height: auto; overflow: hidden;
+    margin-bottom: 20px; 
+}
+
+.cabecera-sidebar{
+    width: 100%;
+    height: 35px;
+    background: #304FFE;
+    text-align: center;
+    color: white;
+    font-size: 19px;
+    font-family: sans-serif;
+    padding-top: 10px;
+
+}
+
+.enlace-sidebar{
+    width: 100%;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 5px;
+    color: 848484;
+}
+
+.enlace-sidebar:hover{
+    background: #cccccc;
+    overflow-y: scroll;
+}
+
+  .vertical-center {
+      overflow: hidden;
+    float: right;
+    width: 70%;
+    border: 0px solid;
+   
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+
+  /* derechi*/
+
+  .comentarios{
+    width: 100%;  
+    text-align: left;
+ 
+}
+
+.txtComent{
+  align-items: self;
+
+}
+
+  #blogtext{
+    border: 1px solid green;
+    border-radius:5px;
+    width: 100%;
+    background-color: white;
+    height: 100%;
+    border: solid;
+    border-width: 1px;
+    border-color: #cccccc;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #cccccc;
+   
+  }
+
+  .blog_c{
+      width: 60%;
+ 
+      float: left;
+  }
+
+  .info_blog{
+    border:1px solid black;
+      float: right;
+      width: 39%;
+   
+  }
+  .txtComent{
+    width: 25%;
+    height: 35px;
+    background: #304FFE;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: sans-serif;
+    padding-top: 10px;
+    border-radius: 5px;
+
+    
+
+  }
+
+
+  /*Botones */
+
+  
+button{
+
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  }
+
+  .btn_comentar{
+    background-color: rgb(48, 79, 254);
+    padding: 0;
+    margin: 30px auto;
+    border-radius: 2px;
+    border: 0px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    outline: none;
+    overflow: hidden;
+    position: relative; /*Posicionado relativo a su posicion normal*/
+  
+  }
+
+  .btn_comentar span {
+    display: block;
+    padding: 14px 24px;
+  }
+
+  
+
+.btn_comentar:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+  border-radius: 100%;
+   
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn_comentar:active:before{
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+
+}
+
