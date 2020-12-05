@@ -1,5 +1,5 @@
 
-</<!DOCTYPE html>
+<!--DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
 
@@ -47,7 +47,12 @@
             </div>
         </div>
     </div>        
-</header>
+</header-->
+{%extends 'layout.html' %}
+    
+{% block content %}
+<link rel="stylesheet" href="/static/css/estilosPublico.css">
+<script src="/static/js/funciones.js"></script>
 
   <div class="container">
     <div class="containe2">
@@ -101,8 +106,12 @@
 
 
     <div class="vertical-center">
- 
+  
+      <br>
       <div class="blog_c">
+        <center>
+          <h1> TITULO DEL BLOG</h1>
+        </center>
       <div id="blogtext" name="blogtext" >
        <p> At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum doloribus harum quia a maxime atque repellat blanditiis, asperiores veniam rem esse voluptates nemo quos ipsum laborum hic et, quam animi!
@@ -139,8 +148,8 @@
       <br><br>
       <br><br><br><br>
       <span> 
-        <img src="img/facebook.png"> 
-        <img src="img/twitter.png">   
+        <img src="/static/img/facebook.png"> 
+        <img src="/static/img/twitter.png">   
       </span>
       <br><br><br><br>
       <h2>Archivos del blog</h2>
@@ -160,6 +169,6 @@
 
   </div>
   </div>
-
-</body>
-</html>
+{%endblock%}
+<!--/body>
+</html-->

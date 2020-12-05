@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="css/estilosBlogPropio.css">
 </head>
 <body>
-    <div class="container">
-        <!-- <nav class="nav-main">
+    
+         <nav class="nav-main">
             <nav class="logo_back">
                 <a href="#"><img src="Imagenes/back_arrow_50px.png" alt="back" class="back"></a>
             </nav>
@@ -39,7 +39,7 @@
                 <br>
                 <a href="#">Cerrar Sesión</a>
             </div>
-        </nav> -->
+        </nav> 
         <header class="header">
             <div id="cabecera">
                 <div id="encabezado1">
@@ -76,7 +76,15 @@
                     </div>
                 </div>
             </div>        
-        </header>
+        </header-->
+    
+    {%extends 'layout.html' %}
+    
+    {% block content %}
+    <title>Mi Blog</title>
+    <link rel="icon" href="/static/Imag/favicon.png"/>
+    <link rel="stylesheet" href="/static/css/estilosBlogPropio.css">
+    <script src="/static/js/funciones.js"></script>
         <br>
         <header class="sencond_line">
             <nav class="second_nav">
@@ -90,9 +98,10 @@
                     <button class="b_update" type="button"><span>Actualizar</span></button>
                 </div>
             </nav>
-        </header>
+    
         <br><br>
         <nav class="body">
+          
             <!-- <div class="option_bar">
                 <ul class="fuente">
                     <li><span class="icon-font"></span></li>
@@ -158,9 +167,13 @@
                     <li><a href="#"><span class="icono derecha icon-circle-down"></span>Otras</a></li>
                 </ul>
             </div>
+    
         </nav>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="/static/js/main.js"></script>
+
+    
+    {% endblock %}
+<!--/body>
+</html-->

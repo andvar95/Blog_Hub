@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -45,8 +45,11 @@
                 </div>
             </div>
         </div>        
-    </header>
-
+    </header-->
+{%extends 'layout.html' %}
+    
+{% block content %}
+<link rel="stylesheet" href="/static/css/estilosInicio.css">
     <section id="principal">
         <section id="publicaciones">
             <article class="post">
@@ -69,7 +72,7 @@
             </article>
 
             <article class="post">
-                <a href="" class="enlace-post">
+                <a href="{{url_for('BlogPublico')}}" class="enlace-post">
                     <h2 class="titulo-post">Titulo del blog</h2>
                 </a>
                 <img src="img/tecnologia.jpeg"class="img-post">
@@ -178,5 +181,7 @@
         </section>
 
     </section>
-</body>
-</html>
+    
+{% endblock %}
+<!--/body>
+</html-->

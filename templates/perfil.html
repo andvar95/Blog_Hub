@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <!--Navegador-->
+  
     <header class="header">
         <div id="cabecera">
             <div id="encabezado1">
@@ -47,7 +47,14 @@
                 </div>
             </div>
         </div>        
-    </header>
+    </header-->
+    {%extends 'layout.html' %}
+    
+    {% block content %}
+    <title>Perfil de Usuario</title>
+    <link href="static/css/estiloPerfil.css" rel="stylesheet" >
+    <script src="static/js/funciones.js"></script>
+    <link rel="icon" type="/static/image/png" href="img/favicon.png"/>
 
     <div class="p_fotos">  <!-- Otro div que tiene el contenido de abajo-->
         <div class="h1"><!-- Es el div con la parte izquierda de la pantalla-->
@@ -61,7 +68,7 @@
                     <p>Correo Electrónico:</p>
                     <p>varleo_95@hotmail.com</p>
                     
-                <button class="b_cambiarfoto" type="button"><span>Cambiar foto</span></button><!-- Boton cambiar foto--> 
+               < <button class="b_cambiarfoto" type="button"><span>Cambiar foto</span></button><!-- Boton cambiar foto--> 
                 
               
                 </center>
@@ -95,7 +102,7 @@
                          <p>
                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat quas iure voluptatum rem eaque repellat aliquam, dolorum ipsum veritatis maiores totam commodi consequuntur ut ab hic repudiandae autem ducimus. Amet?  
                          </p>
-                             <button type="button" class="btn_edit"><span>Editar</span></button>
+                             <a href="{{ url_for('BlogPropio')}}"><button type="button" class="btn_edit"><span>Editar</span></button></a>
                              <button type="button" class="btn_elim"><span>Eliminar</span></button>
                              <button type="button" class="btn_Comen"><span>Comentarios</span> </button>
                          
@@ -152,6 +159,6 @@
         </div>
 
     </div>
-    
-</body>
-</html>
+    {% endblock %}   
+<!--/body>
+</html-->

@@ -72,15 +72,18 @@ body{
     height: 45px;
     border: 0px solid black;
     float: right;    
+
 }
 
 #inicio .inicio{
+    content: url(/static/img/icons8_home_24px_6.png);
     display: block;
     margin: auto;
     padding-top: 10px;
 }
 
 #perfil .perfil{
+    content: url(/static/img/L.png);
     display: block;
     margin: auto;
     padding-top: 10px;

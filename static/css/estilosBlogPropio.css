@@ -103,12 +103,14 @@ a{
 }
 
 #inicio .inicio{
+    content: url(/static/img/logo_house_grey.png);
     display: block;
     margin: auto;
     padding-top: 10px;
 }
 
 #perfil .perfil{
+    content: url(/static/img/icons8_staff_24px_1_blue.png);
     display: block;
     margin: auto;
     padding-top: 10px;
@@ -380,7 +382,7 @@ button{
   
 
 .preview{
-    background-image: url(Imagenes/preview_pane_20px.png);
+    background-image: url(/static/img/preview_pane_20px.png);
     background-repeat: no-repeat;
     background-position: left;
     background-position-x: 3px;

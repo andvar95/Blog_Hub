@@ -66,9 +66,7 @@ body{
     width: 45%;
     height: 45px;
     border: 0px solid black;
-    border-bottom-style: solid; 
-    border-bottom-width: 5px;    
-    border-bottom-color:#304FFE;
+
     float: left;  
 }
 
@@ -76,16 +74,21 @@ body{
     width: 45%;
     height: 45px;
     border: 0px solid black;
+    border-bottom-style: solid; 
+    border-bottom-width: 5px;    
+    border-bottom-color:#304FFE;
     float: right;    
 }
 
 #inicio .inicio{
+   content: url(/static/img/logo_house_grey.png);
     display: block;
     margin: auto;
     padding-top: 10px;
 }
 
 #perfil .perfil{
+    content: url(/static/img/icons8_staff_24px_1_blue.png);
     display: block;
     margin: auto;
     padding-top: 10px;

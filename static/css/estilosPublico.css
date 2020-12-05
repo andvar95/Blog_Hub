@@ -77,12 +77,14 @@ body{
 }
 
 #inicio .inicio{
+  content: url(/static/img/icons8_home_24px_6.png);
     display: block;
     margin: auto;
     padding-top: 10px;
 }
 
 #perfil .perfil{
+  content: url(/static/img/L.png);
     display: block;
     margin: auto;
     padding-top: 10px;
@@ -154,7 +156,7 @@ input[type="search"]:focus{
    padding-top: 10%;
   left: 67%;
   top: 100%;
-  border:1px solid black;
+
 }
 .opciones_s{
   background-color: white;
@@ -162,7 +164,7 @@ input[type="search"]:focus{
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
   height: 80%;  
   text-align: center;
-  border:1px solid blue;
+
 }
 
 
@@ -287,6 +289,7 @@ input[type="search"]:focus{
     border: 0px solid;
    
     margin-top: 20px;
+    align-items: center;
     text-align: center;
 
 }
