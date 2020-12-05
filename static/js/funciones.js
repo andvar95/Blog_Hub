@@ -12,3 +12,7 @@ else{
 
 };
 
+function quitar(){
+    document.getElementById('Seccion_sesion').style.display= "none";
+
+}

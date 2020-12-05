@@ -37,6 +37,10 @@ def BlogPropio():
 def BlogPublico():
     return render_template('blog_publico.html')
 
+@app.route('/Preview')
+def Preview():
+    return render_template('Vista_Previa.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
