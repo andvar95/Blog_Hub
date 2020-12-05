@@ -77,10 +77,13 @@
                 </div>
             </div>        
         </header-->
+        s
+<!-- Ya la barra superior no es neceasria porque está en la sección de codigo común (layout)-->
+
+{%extends 'layout.html' %} <!--Obtengo la barra del archivo principal layout-->
     
-    {%extends 'layout.html' %}
-    
-    {% block content %}
+<!--Lo que esté en block content es lo particular del codigo-->
+{% block content %}
     <title>Mi Blog</title>
     <link rel="icon" href="/static/Imag/favicon.png"/>
     <link rel="stylesheet" href="/static/css/estilosBlogPropio.css">

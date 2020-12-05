@@ -46,8 +46,13 @@
             </div>
         </div>        
     </header-->
-{%extends 'layout.html' %}
+
+
+<!-- Ya la barra superior no es neceasria porque está en la sección de codigo común (layout)-->
+
+{%extends 'layout.html' %} <!--Obtengo la barra del archivo principal layout-->
     
+<!--Lo que esté en block content es lo particular del codigo-->
 {% block content %}
 <link rel="stylesheet" href="/static/css/estilosInicio.css">
     <section id="principal">
@@ -183,5 +188,10 @@
     </section>
     
 {% endblock %}
+<!--
+    Aca finaliza el codigo comun, observar que el body y el html cierran en layout 
+-->
+
+
 <!--/body>
 </html-->
