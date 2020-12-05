@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicia sesión | Blog Hub</title>
-    <link rel="icon" type="image/png" href="img/favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="css/estilosLogin.css">
+    <link rel="icon" type="static/image/png" href="static/img/favicon.png"/>
+    <link rel="stylesheet" type="static/text/css" href="{{url_for('static', filename='css/estilosLogin.css')}}">
     <style>
         body{
-           background:url(img/6.jpg) no-repeat center top;}
+           background:url(/static/img/6.jpg) no-repeat center top;}
     </style>
 </head>
-<body background="img/6.jpg">
+<body background="static/img/6.jpg">
     <div class="login-box">
         
-        <img class="avatar" src="img/logo2.png" alt="avatar">
+        <img class="avatar" src="/static/img/logo2.png" alt="avatar">
         
         <form>
             <!-- Usuario -->
