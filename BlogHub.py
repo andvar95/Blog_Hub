@@ -22,9 +22,9 @@ def registro():
 
 
 
-@app.route('/inicio', methods=["POST","GET"])
-def inicio():
-    if request.method == "POST":
+@app.route('/verificarusuario',methods=["POST","GET"])
+def verificarusuario():
+   if request.method == "POST":
         
         user = request.form["usuario"]
         password = request.form["password"]
@@ -35,6 +35,12 @@ def inicio():
         else:
             flash("Usuario no existe")
             return render_template('login.html')
+        
+
+@app.route('/inicio')
+def inicio():
+    return render_template('inicio.html')
+ 
 
 
 
