@@ -15,18 +15,25 @@
     <div class="login-box">
         
         <img class="avatar" src="/static/img/logo2.png" alt="avatar">
+        <center>
+        <section class="content">
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+        </section>
+        </center>
         
-        <form>
+        <form method = "POST" action="{{url_for('inicio')}}">
             <!-- Usuario -->
-            <input type="text" name="usuario" class="usr" placeholder="Usuario">
+            <input type="text" name="usuario" class="usr" placeholder="Usuario" id = "usuario">
             
             <!-- Contraseña -->
-            <input type="password" name="password" class="clave" placeholder="Contraseña">
+            <input type="password" name="password" class="clave" placeholder="Contraseña" id ="password" >
 
             <button type="submit" class="login" type="button"><span>INICIAR SESIÓN</span></button>
         
             <a href="#" class="recordar">¿Olvidaste tu contraseña?</a><br>
-            <a href="#" class="registrarse" >Registrarse</a>
+            <a href="{{url_for('registro')}}" class="registrarse" >Registrarse</a>
             
            
         </form> 
