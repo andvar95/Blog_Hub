@@ -5,9 +5,9 @@
     font-family: sans-serif;
 }
 
-body{
+nav.section1{
     background: #f2f2f2;
-    background-image: url('/img/fondo.jpg');
+    background-image: url(static/img/fondo_copia.jpg);
     background-repeat: no-repeat;
     font-size: 16px;
     font-family: sans-serif;
@@ -230,7 +230,7 @@ input[type="search"]:focus{
 /* Cuerpo */
 
 .container hr{
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .cuerpo a img{
@@ -238,7 +238,7 @@ input[type="search"]:focus{
 }
 
 .cuerpo{
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     background: #fff;
     border-radius: 5px;
 }

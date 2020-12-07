@@ -87,7 +87,22 @@
     <title>Mi Blog</title>
     <link rel="icon" href="/static/Imag/favicon.png"/>
     <link rel="stylesheet" href="/static/css/estilosBlogPropio.css">
-    <script src="/static/js/funciones.js"></script>
+    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/45c57f1abc/UntitledProject/style.css">
+    <style>
+        .container-menu .menu li:hover ul{
+        display: block;
+        }
+        .container-menu .menu .icono{
+        font-size: 25px;
+        line-height: 28px;
+        z-index: 10;
+        }
+
+        .container-menu .menu .icono.derecha{
+        margin-right: 10px;
+        }
+    </style>
+    <!-- <script src="/static/js/funciones.js"></script> -->
         <br>
         <header class="sencond_line">
             <nav class="second_nav">
@@ -104,7 +119,7 @@
     
         <br><br>
         <nav class="body">
-          
+        
             <!-- <div class="option_bar">
                 <ul class="fuente">
                     <li><span class="icon-font"></span></li>
@@ -128,10 +143,9 @@
                     <li><span class="icon-image"></span></li>
                 </ul>
             </div> -->
-            <br>
             <div class="fondo_hoja">
                 <div class="hoja">
-                    <textarea name="body_blog" id="body_blog" cols="90" rows="30"></textarea>
+                    <textarea name="body_blog" id="body_blog" cols="90" rows="28"></textarea>
                 </div>
             </div>
             <div class="container-menu">
@@ -173,8 +187,8 @@
     
         </nav>
     
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="/static/js/main.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="/static/js/main.js"></script> -->
 
     
     {% endblock %}
