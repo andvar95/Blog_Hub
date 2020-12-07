@@ -5,9 +5,9 @@
     font-family: sans-serif;
 }
 
-body{
+nav.section1{
     background: #f2f2f2;
-    background-image: url('/img/fondo.jpg');
+    background-image: url(static/img/fondo_copia.jpg);
     background-repeat: no-repeat;
     font-size: 16px;
     font-family: sans-serif;
@@ -15,7 +15,7 @@ body{
 
 /* Navegación */
 
-.header{
+header{
     background: #ffffff;
     width: 100%;
     height: 60px;
@@ -23,8 +23,14 @@ body{
     position: fixed;
     z-index: 100;
     top: 0;    
+   
 }
 
+body{
+    background: #f2f2f2;
+    font-family: sans-serif;
+
+}
 
 #cabecera{
     width: 80%;
@@ -68,6 +74,7 @@ body{
     width: 45%;
     height: 45px;
     border: 0px solid black;
+
     float: left;  
 }
 
@@ -82,25 +89,20 @@ body{
 }
 
 #inicio .inicio{
+   content: url(/static/img/logo_house_grey.png);
     display: block;
     margin: auto;
     padding-top: 10px;
 }
 
 #perfil .perfil{
+    content: url(/static/img/icons8_staff_24px_1_blue.png);
     display: block;
     margin: auto;
     padding-top: 10px;
 }
 
 #perfil:hover{    
-    background:  #f2f2f2;
-    background-size: contain; 
-    border-radius: 5px 5px 5px 5px;    
-    transition:all 0.5s;
-}
-
-#inicio:hover{
     background:  #f2f2f2;
     background-size: contain; 
     border-radius: 5px 5px 5px 5px;    
@@ -154,7 +156,29 @@ input[type="search"]:focus{
     height: 40px;
     border-radius: 50px;
     float: right;
+    
 }
+
+#Seccion_sesion{
+ 
+  width: 25%;
+  height: auto;
+  text-align: center;
+  position: relative;
+  background-color:transparent;
+   padding-top: 10%;
+  left: 67%;
+  top: 100%;
+}
+.opciones_s{
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  height: 80%;  
+  text-align: center;
+}
+
+
 
 /* Sección 1 */
 
@@ -206,7 +230,7 @@ input[type="search"]:focus{
 /* Cuerpo */
 
 .container hr{
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .cuerpo a img{
@@ -214,7 +238,7 @@ input[type="search"]:focus{
 }
 
 .cuerpo{
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     background: #fff;
     border-radius: 5px;
 }

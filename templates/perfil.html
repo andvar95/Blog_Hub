@@ -48,9 +48,13 @@
             </div>
         </div>        
     </header-->
-    {%extends 'layout.html' %}
     
-    {% block content %}
+   <!-- Ya la barra superior no es neceasria porque está en la sección de codigo común (layout)-->
+
+{%extends 'layout.html' %} <!--Obtengo la barra del archivo principal layout-->
+    
+<!--Lo que esté en block content es lo particular del codigo-->
+{% block content %}
     <title>Perfil de Usuario</title>
     <link href="static/css/estiloPerfil.css" rel="stylesheet" >
     <script src="static/js/funciones.js"></script>

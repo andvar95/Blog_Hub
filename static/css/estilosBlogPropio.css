@@ -373,13 +373,9 @@ button{
   .b_preview:active:before, .b_update:active:before{
     width: 120%;
     padding-top: 120%;
-    
     transition: width .2s ease-out, padding-top .2s ease-out;
   
   }
-  
-  
-  
 
 .preview{
     background-image: url(/static/img/preview_pane_20px.png);
@@ -475,15 +471,15 @@ button{
     margin-right: 10px;
 }
 
-.container-menu .menu ul{
+.container-menu .menu li ul{
     display: none;
     background: #f2f2f2;
     padding-left: 20px;
 }
-/*
+
 .container-menu .menu li:hover ul{
     display: block;
-}*/
+}
 
 .container-menu .menu ul input[type=text]{
     border-radius: 15px;

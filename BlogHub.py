@@ -1,13 +1,17 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,flash,request,redirect, url_for
+import os
 
 
 
 app = Flask(__name__)
+app.secret_key= os.urandom(24)
+
 
 #ventana de LOGIN
 @app.route('/')
 def login():
     return render_template('login.html')
+
 
 
 
@@ -18,9 +22,25 @@ def registro():
 
 
 
+@app.route('/verificarusuario',methods=["POST","GET"])
+def verificarusuario():
+   if request.method == "POST":
+        
+        user = request.form["usuario"]
+        password = request.form["password"]
+        
+        if user == "Andres" and password=="12345":
+            return render_template('inicio.html')
+
+        else:
+            flash("Usuario no existe")
+            return render_template('login.html')
+        
+
 @app.route('/inicio')
 def inicio():
     return render_template('inicio.html')
+ 
 
 
 
@@ -36,6 +56,10 @@ def BlogPropio():
 @app.route('/BlogPublico')
 def BlogPublico():
     return render_template('blog_publico.html')
+
+@app.route('/Preview')
+def Preview():
+    return render_template('Vista_Previa.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
