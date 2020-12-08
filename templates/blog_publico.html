@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--DOCTYPE html>
 <html lang="es" dir="ltr">
 
 <head>
@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="css/estilosPublico.css">
-    <script src="C:\Users\andre\Desktop\BLOGHUB\Blog_Hub-1\static\js\funciones.js"></script>
+    <script src="\static\js\funciones.js"></script>
 
 </head>
 
@@ -49,10 +49,13 @@
                 </div>
             </div>
         </div>
-    </header>
-
-    <link rel="stylesheet" href="C:\Users\andre\Desktop\BLOGHUB\Blog_Hub-1\static\css\estilosPublico.css">
-    <script src="C:\Users\andre\Desktop\BLOGHUB\Blog_Hub-1\static\js\funciones.js"></script>
+    </header-->
+    {%extends 'layout.html' %} <!--Obtengo la barra del archivo principal layout-->
+    
+    <!--Lo que esté en block content es lo particular del codigo-->
+    {% block content %}
+    <link rel="stylesheet" href="static\css\estilosPublico.css">
+    <script src="\static\js\funciones.js"></script>
 
     <div class="container">
         <div class="containe2">
@@ -171,7 +174,7 @@
 
         </div>
     </div>
+{% endblock %}
+<!--/body>
 
-</body>
-
-</html>
+</html-->

@@ -179,9 +179,9 @@ input[type="search"]:focus{
     float: right;
 }
 #Seccion_sesion{
- 
+    visibility: hidden;
     width: 25%;
-  
+    visibility: hidden;
     text-align: center;
     position: relative;
     background-color:transparent;

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
     <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="/static/js/funciones.js"></script>
+    <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
     <script>
         tinymce.init({
             selector: "#body_blog",
@@ -16,8 +17,8 @@
 
     </script>
 </head>
-<body onmouseover="quitar();">
-    <header class="header">
+<body >
+    <header class="header" >
         <div id="cabecera">
             <div id="encabezado1">
                 <div id="logo">
@@ -41,7 +42,7 @@
                 </div>
                 <div id="sesion">
                     <img src="static/img/avatar.jpg" class="usuario" alt="Imagen del avatar" onclick="ver();">
-                    <div id="Seccion_sesion" >
+                    <div id="Seccion_sesion">
                         
                         <div class="opciones_s">
                         <div><img src="static/img/user.png"><a href="{{ url_for('perfil')}}"> Perfil </a></div>
