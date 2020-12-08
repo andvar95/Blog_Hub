@@ -2,7 +2,7 @@ from flask import Flask,render_template,flash,request,redirect, url_for
 import os
 
 #esto es un cambio
-
+#eso es otro cmbio
 app = Flask(__name__)
 app.secret_key= os.urandom(24)
 
