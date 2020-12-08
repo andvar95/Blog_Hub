@@ -1,8 +1,9 @@
 from flask import Flask,render_template,flash,request,redirect, url_for
 import os
+import yagmail as yg
+import utils
 
-#esto es un cambio
-#eso es otro cmbio
+
 app = Flask(__name__)
 app.secret_key= os.urandom(24)
 
@@ -13,12 +14,33 @@ def login():
     return render_template('login.html')
 
 
-
-
 #ventana Registro
-@app.route('/registro')
+@app.route('/registro', methods=['GET','POST'])
 def registro():
-    return render_template('Vista_Registro.html')
+    try:
+        if request.method=="POST":
+            user_name = request.form['user']
+            e_mail = request.form['email']
+            pass_word = request.form['password']
+            error = None
+            if not utils.isUsernameValid(user_name):
+                error = "El usuario debe ser alfanumérico"
+                flash(error)
+                return render_template('Vista_Registro.html')
+            if not utils.isEmailValid(e_mail):
+                error = "Email no válido"
+                flash(error)
+                return render_template('Vista_Registro.html')
+            if not utils.isPasswordValid(pass_word):
+                error = "La contraseña contiene caracteres no válidos"
+                flash(error)
+                return render_template('Vista_Registro.html')
+            yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
+            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub"+user_name)
+            return render_template('Vista_Registro_Exitoso.html')
+        return render_template('Vista_Registro.html')
+    except :
+        return render_template('Vista_Registro.html')
 
 
 

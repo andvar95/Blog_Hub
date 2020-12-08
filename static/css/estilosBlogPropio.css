@@ -382,6 +382,10 @@ button{
   
   }
 
+  .b_preview:hover, .b_update:hover{
+      cursor: pointer;
+  }
+
 .preview{
     background-image: url(/static/img/preview_pane_20px.png);
     background-repeat: no-repeat;
