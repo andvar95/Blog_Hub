@@ -317,7 +317,10 @@ input[type="search"]:focus{
 }
 /*botones */
 .botones{
-    width: 25%;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
     float: right;
     display: flex;
 }
@@ -336,16 +339,18 @@ button{
         margin: 30px auto;
         border-radius: 2px;
         border: 0px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+       
         outline: none;
         overflow: hidden;
         position: relative; /*Posicionado relativo a su posicion normal*/
-      
+        border: 1px solid black;
+    
       }
 
       .b_preview span,.b_update span{
         display: block;
         padding: 14px 24px;
+        border: 1px solid black;
       }
 
       
