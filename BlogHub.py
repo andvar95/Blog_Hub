@@ -36,7 +36,7 @@ def registro():
                 flash(error)
                 return render_template('Vista_Registro.html')
             yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
-            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub"+user_name)
+            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub"+ user_name)
             return render_template('Vista_Registro_Exitoso.html')
         return render_template('Vista_Registro.html')
     except :
