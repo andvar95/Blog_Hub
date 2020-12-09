@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background:url(img/6.jpg) no-repeat center top;
+    background:url(/static/img/6.jpg) no-repeat center top;
     background-size: cover;
     font-family: sans-serif;
     height: 90vh;
