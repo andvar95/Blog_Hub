@@ -8,6 +8,12 @@ from form import formLogueo, formRegistro
 app = Flask(__name__)
 app.secret_key= os.urandom(24)
 
+#variabless globales para  reenviar correo
+global username1
+global email1
+username1 = ""
+email1 = ""
+
 
 #ventana de LOGIN
 @app.route('/')
@@ -23,9 +29,14 @@ def login():
 def registro():
     try:
         if request.method=="POST":
-            print("entre asa")
+            print("asa")
+            global username1
+            global email1
+         
             user_name = escape(request.form['usuario'])
+            username1 = escape(request.form['usuario'])
             e_mail = escape(request.form['correo'])
+            email1 = escape(request.form['correo'])
             pass_word = escape(request.form['clave'])
             error = None
             if not utils.isUsernameValid(user_name):
@@ -44,8 +55,8 @@ def registro():
                 print("contraseá")
                 return render_template('Vista_Registro.html')
             yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
+            print("final")
             yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub"+ user_name)
-            print("llegue")
             return render_template('Vista_Registro_Exitoso.html')
         return render_template('Vista_Registro.html')
     except :
@@ -96,6 +107,18 @@ def BlogPublico():
 @app.route('/Preview')
 def Preview():
     return render_template('Vista_Previa.html')
+
+
+@app.route('/reenviar',methods=['GET','POST'])
+def reenviar_codigo():
+    # try:
+        global email1
+        global username1
+        yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
+        yag.send(to=email1,subject="Activa tu cuenta",contents="Bienvenido a BlogHub "+username1)
+        return render_template('Vista_Registro_Exitoso.html')
+    # except :
+    #     return render_template('Vista_Registro_Exitoso.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
