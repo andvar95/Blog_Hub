@@ -44,13 +44,13 @@
         </div>            
     </header>
     <div id="container">   
-        <form>
+        <form action="{{url_for('reenviar_codigo')}}" method="post">
             <img src="/static/img/icons8_mailing_120px_1.png" id="icon" alt="">
             <h3>Registro Exitoso</h3>
             <p>Un correo electrónico de activación de su cuenta ha sido enviado a su correo de registro.</p>
             <label>¿No recibiste un correo?</label>       
             <input type="submit" value="Reenviar">      
-            <a href="/"><input type="button" value="Volver"></a>
+            <a href="{{url_for('login')}}"><input type="button" value="Volver"></a>
         </form>
     </div>
 </body>
