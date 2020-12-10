@@ -1,8 +1,8 @@
 body{
   margin:0;
-  padding-top: 2%;
-
-  background-color:white;
+  padding: 0;
+  /*background:url(/static/img/1.jpg) no-repeat center top;*/
+  background-size: cover;
   font-family: Trebuchet, Arial, sans-serif;
   text-align: center;
 }
