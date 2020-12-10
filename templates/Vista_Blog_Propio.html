@@ -100,9 +100,79 @@
         .container-menu .menu .icono.derecha{
         margin-right: 10px;
         }
+        
         .b_preview:hover, .b_update:hover{
         cursor: pointer;
         }
+
+        button{
+        font-weight: 500;
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+        }
+
+        .b_preview{
+        background-color: rgb(48, 79, 254);
+        padding: 0px;
+        margin: 30px;
+        border-radius: 2px;
+        border: 0px;
+    
+        outline: none;
+        overflow: hidden;
+        position: relative; /*Posicionado relativo a su posicion normal*/
+
+        }
+        .b_update {
+        background-color: rgb(48, 79, 254);
+        padding: 0;
+        margin: 30px auto;
+        border-radius: 2px;
+        border: 0px;
+    
+        outline: none;
+        overflow: hidden;
+        position: relative; /*Posicionado relativo a su posicion normal*/
+        }
+
+        .b_preview span,.b_update span{
+        display: block;
+        padding: 14px 24px;
+        border: 1px solid black;
+        }
+
+        .b_preview:before, .b_update:before {
+        content: "";
+        
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        
+        display: block;
+        width: 0;
+        padding-top: 0;
+        border-radius: 100%;
+        
+        background-color: rgba(236, 240, 241, .3);
+        
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        }
+        
+        .b_preview:active:before, .b_update:active:before{
+        width: 120%;
+        padding-top: 120%;
+        transition: width .2s ease-out, padding-top .2s ease-out;
+        }
+
+        .b_preview:hover, .b_update:hover{
+            cursor: pointer;
+        }
+
     </style>
     <!-- <script src="/static/js/funciones.js"></script> -->
         <br>
