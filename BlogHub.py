@@ -60,8 +60,13 @@ def verificarusuario():
     if request.method == "POST":
         usr = escape(request.form["usuario"])
         pwd = escape(request.form["clave"])
-        return render_template("inicio.html")
-        print(usr +" "+ pwd)
+        if usr == "Andres" and pwd == "12345":
+            return render_template("inicio.html")
+        else:
+            form = formLogueo()
+            flash("Usuario o contraseña errorneas")
+            return render_template('login.html',form=form)
+        
     else:
         nrfm =formLogueo()
         return render_template('login.html')

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicia sesión | Blog Hub</title>
     <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
-    <link rel="stylesheet"  href="{{url_for('static', filename ='/static/css/estilosLogin.css')}}" >
+    <link rel="stylesheet"  href="{{url_for('static', filename ='/css/estilosLogin.css')}}" >
     <style>
         body{
            background:url(/static/img/6.jpg) no-repeat center top;}
@@ -15,6 +15,8 @@
     <div class="login-box">
         
         <img class="avatar" src="/static/img/logo2.png" alt="avatar">
+
+        
         <center>
         <section class="content">
         {% for message in get_flashed_messages() %}
