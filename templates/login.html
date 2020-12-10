@@ -23,18 +23,46 @@
         </section>
         </center>
         
-        <form method = "POST" action="{{url_for('verificarusuario')}}">
+        <form name =form method = "POST" action="{{url_for('verificarusuario')}}" novalidate >
             <!-- Usuario -->
-            <input type="text" name="usuario" class="usr" placeholder="Usuario" id = "usuario">
+            <!--input type="text" name="usuario" class="usr" placeholder="Usuario" id = "usuario">
             
-            <!-- Contraseña -->
+          
             <input type="password" name="password" class="clave" placeholder="Contraseña" id ="password" >
 
-            <button type="submit" class="login" type="button"><span>INICIAR SESIÓN</span></button>
-        
+            <button type="submit" class="login" type="button"><span>INICIAR SESIÓN</span></button-->
+
+            {{form.hidden_tag()}}
+
+            <div>
+            
+                {{form.usuario(size=30)}}<br>
+
+            </div>
+            
+            <div>
+      
+                {{form.clave(size=30)}}<br>
+
+            </div>
+
+            <div>
+                
+                {{form.recordar()}}
+                {{form.recordar.label}}
+
+            </div>
+            
+            <div >
+                <span>{{form.enviar()}}</span>
+               
+
+            </div>
+
+            <div>
             <a href="#" class="recordar">¿Olvidaste tu contraseña?</a><br>
             <a href="{{url_for('registro')}}" class="registrarse" >Registrarse</a>
-            
+        </div> 
            
         </form> 
        

@@ -32,14 +32,42 @@
         <form class="form_R" action="{{url_for('registro')}}" method="post">
             <h1 class= "titulo">Registrate</h1>
         
-            <input type="username" placeholder="Ingrese su Usuario" class="usuario" name="user" id="user" >
+            <!--input type="username" placeholder="Ingrese su Usuario" class="usuario" name="user" id="user" >
         
             <br><br>
             <input type="email" placeholder="Ingrese su correo electrónico" class="email" name="email" id="email">
             <br><br>
             <input type="password" placeholder="Ingrese su Contraseña" class="pass" name="password" id="password">
             <br>
-            <button class="b_Registro" type="submit"><span>REGISTRARME</span></button><!-- Boton cambiar foto--> 
+            <button class="b_Registro" type="submit"><span>REGISTRARME</span></button><-- Boton cambiar foto--> 
+
+
+            {{form.hidden_tag()}}
+
+            <div>
+            
+                {{form.usuario(size=30)}}<br>
+
+            </div>
+            
+            <div>
+      
+                {{form.correo(size=30)}}<br>
+
+            </div>
+
+            <div>
+                
+                {{form.clave(size=30)}}
+
+
+            </div>
+            
+            <div >
+                <span>{{form.enviar()}}</span>
+               
+
+            </div>
             <div>¿Ya estás Registrado?</div>
         
             <button class="ir_login" type="button"><span>INICIAR SESIÓN</span></button><!-- Boton cambiar foto-->

@@ -4,13 +4,13 @@ body{
     background:url(/static/img/6.jpg) no-repeat center top;
     background-size: cover;
     font-family: sans-serif;
-    height: 90vh;
+
     
 }
 
 .login-box{
-    width: 320px;
-    height: 420px;
+    width: 330px;
+    height: 470px;
     border-radius: 10px;
     background: white;
     color: black;
@@ -48,14 +48,14 @@ body{
 }
 
 /*.login-box input[type="submit"]*/
-button{
+.login-box input[type="submit"]{
 
     font-weight: 100;
-    font-size: 7px;
+    font-size: 15px;
     color: white;
     text-decoration: none;
     }
-.login{
+    .login-box input[type="submit"]{
     border: none;
     outline: none;
     padding-bottom: 7%;
@@ -63,7 +63,7 @@ button{
     height: 40px;
     background: #304FFE;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 16px;
     border-radius: 20px;
     margin-top: 10px; 
     margin-bottom: 8px;  
@@ -73,12 +73,12 @@ button{
 
    }
 
-   .login span {
+   .login-box input[type="submit"] {
     display: block;
     padding: 14px 70px;
   }
 
-  .login:before {
+  .login-box input[type="submit"]:before {
     content: "";
     
     position: absolute;
@@ -99,7 +99,7 @@ button{
     transform: translate(-50%, -50%);
   }
   
-  .login:active:before{
+  .login-box input[type="submit"]:active:before{
     width: 120%;
     padding-top: 120%;
     

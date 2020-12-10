@@ -33,7 +33,9 @@ body{
        color:#304FFE;
      }
 
-     .usuario, .email, .pass{
+    .form_R input[type="text"],
+    .form_R input[type="password"],    
+    .form_R input[type="email"]{
       width: 90%;
       height: 40px;
       outline: none;
@@ -43,7 +45,7 @@ body{
      }
 
      
-     .b_Registro, .ir_login{
+     .form_R input[type="submit"], .ir_login{
       background-color: rgb(48, 79, 254);
       padding: 0;
       margin: 30px auto;
@@ -56,12 +58,12 @@ body{
       color: white;
      }
 
-     .b_Registro span, .ir_login span {
+     .form_R input[type="submit"], .ir_login span {
       display: block;
       padding: 14px 85px;
     }
 
-    .b_Registro:before , .ir_login:before {
+    .form_R input[type="submit"]:before , .ir_login:before {
       content: "";
       
       position: absolute;
@@ -82,7 +84,7 @@ body{
       transform: translate(-50%, -50%);
     }
     
-    .b_Registro:active:before, .ir_login:active:before{
+    .form_R input[type="submit"]:active:before, .ir_login:active:before{
       width: 120%;
       padding-top: 120%;
       
