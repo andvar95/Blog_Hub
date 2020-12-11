@@ -6,7 +6,10 @@
     <title>Inicia sesión | Blog Hub</title>
     <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
     <link rel="stylesheet"  href="{{url_for('static', filename ='/css/estilosLogin.css')}}" >
-
+    <style>
+        body{
+           background:url(/static/img/6.jpg) no-repeat center top;}
+    </style>
 </head>
 <body>
     <div class="login-box">
@@ -53,17 +56,19 @@
             </div>
             
             <div >
-                <span>{{form.enviar()}}</span>
+                    {{form.enviar()}}
                
 
             </div>
+            
+          
+           
+        </form> 
 
-            <div>
+        <div>
             <a href="#" class="recordar">¿Olvidaste tu contraseña?</a><br>
             <a href="{{url_for('registro')}}" class="registrarse" >Registrarse</a>
         </div> 
-           
-        </form> 
        
     </div>
 </body>
