@@ -60,7 +60,7 @@ def registro():
                 flash(error)
                 return render_template('Vista_Registro.html')
             yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
-            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub"+ user_name)
+            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub "+user_name)
             try:
                 with sqlite3.connect('BlogHubDB.db') as con:
                     cur = con.cursor()
