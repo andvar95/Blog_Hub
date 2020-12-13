@@ -4,9 +4,11 @@ import yagmail as yg
 import utils
 from markupsafe import escape
 from form import formLogueo, formRegistro
+import hashlib
+import sqlite3
 
 app = Flask(__name__)
-app.secret_key= os.urandom(24)
+app.secret_key = os.urandom(24)
 
 #variabless globales para  reenviar correo
 global username1
@@ -29,39 +31,48 @@ def login():
 def registro():
     try:
         if request.method=="POST":
-            print("asa")
+            form = formRegistro()
             global username1
             global email1
-         
-            user_name = escape(request.form['usuario'])
-            username1 = escape(request.form['usuario'])
-            e_mail = escape(request.form['correo'])
-            email1 = escape(request.form['correo'])
-            pass_word = escape(request.form['clave'])
+            # user_name = escape(request.form['usuario'])
+            user_name = form.usuario.data
+            # username1 = escape(request.form['usuario'])
+            username1 = form.usuario.data
+            # e_mail = escape(request.form['correo'])
+            # email1 = escape(request.form['correo'])
+            e_mail = form.correo.data
+            email1 = form.correo.data
+            # pass_word = escape(request.form['clave'])
+            pass_word = form.clave.data
+            e = hashlib.md5(pass_word.encode())
+            en = e.hexdigest()
             error = None
             if not utils.isUsernameValid(user_name):
                 error = "El usuario debe ser alfanumérico"
                 flash(error)
-                print("Erro nombre")
                 return render_template('Vista_Registro.html')
             if not utils.isEmailValid(e_mail):
                 error = "Email no válido"
                 flash(error)
-                print("email")
                 return render_template('Vista_Registro.html')
             if not utils.isPasswordValid(pass_word):
                 error = "La contraseña contiene caracteres no válidos"
                 flash(error)
-                print("contraseá")
                 return render_template('Vista_Registro.html')
             yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
-            print("final")
             yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub"+ user_name)
-            return render_template('Vista_Registro_Exitoso.html')
+            try:
+                with sqlite3.connect('BlogHubDB.db') as con:
+                    cur = con.cursor()
+                    cur.execute('INSERT INTO Usuarios(email,username,password) VALUES(?,?,?)',(e_mail,user_name,en)) #Cuando son varios, es con paréntesis
+                    con.commit()
+                    return render_template('Vista_Registro_Exitoso.html')
+            except:
+                con.rollback()
         return render_template('Vista_Registro.html')
     except :
         form = formRegistro()
-        return render_template('Vista_Registro.html',form=form)
+    return render_template('Vista_Registro.html',form=form)
 
 
 
@@ -75,11 +86,11 @@ def verificarusuario():
             return render_template("inicio.html")
         else:
             form = formLogueo()
-            flash("Usuario o contraseña errorneas")
+            flash("Usuario o contraseña erróneas")
             return render_template('login.html',form=form)
         
     else:
-        nrfm =formLogueo()
+        nrfm = formLogueo()
         return render_template('login.html')
     
 
@@ -88,8 +99,6 @@ def verificarusuario():
 def inicio():
     return render_template('inicio.html')
  
-
-
 
 @app.route('/perfil')
 def perfil():
