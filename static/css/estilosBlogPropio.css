@@ -333,25 +333,40 @@ button{
     text-decoration: none;
     }
 
-    .b_preview, .b_update {
+.b_preview{
+    background-color: rgb(48, 79, 254);
+    padding: 0;
+    margin: 30px;
+    border-radius: 2px;
+    border: 0px;
+    
+    outline: none;
+    overflow: hidden;
+    position: relative; /*Posicionado relativo a su posicion normal*/
+    border: 1px solid black;
+    
+
+    }
+
+.b_update {
         background-color: rgb(48, 79, 254);
         padding: 0;
         margin: 30px auto;
         border-radius: 2px;
         border: 0px;
-       
+        
         outline: none;
         overflow: hidden;
         position: relative; /*Posicionado relativo a su posicion normal*/
         border: 1px solid black;
     
-      }
+        }
 
-      .b_preview span,.b_update span{
-        display: block;
-        padding: 14px 24px;
-        border: 1px solid black;
-      }
+.b_preview span,.b_update span{
+    display: block;
+    padding: 14px 24px;
+    /*border: 1px solid black;*/
+    }
 
       
 .b_preview:before, .b_update:before {
@@ -386,13 +401,13 @@ button{
       cursor: pointer;
   }
 
-.preview{
+/* .preview{
     background-image: url(/static/img/preview_pane_20px.png);
     background-repeat: no-repeat;
     background-position: left;
     background-position-x: 3px;
     padding: 10px;
-    /*padding-left: 30px;*/
+    padding-left: 30px;
     border-radius: 5px;
     background: #304FFE;
     color: white;
@@ -411,7 +426,7 @@ button{
     width: 50%;
     margin-right: 10px;
     font-size: 15px;
-}
+} */
 
 /* Tercera parte */
 
@@ -474,6 +489,7 @@ button{
     font-size: 25px;
     line-height: 28px;
     z-index: 10;
+    color:black
 }
 
 .container-menu .menu .icono.derecha{

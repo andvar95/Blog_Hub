@@ -22,11 +22,12 @@ email1 = ""
 def registro():
     try:
         if request.method=="POST":
+            # Ahora se actualizan los métodos de llamado a wtf
             form = formRegistro()
             global username1
             global email1
             # user_name = escape(request.form['usuario'])
-            user_name = form.usuario.data
+            user_name = form.usuario.data 
             # username1 = escape(request.form['usuario'])
             username1 = form.usuario.data
             # e_mail = escape(request.form['correo'])
@@ -141,10 +142,18 @@ def perfil():
 
 @app.route('/BlogPropio')
 def BlogPropio():
+<<<<<<< HEAD
     if "user" in session:
         return render_template('Vista_Blog_Propio.html')
     else:
         return "Acción no permitida <a href='/'>login</a>"
+=======
+    return render_template('Vista_Blog_Propio.html')
+
+@app.route('/CrearBlog')
+def CrearBlog():
+    return render_template('Vista_Crear_Blog.html')
+>>>>>>> 8de896c03763898ce6fec160d477cd64205e0ca4
 
 @app.route('/BlogPublico')
 def BlogPublico():
