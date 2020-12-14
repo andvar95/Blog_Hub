@@ -1,4 +1,4 @@
-from flask import Flask,render_template,flash,request,redirect, url_for
+from flask import Flask,render_template,flash,request,redirect, url_for,session
 import os
 import yagmail as yg
 import utils
@@ -15,15 +15,6 @@ global username1
 global email1
 username1 = ""
 email1 = ""
-
-
-#ventana de LOGIN
-@app.route('/')
-def login():
-    form = formLogueo()
-    if (form.validate_on_submit()):
-        print("valido")
-    return render_template('login.html',form= form)
 
 
 #ventana Registro
@@ -76,38 +67,84 @@ def registro():
 
 
 
+#ventana de LOGIN
+@app.route('/')
+def login():
+    form = formLogueo()
+    if (form.validate_on_submit()):
+        print("valido")
+    return render_template('login.html',form= form)
+
+
 @app.route('/',methods=["POST","GET"])
 def verificarusuario():
-
+    frm = formLogueo()
     if request.method == "POST":
-        usr = escape(request.form["usuario"])
-        pwd = escape(request.form["clave"])
-        if usr == "Andres" and pwd == "12345":
-            return render_template("inicio.html")
-        else:
-            form = formLogueo()
-            flash("Usuario o contraseña erróneas")
-            return render_template('login.html',form=form)
+        usr = escape(frm.usuario.data)
+        pwd = escape(frm.clave.data)
+        e = hashlib.md5(pwd.encode())
+        en = e.hexdigest()
+        with sqlite3.connect('BlogHubDB.db') as con:
+            con.row_factory = sqlite3.Row #recibir bien la lista
+            cur = con.cursor()
+            #cur.execute("Select * FROM Usuario WHERE nombre = '"+user+"' AND clave= '"+pas+"';")
+            print(usr)
+            print(en)
+            cur.execute("Select * FROM usuarios WHERE username = ? AND password=?",(usr,en))
+          
+            if cur.fetchall():
+               
+        
+                session['user'] = usr
+                
+                return render_template("inicio.html",form=frm)
+            else:
+                form = formLogueo()
+                flash("Usuario o contraseña erróneas")
+                return render_template('login.html',form=form)
         
     else:
-        nrfm = formLogueo()
+        frm = formLogueo()
         return render_template('login.html')
+    
+@app.route("/logout")
+def logout():
+    frm = formLogueo()
+    if "user" in session:
+        session.pop("user",None)
+        return render_template("login.html",form=frm)
+    else:
+        return "Ya se cerró la sesión"
+
     
 
 
-@app.route('/inicio')
+@app.route('/inicio',methods=["POST","GET"])
 def inicio():
-    return render_template('inicio.html')
- 
+    frm = formLogueo()
+    if "user" in session:
+        print(frm.usuario.data)
+        return render_template('inicio.html',form=frm)
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
+
+
 
 @app.route('/perfil')
 def perfil():
-    return render_template('perfil.html')
+    
+    if "user" in session:
+        datos = [session['user']]
+        return render_template('perfil.html',datos=datos)
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
 
 @app.route('/BlogPropio')
 def BlogPropio():
-    return render_template('Vista_Blog_Propio.html')
-
+    if "user" in session:
+        return render_template('Vista_Blog_Propio.html')
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
 
 @app.route('/BlogPublico')
 def BlogPublico():

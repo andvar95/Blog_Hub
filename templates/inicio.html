@@ -54,12 +54,13 @@
     
 <!--Lo que esté en block content es lo particular del codigo-->
 {% block content %}
+{{form.hidden_tag()}}
 <link rel="stylesheet" href="/static/css/estilosInicio.css">
     <section id="principal">
         <section id="publicaciones">
             <article class="post">
                 <a href="" class="enlace-post">
-                    <h2 class="titulo-post">Titulo del blog</h2>
+                    <h2 class="titulo-post">{{form.data.usuario}}</h2>
                 </a>
                 <img src="/static/img/deportes.png"class="img-post">
                 <p>
