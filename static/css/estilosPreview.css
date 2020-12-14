@@ -225,6 +225,7 @@ input[type="search"]:focus{
 
 .section1_encabezado_derecha{
     float: right;
+    z-index:1000;
 }
 
 /* Cuerpo */

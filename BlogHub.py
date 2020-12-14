@@ -31,11 +31,12 @@ def login():
 def registro():
     try:
         if request.method=="POST":
+            # Ahora se actualizan los métodos de llamado a wtf
             form = formRegistro()
             global username1
             global email1
             # user_name = escape(request.form['usuario'])
-            user_name = form.usuario.data
+            user_name = form.usuario.data 
             # username1 = escape(request.form['usuario'])
             username1 = form.usuario.data
             # e_mail = escape(request.form['correo'])
@@ -108,6 +109,9 @@ def perfil():
 def BlogPropio():
     return render_template('Vista_Blog_Propio.html')
 
+@app.route('/CrearBlog')
+def CrearBlog():
+    return render_template('Vista_Crear_Blog.html')
 
 @app.route('/BlogPublico')
 def BlogPublico():
