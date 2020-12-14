@@ -140,13 +140,14 @@ def perfil():
     else:
         return "Acción no permitida <a href='/'>login</a>"
 
+
 @app.route('/BlogPropio')
 def BlogPropio():
 
     if "user" in session:
         return render_template('Vista_Blog_Propio.html')
     else:
-        return "Acción no permitida <a href='/'>login</a>
+        return "Acción no permitida <a href='/'>login</a>"
     return render_template('Vista_Blog_Propio.html')
 
 @app.route('/CrearBlog')
