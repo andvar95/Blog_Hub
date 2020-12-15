@@ -27,7 +27,7 @@ header{
 }
 
 
-#container{
+#container, #container1{
     width: 320px;
     height: 480px;
     border-radius: 10px;
@@ -56,7 +56,7 @@ h3, p, label, input{
     text-align: center;
 }
 
-#container input[type="submit"], #container a input[type="button"]{
+#container input[type="submit"],#container1 input[type="submit"],#container1 input[type="button"], #container a input[type="button"]{
     border: none;
     outline: none;
     width: 100%;
@@ -68,3 +68,21 @@ h3, p, label, input{
     margin-top: 20px;
 }
 
+
+#container1 input[type="email"],
+#container1 input[type="password"]
+{
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #304FFE;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;    
+}
+
+#container1{
+ 
+    height: 520px;
+
+}
