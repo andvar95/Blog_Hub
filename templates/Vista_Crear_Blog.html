@@ -85,58 +85,35 @@
 <!--Lo que esté en block content es lo particular del codigo-->
 {% block content %}
     <title>Mi Blog</title>
-    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/c3199b0df9/UntitledProject/style.css">
+    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/ef42925346/UntitledProject/style.css">
     <style>
         .container-menu .menu li:hover ul{
         display: block;
         }
     </style>
-    <link rel="stylesheet" href="/static/css/estilosBlogPropio.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/estilosCrearBlog.css')}}">
     <!-- <style src="{{url_for('static',filename='css/estilosBlogPropio.css')}}"></style> -->
     <!-- <script src="/static/js/funciones.js"></script> -->
         <br>
+    <form method="post">    
         <header class="sencond_line">
             <nav class="second_nav">
                 <div class="titulo">
-                    <label for="">Titulo</label>
+                    <label for="titulo">Titulo</label>
                     <br>
-                    <Input type="text" placeholder="Titulo del blog"></Input>
+                    <Input type="text" placeholder="Titulo del blog" name="titulo" value="{{request.form['titulo']}}"></Input>
                 </div>
                 <div class="botones">
                     <a href="{{url_for('Preview')}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
-                    <button class="b_update" type="button"><span>Publicar</span></button>
+                    <button class="b_create" type="submit"><span>Publicar</span></button>
                 </div>
             </nav>
     
         <br><br>
         <nav class="body">
-        
-            <!-- <div class="option_bar">
-                <ul class="fuente">
-                    <li><span class="icon-font"></span></li>
-                    <li><span class="icon-font-size"></span></li>
-                </ul>
-                <ul class="texto">
-                    <li><span class="icon-bold"></span></li>
-                    <li><span class="icon-underline"></span></li>
-                    <li><span class="icon-italic"></span></li>
-                    <li><span class="icon-strikethrough"></span></li>
-                    <li><span class="icon-paragraph-left"></span></li>
-                    <li><span class="icon-paragraph-center"></span></li>
-                    <li><span class="icon-paragraph-right"></span></li>
-                    <li><span class="icon-paragraph-right"></span></li>
-                    <li><span class="icon-paragraph-justify"></span></li>
-                    <li><span class="icon-indent-increase"></span></li>
-                    <li><span class="icon-indent-decrease"></span></li>
-                </ul>
-                <ul class="adjuntar">
-                    <li><span class="icon-link"></span></li>
-                    <li><span class="icon-image"></span></li>
-                </ul>
-            </div> -->
             <div class="fondo_hoja">
                 <div class="hoja">
-                    <textarea name="body_blog" id="body_blog" cols="90" rows="28"></textarea>
+                    <textarea name="body_blog" id="body_blog" cols="90" rows="28">{{request.form['body_blog']}}</textarea>
                 </div>
             </div>
             <div class="container-menu">
@@ -177,7 +154,7 @@
             </div>
     
         </nav>
-    
+    </form>
         <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="/static/js/main.js"></script> -->
 

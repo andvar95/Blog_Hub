@@ -85,7 +85,7 @@
 <!--Lo que esté en block content es lo particular del codigo-->
 {% block content %}
     <title>Mi Blog</title>
-    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/c3199b0df9/UntitledProject/style.css">
+    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/ef42925346/UntitledProject/style.css">
     <style>
         .container-menu .menu li:hover ul{
         display: block;
@@ -100,7 +100,7 @@
                 <div class="titulo">
                     <label for="">Titulo</label>
                     <br>
-                    <Input type="text" placeholder="Titulo del blog"></Input>
+                    <Input type="text" placeholder="Titulo del blog" value="{{post['titulo']}}"></Input>
                 </div>
                 <div class="botones">
                     <a href="{{url_for('Preview')}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
@@ -136,7 +136,7 @@
             </div> -->
             <div class="fondo_hoja">
                 <div class="hoja">
-                    <textarea name="body_blog" id="body_blog" cols="90" rows="28"></textarea>
+                    <textarea name="body_blog" id="body_blog" cols="90" rows="28">{{post['cuerpo']}}</textarea>
                 </div>
             </div>
             <div class="container-menu">

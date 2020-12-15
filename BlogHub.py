@@ -6,6 +6,33 @@ from markupsafe import escape
 from form import formLogueo, formRegistro
 import hashlib
 import sqlite3
+from werkzeug.exceptions import abort
+
+# Función para realizar conexión a la DB
+def get_db_connection():
+    conn = sqlite3.connect('BlogHubDB.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+# Función para obtener id del post
+
+def get_post(post_id):
+    conn = get_db_connection()
+    post = conn.execute('SELECT * FROM posts WHERE id = ?',
+                        (post_id,)).fetchone()
+    conn.close()
+    if post is None:
+        abort(404)
+    return post
+
+# def get_post_name(post_name):
+#     with sqlite3.connect('BlogHubDB.db') as con:
+#         cur = con.cursor()
+#         cur.execute('SELECT * FROM posts WHERE id = ?',
+#                         (post_id,)).fetchone()
+#         post = cur.fetchone()
+#         if post is None:
+#             abort(404)
+#         return post
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -88,6 +115,11 @@ def verificarusuario():
         with sqlite3.connect('BlogHubDB.db') as con:
             con.row_factory = sqlite3.Row #recibir bien la lista
             cur = con.cursor()
+            con.row_factory = sqlite3.Row
+            cur1 = con.cursor()
+            cur1 = con.cursor()
+            cur1.execute("SELECT * FROM posts") 
+            row = cur1.fetchall() #para traer un solo registro. Fetchall para traer todos
             #cur.execute("Select * FROM Usuario WHERE nombre = '"+user+"' AND clave= '"+pas+"';")
             print(usr)
             print(en)
@@ -98,7 +130,7 @@ def verificarusuario():
         
                 session['user'] = usr
                 
-                return render_template("inicio.html",form=frm)
+                return render_template("inicio.html",form=frm,row=row)
             else:
                 form = formLogueo()
                 flash("Usuario o contraseña erróneas")
@@ -117,41 +149,87 @@ def logout():
     else:
         return "Ya se cerró la sesión"
 
-    
 
-
-@app.route('/inicio',methods=["POST","GET"])
+@app.route('/inicio',methods=["GET","POST"])
 def inicio():
-    frm = formLogueo()
     if "user" in session:
-        print(frm.usuario.data)
+        frm = formLogueo()
+        print(session['user'])
+        # try:
+        with sqlite3.connect('BlogHubDB.db') as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("SELECT * FROM posts") 
+            row = cur.fetchall()
+            return render_template('inicio.html',row = row, form=frm)
+        #except: 
+            # con.rollback() 
         return render_template('inicio.html',form=frm)
     else:
         return "Acción no permitida <a href='/'>login</a>"
-
-
 
 @app.route('/perfil')
 def perfil():
     
     if "user" in session:
-        datos = [session['user']]
-        return render_template('perfil.html',datos=datos)
+        datos = session['user']
+        with sqlite3.connect('BlogHubDB.db') as con:
+            con.row_factory = sqlite3.Row
+            cur1 = con.cursor()
+            cur1.execute("SELECT email FROM usuarios where username = ?",[datos])
+            email2 = cur1.fetchone()
+            id_usuario=""
+            for i in email2:
+                id_usuario=i[:]
+            cur = con.cursor()
+            cur.execute("SELECT * FROM posts where id_usuario = ?",[id_usuario]) 
+            row = cur.fetchall()
+        return render_template('perfil.html',datos=datos, row=row,email2=email2)
     else:
         return "Acción no permitida <a href='/'>login</a>"
 
 
+@app.route('/<int:post_id>')
+def post(post_id):
+    post = get_post(post_id)
+    return render_template('post.html',post=post)
+
+@app.route('/edit/<int:post_id>')
+def edit_post(post_id):
+    post = get_post(post_id)
+    return render_template('Vista_Blog_Propio.html',post=post)
+
 @app.route('/BlogPropio')
 def BlogPropio():
-
     if "user" in session:
         return render_template('Vista_Blog_Propio.html')
     else:
         return "Acción no permitida <a href='/'>login</a>"
     return render_template('Vista_Blog_Propio.html')
 
-@app.route('/CrearBlog')
+@app.route('/CrearBlog',methods=['GET','POST'])
 def CrearBlog():
+    if "user" in session:
+        datos=session['user']
+        if request.method == 'POST':
+            titulo = request.form['titulo']
+            cuerpo = request.form['body_blog']
+            if not titulo:
+                flash('Se requiere título')
+            elif not cuerpo:
+                flash('Se requiere cuerpo')            
+            else:
+                conn = get_db_connection()
+                conn1= get_db_connection()
+                post = conn1.execute('SELECT email FROM usuarios WHERE username = ?',[datos]).fetchone()
+                print(post[0])
+                conn.execute('INSERT INTO posts (titulo, id_usuario, cuerpo, estado) VALUES (?, ?, ?, ?)',
+                            (titulo, post[0], cuerpo, 1))
+                conn.commit()
+                conn.close()
+                return redirect(url_for('perfil'))
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
     return render_template('Vista_Crear_Blog.html')
 
 

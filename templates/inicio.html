@@ -54,19 +54,21 @@
     
 <!--Lo que esté en block content es lo particular del codigo-->
 {% block content %}
+<title>Inicio</title>
 {{form.hidden_tag()}}
 <link rel="stylesheet" href="/static/css/estilosInicio.css">
     <section id="principal">
-        <section id="publicaciones">
+        <section id="publicaciones">    
+            {%for r in row%}    
             <article class="post">
                 <a href="" class="enlace-post">
-                    <h2 class="titulo-post">{{form.data.usuario}}</h2>
+                    <h2 class="titulo-post">{{r['titulo']}}</h2>
                 </a>
                 <img src="/static/img/deportes.png"class="img-post">
                 <p>
                     <strong>Por: </strong><span class="datos-publicaciones">Arned Martelo</span>
                     &nbsp; &nbsp;
-                    <strong>Fecha: </strong><span class="datos-publicaciones">Domingo, 29 de Noviembre de 2020</span>
+                    <strong>Fecha: </strong><span class="datos-publicaciones">{{r['fecha_creación']}}</span>
                 </p>
                 <p class="parrafo-post">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam mollitia dolore sequi suscipit maiores minima omnis ullam dolores veniam officia accusamus amet alias aliquamnihil quibusdam eveniet, a vel praesentium.
@@ -76,8 +78,9 @@
                 <strong>Categoria: </strong><span class="datos-publicaciones">Deportes</span>
 
             </article>
+            {%endfor%}
 
-            <article class="post">
+            <!-- <article class="post">
                 <a href="{{url_for('BlogPublico')}}" class="enlace-post">
                     <h2 class="titulo-post">Titulo del blog</h2>
                 </a>
@@ -147,7 +150,7 @@
                 <a href="" class="leer-mas">Leer más...</a>&nbsp; &nbsp;
                 <span class="num-comentarios">24 Comentarios</span>&nbsp; &nbsp;
                 <strong>Categoria: </strong><span class="datos-publicaciones">Vida sana</span>
-            </article>
+            </article> -->           
 
             <div id="paginacion">
                 <p>Anterior &nbsp; &nbsp;<a href="" class="enlace-paginacion">Siguiente</a> </p>
