@@ -95,22 +95,89 @@
     <!-- <style src="{{url_for('static',filename='css/estilosBlogPropio.css')}}"></style> -->
     <!-- <script src="/static/js/funciones.js"></script> -->
         <br>
-        <header class="sencond_line">
-            <nav class="second_nav">
-                <div class="titulo">
-                    <label for="">Titulo</label>
-                    <br>
-                    <Input type="text" placeholder="Titulo del blog" value="{{post['titulo']}}"></Input>
-                </div>
-                <div class="botones">
-                    <a href="{{url_for('Preview')}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
-                    <button class="b_update" type="button"><span>Actualizar</span></button>
-                </div>
-            </nav>
-    
-        <br><br>
-        <nav class="body">
+        <form action="" method="post">
+            <header class="sencond_line">
+                <nav class="second_nav">
+                    <div class="titulo">
+                        <label for="">Titulo</label>
+                        <br>
+                        <Input type="text" name="titulo" placeholder="Titulo del blog" value="{{request.form['titulo'] or post['titulo']}}"></Input>
+                    </div>
+                    <div class="botones">
+                        <a href="{{url_for('Preview',post_id=post['id'])}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
+                        <button class="b_update" type="submit"><span>Actualizar</span></button>
+                    </div>
+                </nav>
         
+            <br><br>
+            <nav class="body">
+            
+                <!-- <div class="option_bar">
+                    <ul class="fuente">
+                        <li><span class="icon-font"></span></li>
+                        <li><span class="icon-font-size"></span></li>
+                    </ul>
+                    <ul class="texto">
+                        <li><span class="icon-bold"></span></li>
+                        <li><span class="icon-underline"></span></li>
+                        <li><span class="icon-italic"></span></li>
+                        <li><span class="icon-strikethrough"></span></li>
+                        <li><span class="icon-paragraph-left"></span></li>
+                        <li><span class="icon-paragraph-center"></span></li>
+                        <li><span class="icon-paragraph-right"></span></li>
+                        <li><span class="icon-paragraph-right"></span></li>
+                        <li><span class="icon-paragraph-justify"></span></li>
+                        <li><span class="icon-indent-increase"></span></li>
+                        <li><span class="icon-indent-decrease"></span></li>
+                    </ul>
+                    <ul class="adjuntar">
+                        <li><span class="icon-link"></span></li>
+                        <li><span class="icon-image"></span></li>
+                    </ul>
+                </div> -->
+                <div class="fondo_hoja">
+                    <div class="hoja">
+                        <textarea name="body_blog" id="body_blog" cols="90" rows="28">{{request.form['cuerpo'] or post['cuerpo']}}</textarea>
+                    </div>
+                </div>
+                <div class="container-menu">
+                    <ul class="menu">
+                        <li><a href="#"><span class="icono derecha icon-circle-down"></span>Palabras Clave</a>
+                            <ul>
+                            <label for="">Palabras Clave</label>
+                            <br>
+                            <Input type="text" placeholder="Separe por comas"></Input>  
+                            </ul>                  
+                        </li>
+                        <li><a href="#"><span class="icono derecha icon-circle-down"></span>Visibilidad</a>
+                            <ul>
+                            <input type="radio" name="tipo" id="public">
+                            <label for="public">Publico</label>
+                            <br>
+                            <input type="radio" name="tipo" id="private">
+                            <label for="private">Privado</label>
+                            </ul>
+                        </li>
+                        <li><a href="#"><span class="icono derecha icon-circle-down"></span>Publicación</a>
+                            <ul class="fecha">
+                                <Input type="date"></Input>
+                                <!-- <iframe src="https://calendar.google.com/calendar/embed?height=162&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FBogota&amp;src=YW5kcmVzc3J5b2RhbUBnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%2333B679&amp;showTitle=0&amp;showDate=1&amp;showNav=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="236" height="162" frameborder="0" scrolling="no"></iframe> -->
+                            </ul>
+                        </li>
+                        <li><a href="#"><span class="icono derecha icon-circle-down"></span>Comentarios</a>
+                            <ul>
+                            <input type="radio" name="enabled" id="enabled">
+                            <label for="public">Permitir</label>
+                            <br>
+                            <input type="radio" name="enabled" id="disable">
+                            <label for="private">No Permitir</label>
+                            </ul>                    
+                        </li>
+                        <li><a href="#"><span class="icono derecha icon-circle-down"></span>Otras</a></li>
+                    </ul>
+                </div>
+        
+<<<<<<< HEAD
             <!-- <div class="option_bar">
                 <ul class="fuente">
                     <li><span class="icon-font"></span></li>
@@ -177,6 +244,10 @@
             </div>
     
         </nav>
+=======
+            </nav>
+        </form>
+>>>>>>> 5ae6a56e453c58a24be6f4254ba70f87ef31723c
     
         <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="/static/js/main.js"></script> -->

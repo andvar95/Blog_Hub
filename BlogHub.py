@@ -42,6 +42,9 @@ app.secret_key = os.urandom(24)
 #variabless globales para  reenviar correo
 global username1
 global email1
+tittle = ""
+content = ""
+date = ""
 username1 = ""
 email1 = ""
 
@@ -200,11 +203,32 @@ def post(post_id):
     post = get_post(post_id)
     return render_template('post.html',post=post)
 
-@app.route('/edit/<int:post_id>')
+@app.route('/edit/<int:post_id>',methods=['GET','POST'])
 def edit_post(post_id):
     post = get_post(post_id)
-    return render_template('Vista_Blog_Propio.html',post=post)
-
+    if "user" in session:
+        datos=session['user']
+        if request.method == 'POST':
+            titulo = request.form['titulo']
+            cuerpo = request.form['body_blog']
+            if not titulo:
+                flash('Se requiere título')
+            elif not cuerpo:
+                flash('Se requiere cuerpo')            
+            else:
+                conn = get_db_connection()
+                conn1= get_db_connection()
+                post = conn1.execute('SELECT email FROM usuarios WHERE username = ?',[datos]).fetchone()
+                print(post[0])
+                conn.execute('UPDATE posts SET titulo = ?, cuerpo = ? WHERE id = ?',
+                            (titulo, cuerpo, post_id))
+                conn.commit()
+                conn.close()
+                return redirect(url_for('perfil'))
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
+    return render_template('Vista_Blog_Propio.html', post=post)
+    
 @app.route('/BlogPropio')
 def BlogPropio():
     if "user" in session:
@@ -245,10 +269,28 @@ def CrearBlog():
 def BlogPublico():
     return render_template('blog_publico.html')
 
-@app.route('/Preview')
-def Preview():
-    return render_template('Vista_Previa.html')
+@app.route('/Preview/<int:post_id>')
+def Preview(post_id):
+    post = get_post(post_id)
+    return render_template('Vista_Previa.html',post=post)
 
+@app.route('/delete/<int:post_id>',methods=('POST','GET'))
+def delete_post(post_id):
+    post = get_post(post_id)
+    conn = get_db_connection()
+    conn.execute('DELETE FROM posts WHERE id = ?', (post_id,))
+    conn.commit()
+    conn.close()
+    flash('"{}" Fue borrado existosamente!'.format(post['titulo']))
+    return redirect(url_for('perfil'))
+
+@app.route('/Preview/new/',methods=['GET','POST'])
+def Preview_new():
+    if "user" in session:
+        return render_template('Vista_Previa_N.html')
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
+    return render_template('Vista_Crear_Blog.html')
 
 @app.route('/reenviar',methods=['GET','POST'])
 def reenviar_codigo():
