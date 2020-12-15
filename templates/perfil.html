@@ -112,7 +112,7 @@
                             {{r['cuerpo'][:200]}}...
                         </p>
                              <a href="{{url_for('edit_post',post_id=r['id'])}}"><button type="button" class="btn_edit"><span>Editar</span></button></a>
-                             <button type="button" class="btn_elim"><span>Eliminar</span></button>
+                             <a href="{{url_for('delete_post',post_id=r['id'])}}"><button type="button" class="btn_elim"><span>Eliminar</span></button></a>
                              <button type="button" class="btn_Comen"><span>Comentarios</span> </button>
                          
                     </div>
