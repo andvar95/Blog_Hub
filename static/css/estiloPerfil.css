@@ -234,7 +234,21 @@ border: 3px solid gray;
 
 
 
-.btn_edit, .btn_elim, .btn_Comen, .b_cambiarfoto, .c_contraseña{
+.btn_edit, .btn_elim, .btn_Comen{
+  background-color: rgb(48, 79, 254);
+  padding: 0;
+  margin: 5px auto;
+  margin-top: 0px;
+  border-radius: 2px;
+  border: 0px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  outline: none;
+  overflow: hidden;
+  position: relative; /*Posicionado relativo a su posicion normal*/
+
+}
+
+.b_cambiarfoto, .c_contraseña{
   background-color: rgb(48, 79, 254);
   padding: 0;
   margin: 30px auto;
@@ -244,8 +258,8 @@ border: 3px solid gray;
   outline: none;
   overflow: hidden;
   position: relative; /*Posicionado relativo a su posicion normal*/
-
 }
+
 .btn_elim{
 background-color: rgb(211, 47, 47 );
 
