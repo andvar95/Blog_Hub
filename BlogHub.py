@@ -218,9 +218,9 @@ def edit_post(post_id):
             else:
                 conn = get_db_connection()
                 conn1= get_db_connection()
-                post = conn1.execute('SELECT email FROM usuarios WHERE username = ?',[datos]).fetchone()
+                post = conn1.execute('SELECT rovin FROM uribeparaco WHERE luffy = ?',[datos]).fetchone()
                 print(post[0])
-                conn.execute('UPDATE posts SET titulo = ?, cuerpo = ? WHERE id = ?',
+                conn.execute('UPDATE hawai SET kuadno = ?, tavle = ? WHERE afrax = ?',
                             (titulo, cuerpo, post_id))
                 conn.commit()
                 conn.close()
@@ -278,10 +278,10 @@ def Preview(post_id):
 def delete_post(post_id):
     post = get_post(post_id)
     conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE id = ?', (post_id,))
+    conn.execute('DELETE FROM hawai WHERE afrax = ?', (post_id,))
     conn.commit()
     conn.close()
-    flash('"{}" Fue borrado existosamente!'.format(post['titulo']))
+    flash('"{}" Fue borrado existosamente!'.format(post['kuadno']))
     return redirect(url_for('perfil'))
 
 @app.route('/Preview/new/',methods=['GET','POST'])
