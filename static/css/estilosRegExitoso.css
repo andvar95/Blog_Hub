@@ -6,6 +6,9 @@ body{
     height: 100vh;
 }
 
+a{
+    text-decoration: none;
+}
 header{
     background: #ffffff;
     width: 100%;
@@ -83,6 +86,6 @@ h3, p, label, input{
 
 #container1{
  
-    height: 520px;
+    height: 600px;
 
 }

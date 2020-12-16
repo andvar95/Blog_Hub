@@ -330,12 +330,13 @@ background-color: rgb(211, 47, 47 );
   margin: 0;
   padding: 0;
  /* box-shadow: 0 1px 4px rgba(0, 0, 0, .6);*/
- background-color: white;
+ background-color: f2f2f2;
  width:86%;
  padding-right: 1px;
  padding-left: 1px;
  padding-top: 1px;
  overflow: hidden;
+ 
 
 }
 
@@ -346,7 +347,7 @@ background-color: rgb(211, 47, 47 );
   padding-bottom: 0;
 
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
- 
+ background-color: white;
   display: flex;
   margin-bottom: 20px;
 

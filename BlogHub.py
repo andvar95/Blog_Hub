@@ -334,9 +334,10 @@ def reenviar_codigo():
     # except :
     #     return render_template('Vista_Registro_Exitoso.html')
 
-@app.route("/cambiarpass",methods=["GET","POST"])
-def cambiarpass():
+@app.route("/cambiarpass/<int:source>",methods=["GET","POST"])
+def cambiarpass(source):
     form = formRegistro()
+    ventanas = ['vista_Cambiar_password.html', 'recuperar.html']
     if request.method =="POST":
         email = form.correo.data
         newpass = form.clave.data 
@@ -353,9 +354,9 @@ def cambiarpass():
                 return "Cambiado con exito <a href='/perfil'>Volver </a>"
             else:
                 flash("Contraseña con caracteres no permitidos")
-                return render_template('vista_Cambiar_password.html',form=form)
+                return render_template(ventanas[source],form=form)
     else: 
-        return render_template('vista_Cambiar_password.html',form=form)
+        return render_template(ventanas[source],form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)
