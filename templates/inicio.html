@@ -57,6 +57,24 @@
 <title>Inicio</title>
 {{form.hidden_tag()}}
 <link rel="stylesheet" href="/static/css/estilosInicio.css">
+<script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>tinymce.init({
+            selector:'textarea',
+            menubar:false,
+            toolbar:false,
+            branding:false,
+            readonly: 1,
+            skin: 'borderless',
+            // plugins: ['autoresize'],
+            min_height: 100,
+            max_height: 100,
+            sidebar:false,
+            width: '560',
+            plugins: 'autoresize',
+            autoresize_bottom_margin: 0,
+            autoresize_top_margin: 0
+        });</script>
+
     <section id="principal">
         <section id="publicaciones">    
             {%for r in row%}    
@@ -71,11 +89,15 @@
                     <strong>Fecha: </strong><span class="datos-publicaciones">{{r['moan']}}</span>
                 </p>
                 <p class="parrafo-post">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam mollitia dolore sequi suscipit maiores minima omnis ullam dolores veniam officia accusamus amet alias aliquamnihil quibusdam eveniet, a vel praesentium.
+                    <textarea name="corpus" id="corpus" cols="30" rows="1">
+                        {{r['tavle'][:140]}}...
+                    </textarea>
                 </p>
+                <center>
                 <a href="" class="leer-mas">Leer más...</a>&nbsp; &nbsp;
                 <span class="num-comentarios">8 Comentarios</span>&nbsp; &nbsp;
                 <strong>Categoria: </strong><span class="datos-publicaciones">Deportes</span>
+                </center>
 
             </article>
             {%endfor%}
