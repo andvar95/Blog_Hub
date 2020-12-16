@@ -8,6 +8,7 @@ import hashlib
 import sqlite3
 from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
+import random
 
 # Función para realizar conexión a la DB
 def get_db_connection():
@@ -66,7 +67,6 @@ def registro():
             # email1 = escape(request.form['correo'])
             e_mail = escape(form.correo.data)
             email1 = escape(form.correo.data)
-            # pass_word = escape(request.form['clave'])
             pass_word = escape(form.clave.data)
             pwd_enc = generate_password_hash(pass_word)
             error = None
@@ -82,24 +82,50 @@ def registro():
                 error = "La contraseña contiene caracteres no válidos"
                 flash(error)
                 return render_template('Vista_Registro.html')
+            
+            number = hex(random.getrandbits(256))[2:]
+            
             yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
-            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub "+user_name)
-            print("llegue")
+        
+            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub  "+user_name+" Su código de activación es "+url_for('activate',_external=True)+'?auth='+number)
+        
             try:
                 with sqlite3.connect('BlogHubDB.db') as con:
                     cur = con.cursor()
                     #usuarios = uribeparaco, email = rovin, username= luffy, password = nami
-                    cur.execute('INSERT INTO uribeparaco(rovin,luffy,nami) VALUES(?,?,?)',(e_mail,user_name,pwd_enc)) #Cuando son varios, es con paréntesis
+                    cur.execute('INSERT INTO uribeparaco(rovin,luffy,nami,kt) VALUES(?,?,?,?)',(e_mail,user_name,pwd_enc,number)) #Cuando son varios, es con paréntesis
                     con.commit()
                     return render_template('Vista_Registro_Exitoso.html')
             except:
                 con.rollback()
         return render_template('Vista_Registro.html')
     except :
+        
         form = formRegistro()
     return render_template('Vista_Registro.html',form=form)
 
+@app.route("/activate",methods=["GET","POST"])
+def activate():
+    code = request.args.to_dict()
+    print(code)
+    try:
+        with sqlite3.connect('BlogHubDB.db') as con:
+            
+            cur = con.cursor()
+            user = cur.execute("SELECT luffy FROM uribeparaco WHERE kt = ?",[code['auth']]).fetchone()
+            if user:
+            
+                cur.execute("UPDATE uribeparaco SET soxo=? WHERE kt=?",["1",code['auth']])
+                con.commit()
+                return render_template("activate.html",name=user)
 
+
+    except:
+        return "error activando"
+
+
+    
+    
 
 #ventana de LOGIN
 @app.route('/')
@@ -132,16 +158,21 @@ def verificarusuario():
             #print(pwd)
             #usuarios = uribeparaco, username = luffy
             user1 = cur.execute(f"Select * FROM uribeparaco WHERE luffy ='{usr}' ").fetchall()
-        
-            if user1 and check_password_hash(user1[0][2],pwd):
+            print(user1[0][4])
+            if user1 and check_password_hash(user1[0][2],pwd) and user1[0][4] != None:
                 session['user'] = usr
                 
                 return render_template("inicio.html",form=frm,row=row)
+            elif user1 and user1[0][4] != 1:
+                form = formLogueo()
+                flash("Activa tu cuneta")
+                return render_template('login.html',form=form)
             else:
                 form = formLogueo()
                 flash("Usuario o contraseña erróneas")
                 return render_template('login.html',form=form)
-        
+            
+
     else:
         frm = formLogueo()
         return render_template('login.html')
