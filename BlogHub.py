@@ -141,17 +141,10 @@ def activate():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = formLogueo()
-    if (form.validate_on_submit()):
-        print("valido")
-    return render_template('login.html',form= form)
-
-
-@app.route('/login',methods=["POST","GET"])
-def verificarusuario():
-    frm = formLogueo()
+   
     if request.method == "POST":
-        usr = escape(frm.usuario.data)
-        pwd = escape(frm.clave.data)
+        usr = escape(form.usuario.data)
+        pwd = escape(form.clave.data)
         
         with sqlite3.connect('BlogHubDB.db') as con:
             con.row_factory = sqlite3.Row #recibir bien la lista
@@ -172,7 +165,7 @@ def verificarusuario():
             if user1 and check_password_hash(user1[0][2],pwd) and user1[0][4] != None:
                 session['user'] = usr
                 
-                return render_template("inicio.html",form=frm,row=row)
+                return render_template("inicio.html",form=form,row=row)
             elif user1 and user1[0][4] != 1:
                 form = formLogueo()
                 flash("Activa tu cuneta")
@@ -182,10 +175,11 @@ def verificarusuario():
                 flash("Usuario o contraseña erróneas")
                 return render_template('login.html',form=form)
             
+    return render_template('login.html',form= form)
 
-    else:
-        frm = formLogueo()
-        return render_template('login.html')
+
+
+
     
 @app.route("/logout")
 def logout():
