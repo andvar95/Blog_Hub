@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Hub {% block titulo %}{% endblock %}</title> 
     <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
     <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="/static/js/funciones.js"></script>
-    <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='/css/estilosLayout.css')}}"/>
     <script>
         tinymce.init({
             selector: "#body_blog",

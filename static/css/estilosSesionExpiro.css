@@ -1,0 +1,34 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    font-family: sans-serif;
+}
+
+.contenedor{
+    width: 470px;
+    height: 220px;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    box-shadow: 5px 5px 5px #cccccc;    
+    padding: 10px 30px; 
+}
+
+.contenedor h4{
+    margin-top: 40px;
+    text-decoration: none;    
+    color: #cccccc;
+
+}
+
+.contenedor a{
+    margin-top: 40px;
+    float: right;
+    font: bold;
+}

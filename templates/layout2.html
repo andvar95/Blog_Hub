@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Hub {% block titulo %}{% endblock %}</title>     
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='/css/estilosLayout.css')}}"/>
+</head>
+<body>
+    <header class="header" >        
+        <div id="cabecera">            
+            <img src="/static/img/logo2.png" id="logo">           
+        </div>             
+    </header>
+
+    {% block contenido %}
+    {% endblock %}
+</body>
+</html>

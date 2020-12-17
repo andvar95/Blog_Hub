@@ -1,5 +1,6 @@
 from flask import Flask,render_template,flash,request,redirect, url_for,session
 import os
+from flask_wtf import form
 import yagmail as yg
 import utils
 from markupsafe import escape
@@ -93,10 +94,13 @@ def registro():
         form = formRegistro()
     return render_template('Vista_Registro.html',form=form)
 
-
+#Ventana principal
+@app.route('/')
+def index():
+   return render_template('index.html')
 
 #ventana de LOGIN
-@app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = formLogueo()
     if (form.validate_on_submit()):
@@ -104,7 +108,7 @@ def login():
     return render_template('login.html',form= form)
 
 
-@app.route('/',methods=["POST","GET"])
+@app.route('/login',methods=["POST","GET"])
 def verificarusuario():
     frm = formLogueo()
     if request.method == "POST":

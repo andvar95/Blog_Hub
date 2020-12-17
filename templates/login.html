@@ -1,73 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicia sesión | Blog Hub</title>
-    <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
-    <link rel="stylesheet"  href="{{url_for('static', filename ='/css/estilosLogin.css')}}" >
-    <style>
-        body{
-           background:url(/static/img/6.jpg) no-repeat center top;}
-    </style>
-</head>
-<body>
-    <div class="login-box">
-        <img class="avatar" src="/static/img/logo2.png" alt="avatar">
+{% extends 'layout2.html' %}
 
-        <center>
+{% block titulo %} | Inicia Sesión {% endblock %}
+
+
+{% block contenido %}
+
+<link rel="stylesheet" href="{{url_for('static', filename = '/css/estilosLogin.css')}}">
+
+    <div class="login-box">
+        <img class="avatar" src="/static/img/logo2.png">
+
+        
         <section class="content">
         {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
         {% endfor %}
         </section>
-        </center>
+        
         
         <form name=form method = "POST" action="{{url_for('verificarusuario')}}" novalidate >
-            <!-- Usuario -->
-            <!--input type="text" name="usuario" class="usr" placeholder="Usuario" id = "usuario">
-            
-          
-            <input type="password" name="password" class="clave" placeholder="Contraseña" id ="password" >
-
-            <button type="submit" class="login" type="button"><span>INICIAR SESIÓN</span></button-->
 
             {{form.hidden_tag()}}
 
-            <div>
-    
+            <div>    
                 {{form.usuario(size=30)}}<br>
-
             </div>
             
-            <div>
-      
+            <div>      
                 {{form.clave(size=30)}}<br>
-
             </div>
 
-            <div>
-                
+            <div>                
                 {{form.recordar()}}
                 {{form.recordar.label}}
-
             </div>
             
             <div >
-                    {{form.enviar()}}
-               
-
-            </div>
-            
-          
-           
+                {{form.enviar()}}
+            </div>       
         </form> 
 
         <div>
             <a href="#" class="recordar">¿Olvidaste tu contraseña?</a><br>
             <a href="{{url_for('registro')}}" class="registrarse" >Registrarse</a>
-        </div> 
-       
+        </div>        
     </div>
-</body>
-</html>
+{% endblock %}

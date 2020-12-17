@@ -1,73 +1,47 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-     <link rel="stylesheet"  href="/static/css/estilosRegistro.css">
-     <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
+{% extends 'layout2.html' %}
 
-</head>
-<body>
-<center>
-<div class="Ventana_Registro">
+{% block titulo %} | Registro {% endblock %}
 
-    
+{% block contenido %}
+
+<link rel="stylesheet" href="{{url_for('static', filename ='/css/estilosRegistro.css')}}">
+
+<div class="Ventana_Registro">    
     <div class = "logo">
         <img src="/static/img/logo2.png" width="150" height="100">
     </div>
-        <section class="content">
-            {%for message in get_flashed_messages() %}
-            <div>{{message}}</div>
-            {%endfor%}
-        </section>  
-        <form class="form_R" action="{{url_for('registro')}}" method="post">
-            <h1 class= "titulo">Registrate</h1>
+
+    <section class="content">
+        {%for message in get_flashed_messages() %}
+        <div>{{message}}</div>
+        {%endfor%}
+    </section>
+
+    <form class="form_R" action="{{url_for('registro')}}" method="post">
+        <h1 class= "titulo">Registrate</h1>
+        {{form.hidden_tag()}}
+        <div>            
+            {{form.usuario(size=30)}}<br>
+        </div>
         
-            <!--input type="username" placeholder="Ingrese su Usuario" class="usuario" name="user" id="user" >
+        <div>      
+            {{form.correo(size=30)}}<br>
+        </div>
+
+        <div>                
+            {{form.clave(size=30)}}
+        </div>
         
-            <br><br>
-            <input type="email" placeholder="Ingrese su correo electrónico" class="email" name="email" id="email">
-            <br><br>
-            <input type="password" placeholder="Ingrese su Contraseña" class="pass" name="password" id="password">
-            <br>
-            <button class="b_Registro" type="submit"><span>REGISTRARME</span></button><-- Boton cambiar foto--> 
+        <div>
+            <span>
+                {{form.enviar()}}
+            </span>
+        </div>
 
-
-            {{form.hidden_tag()}}
-
-            <div>
-            
-                {{form.usuario(size=30)}}<br>
-
-            </div>
-            
-            <div>
-      
-                {{form.correo(size=30)}}<br>
-
-            </div>
-
-            <div>
-                
-                {{form.clave(size=30)}}
-
-
-            </div>
-            
-            <div >
-                <span>{{form.enviar()}}</span>
-               
-
-            </div>
-            <div>¿Ya estás Registrado?</div>
-        
-            <button class="ir_login" type="button"><span>INICIAR SESIÓN</span></button><!-- Boton cambiar foto-->
-        </form>
- 
-
+        <div>¿Ya estás Registrado?</div>
+    
+        <button class="ir_login" type="button"><span>INICIAR SESIÓN</span></button><!-- Boton cambiar foto-->
+    </form>
 </div>
-</center>
-</body>
-</html>
+{% endblock %}
