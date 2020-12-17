@@ -59,7 +59,20 @@
     <title>Perfil de Usuario</title>
     <link href="static/css/estiloPerfil.css" rel="stylesheet" >
     <script src="static/js/funciones.js"></script>
- 
+    <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>tinymce.init({
+            selector:'textarea',
+            menubar:false,
+            toolbar:false,
+            branding:false,
+            readonly: 1,
+            skin: 'borderless',
+            // plugins: ['autoresize'],
+            height: '50',
+            width: '560',
+            plugins: 'autoresize',
+            autoresize_bottom_margin: 2
+        });</script>
 
     <div class="p_fotos">  <!-- Otro div que tiene el contenido de abajo-->
         <div class="h1"><!-- Es el div con la parte izquierda de la pantalla-->
@@ -79,7 +92,7 @@
                 </center>
                 
             </div>
-           <button class="c_contraseña" type="button"> <span> Cambiar Contraseña</span></button>
+           <a href="{{url_for('cambiarpass',source=0)}}"><button class="c_contraseña" type="button"> <span> Cambiar Contraseña</span></button></a>
 
            <a href="{{ url_for('CrearBlog')}}"><button class="c_contraseña" type="button"> <span> Crear BLOG</span></button></a>
             
@@ -98,21 +111,21 @@
                 {%for r in row%}
                 <div class="b1"><!--Uno de mis blogs-->
                     <div class="foto_titulo">
-                        <a href="{{url_for('post',post_id=r['id'])}}"><h2>{{r['titulo']}}</h2></a>
+                        <a href="{{url_for('post',post_id=r['afrax'])}}"><h2>{{r['kuadno']}}</h2></a>
                         <br>
                         <img src="/static/img/foto.jpg" class="foto_b">
                     </div>
                   
                     <div class="descrip">
                         <br>
-                         <p>Autor: {{datos[:]}}    Fecha: {{r['fecha_creación']}}</p>
-                         <br>
+                         <p>Autor: {{datos[:]}}    Fecha: {{r['moan']}}</p>
                          <p>
-                           <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat quas iure voluptatum rem eaque repellat aliquam, dolorum ipsum veritatis maiores totam commodi consequuntur ut ab hic repudiandae autem ducimus. Amet?   -->
-                            {{r['cuerpo'][:200]}}...
+                            <textarea name="resumen" id="resumen" cols="30" rows="10">
+                            {{r['tavle'][:200]}}...
+                            </textarea>
                         </p>
-                             <a href="{{url_for('edit_post',post_id=r['id'])}}"><button type="button" class="btn_edit"><span>Editar</span></button></a>
-                             <button type="button" class="btn_elim"><span>Eliminar</span></button>
+                             <a href="{{url_for('edit_post',post_id=r['afrax'])}}"><button type="button" class="btn_edit"><span>Editar</span></button></a>
+                             <a href="{{url_for('delete_post',post_id=r['afrax'])}}"><button type="button" class="btn_elim"><span>Eliminar</span></button></a>
                              <button type="button" class="btn_Comen"><span>Comentarios</span> </button>
                          
                     </div>

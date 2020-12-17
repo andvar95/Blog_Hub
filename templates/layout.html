@@ -13,6 +13,7 @@
             selector: "#body_blog",
             plugins: 'image',
             menubar: 'insert',
+            branding: false
         });
 
     </script>
@@ -61,6 +62,9 @@ Esta parte del codigo es común entre entre todos los codigos y tiene la barra d
 las sentencias block content poseen el codigo no común en la parte del cuerpo - (body)
 
 -->
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
     {% block content %}
 
     

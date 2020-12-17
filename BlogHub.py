@@ -8,6 +8,8 @@ from form import formLogueo, formRegistro
 import hashlib
 import sqlite3
 from werkzeug.exceptions import abort
+from werkzeug.security import generate_password_hash, check_password_hash
+import random
 
 # Función para realizar conexión a la DB
 def get_db_connection():
@@ -18,7 +20,8 @@ def get_db_connection():
 
 def get_post(post_id):
     conn = get_db_connection()
-    post = conn.execute('SELECT * FROM posts WHERE id = ?',
+    #posts = hawai, id = afrax
+    post = conn.execute('SELECT * FROM hawai WHERE afrax = ?',
                         (post_id,)).fetchone()
     conn.close()
     if post is None:
@@ -41,6 +44,9 @@ app.secret_key = os.urandom(24)
 #variabless globales para  reenviar correo
 global username1
 global email1
+tittle = ""
+content = ""
+date = ""
 username1 = ""
 email1 = ""
 
@@ -55,17 +61,15 @@ def registro():
             global username1
             global email1
             # user_name = escape(request.form['usuario'])
-            user_name = form.usuario.data 
+            user_name = escape(form.usuario.data)
             # username1 = escape(request.form['usuario'])
-            username1 = form.usuario.data
+            username1 = escape(form.usuario.data)
             # e_mail = escape(request.form['correo'])
             # email1 = escape(request.form['correo'])
-            e_mail = form.correo.data
-            email1 = form.correo.data
-            # pass_word = escape(request.form['clave'])
-            pass_word = form.clave.data
-            e = hashlib.md5(pass_word.encode())
-            en = e.hexdigest()
+            e_mail = escape(form.correo.data)
+            email1 = escape(form.correo.data)
+            pass_word = escape(form.clave.data)
+            pwd_enc = generate_password_hash(pass_word)
             error = None
             if not utils.isUsernameValid(user_name):
                 error = "El usuario debe ser alfanumérico"
@@ -79,18 +83,27 @@ def registro():
                 error = "La contraseña contiene caracteres no válidos"
                 flash(error)
                 return render_template('Vista_Registro.html')
+            
+            number = hex(random.getrandbits(256))[2:]
+            
             yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
-            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub "+user_name)
+        
+            yag.send(to=e_mail,subject="Activa tu cuenta",contents="Bienvenido a BlogHub  "+user_name+" Su código de activación es "+url_for('activate',_external=True)+'?auth='+number)
+        
             try:
                 with sqlite3.connect('BlogHubDB.db') as con:
                     cur = con.cursor()
-                    cur.execute('INSERT INTO Usuarios(email,username,password) VALUES(?,?,?)',(e_mail,user_name,en)) #Cuando son varios, es con paréntesis
+                    #usuarios = uribeparaco, email = rovin, username= luffy, password = nami
+                    cur.execute('INSERT INTO uribeparaco(rovin,luffy,nami,soxo) VALUES(?,?,?,?)',(e_mail,user_name,pwd_enc,0)) #Cuando son varios, es con paréntesis
+                    con.commit()
+                    cur.execute('INSERT INTO validacion(codigo,estado,email) VALUES(?,?,?)',(number,0,e_mail)) #Cuando son varios, es con paréntesis
                     con.commit()
                     return render_template('Vista_Registro_Exitoso.html')
             except:
                 con.rollback()
         return render_template('Vista_Registro.html')
     except :
+        
         form = formRegistro()
     return render_template('Vista_Registro.html',form=form)
 
@@ -98,6 +111,31 @@ def registro():
 @app.route('/')
 def index():
    return render_template('index.html')
+   
+@app.route("/activate",methods=["GET","POST"])
+def activate():
+    code = request.args.to_dict()
+    print(code)
+    try:
+        with sqlite3.connect('BlogHubDB.db') as con:
+            
+            cur = con.cursor()
+            user = cur.execute("SELECT email FROM validacion WHERE codigo = ?",[code['auth']]).fetchone()
+            print(user)
+            if user:
+               
+                cur.execute("UPDATE uribeparaco SET soxo=? WHERE rovin=?",[1,user[0]])
+                cur.execute(f"DELETE from validacion WHERE codigo = '{code['auth']}'")
+                con.commit()
+                return render_template("activate.html",name=user)
+
+
+    except:
+        return "error activando"
+
+
+    
+    
 
 #ventana de LOGIN
 @app.route('/login', methods=['GET', 'POST'])
@@ -114,32 +152,37 @@ def verificarusuario():
     if request.method == "POST":
         usr = escape(frm.usuario.data)
         pwd = escape(frm.clave.data)
-        e = hashlib.md5(pwd.encode())
-        en = e.hexdigest()
+        
         with sqlite3.connect('BlogHubDB.db') as con:
             con.row_factory = sqlite3.Row #recibir bien la lista
             cur = con.cursor()
             con.row_factory = sqlite3.Row
             cur1 = con.cursor()
             cur1 = con.cursor()
-            cur1.execute("SELECT * FROM posts") 
+            #posts = hawai
+            cur1.execute("SELECT * FROM hawai") 
             row = cur1.fetchall() #para traer un solo registro. Fetchall para traer todos
+            
             #cur.execute("Select * FROM Usuario WHERE nombre = '"+user+"' AND clave= '"+pas+"';")
-            print(usr)
-            print(en)
-            cur.execute("Select * FROM usuarios WHERE username = ? AND password=?",(usr,en))
-          
-            if cur.fetchall():
-               
-        
+            #print(usr)
+            #print(pwd)
+            #usuarios = uribeparaco, username = luffy
+            user1 = cur.execute(f"Select * FROM uribeparaco WHERE luffy ='{usr}' ").fetchall()
+            print(user1[0][4])
+            if user1 and check_password_hash(user1[0][2],pwd) and user1[0][4] != None:
                 session['user'] = usr
                 
                 return render_template("inicio.html",form=frm,row=row)
+            elif user1 and user1[0][4] != 1:
+                form = formLogueo()
+                flash("Activa tu cuneta")
+                return render_template('login.html',form=form)
             else:
                 form = formLogueo()
                 flash("Usuario o contraseña erróneas")
                 return render_template('login.html',form=form)
-        
+            
+
     else:
         frm = formLogueo()
         return render_template('login.html')
@@ -163,7 +206,8 @@ def inicio():
         with sqlite3.connect('BlogHubDB.db') as con:
             con.row_factory = sqlite3.Row
             cur = con.cursor()
-            cur.execute("SELECT * FROM posts") 
+            #posts = hawai
+            cur.execute("SELECT * FROM hawai") 
             row = cur.fetchall()
             return render_template('inicio.html',row = row, form=frm)
         #except: 
@@ -180,13 +224,15 @@ def perfil():
         with sqlite3.connect('BlogHubDB.db') as con:
             con.row_factory = sqlite3.Row
             cur1 = con.cursor()
-            cur1.execute("SELECT email FROM usuarios where username = ?",[datos])
+            #email = rovin username=luffy usuarios = uribeparaco
+            cur1.execute("SELECT rovin FROM uribeparaco where luffy = ?",[datos])
             email2 = cur1.fetchone()
             id_usuario=""
             for i in email2:
                 id_usuario=i[:]
             cur = con.cursor()
-            cur.execute("SELECT * FROM posts where id_usuario = ?",[id_usuario]) 
+            #posts = hawai,  id_usuario= waptro
+            cur.execute("SELECT * FROM hawai where waptro = ?",[id_usuario]) 
             row = cur.fetchall()
         return render_template('perfil.html',datos=datos, row=row,email2=email2)
     else:
@@ -198,11 +244,32 @@ def post(post_id):
     post = get_post(post_id)
     return render_template('post.html',post=post)
 
-@app.route('/edit/<int:post_id>')
+@app.route('/edit/<int:post_id>',methods=['GET','POST'])
 def edit_post(post_id):
     post = get_post(post_id)
-    return render_template('Vista_Blog_Propio.html',post=post)
-
+    if "user" in session:
+        datos=session['user']
+        if request.method == 'POST':
+            titulo = request.form['titulo']
+            cuerpo = request.form['body_blog']
+            if not titulo:
+                flash('Se requiere título')
+            elif not cuerpo:
+                flash('Se requiere cuerpo')            
+            else:
+                conn = get_db_connection()
+                conn1= get_db_connection()
+                post = conn1.execute('SELECT rovin FROM uribeparaco WHERE luffy = ?',[datos]).fetchone()
+                print(post[0])
+                conn.execute('UPDATE hawai SET kuadno = ?, tavle = ? WHERE afrax = ?',
+                            (titulo, cuerpo, post_id))
+                conn.commit()
+                conn.close()
+                return redirect(url_for('perfil'))
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
+    return render_template('Vista_Blog_Propio.html', post=post)
+    
 @app.route('/BlogPropio')
 def BlogPropio():
     if "user" in session:
@@ -225,9 +292,11 @@ def CrearBlog():
             else:
                 conn = get_db_connection()
                 conn1= get_db_connection()
-                post = conn1.execute('SELECT email FROM usuarios WHERE username = ?',[datos]).fetchone()
+                #email = rovin usuarios = uribeparaco username=luffy
+                post = conn1.execute('SELECT rovin FROM uribeparaco WHERE luffy = ?',[datos]).fetchone()
                 print(post[0])
-                conn.execute('INSERT INTO posts (titulo, id_usuario, cuerpo, estado) VALUES (?, ?, ?, ?)',
+                #posts = hawai, titulo =kuadno, id_usuario = waptro, cuerpo= tavle, estado = mabida, fecha= moan 
+                conn.execute('INSERT INTO hawai (kuadno, waptro, tavle,mabida) VALUES (?, ?, ?, ?)',
                             (titulo, post[0], cuerpo, 1))
                 conn.commit()
                 conn.close()
@@ -241,10 +310,28 @@ def CrearBlog():
 def BlogPublico():
     return render_template('blog_publico.html')
 
-@app.route('/Preview')
-def Preview():
-    return render_template('Vista_Previa.html')
+@app.route('/Preview/<int:post_id>')
+def Preview(post_id):
+    post = get_post(post_id)
+    return render_template('Vista_Previa.html',post=post)
 
+@app.route('/delete/<int:post_id>',methods=('POST','GET'))
+def delete_post(post_id):
+    post = get_post(post_id)
+    conn = get_db_connection()
+    conn.execute('DELETE FROM hawai WHERE afrax = ?', (post_id,))
+    conn.commit()
+    conn.close()
+    flash('"{}" Fue borrado existosamente!'.format(post['kuadno']))
+    return redirect(url_for('perfil'))
+
+@app.route('/Preview/new/',methods=['GET','POST'])
+def Preview_new():
+    if "user" in session:
+        return render_template('Vista_Previa_N.html')
+    else:
+        return "Acción no permitida <a href='/'>login</a>"
+    return render_template('Vista_Crear_Blog.html')
 
 @app.route('/reenviar',methods=['GET','POST'])
 def reenviar_codigo():
@@ -256,6 +343,32 @@ def reenviar_codigo():
         return render_template('Vista_Registro_Exitoso.html')
     # except :
     #     return render_template('Vista_Registro_Exitoso.html')
+
+@app.route("/cambiarpass/<int:source>",methods=["GET","POST"])
+def cambiarpass(source):
+    form = formRegistro()
+    ventanas = ['vista_Cambiar_password.html','recuperar.html'] 
+    retorno =['/perfil','/']
+    if request.method =="POST":
+        email = form.correo.data
+        newpass = form.clave.data 
+        with sqlite3.connect('BlogHubDB.db') as con:
+            con.row_factory = sqlite3.Row #recibir bien la lista
+            cur = con.cursor()
+            #usuarios = uribeparaco, email= rovin
+            user = cur.execute(f"SELECT * FROM uribeparaco WHERE  rovin= '{email}'").fetchall() 
+            
+            if user and  utils.isPasswordValid(newpass) :
+                newpass_enc = generate_password_hash(newpass)
+                #usuario = uribeparaco, password = nami , email= rovin 
+                cur.execute("UPDATE  uribeparaco SET nami=? WHERE rovin=?",[newpass_enc,email])
+                print(retorno[source])
+                return "Cambiado con exito <a href='"+retorno[source]+"'>Volver </a>"
+            else:
+                flash("Contraseña con caracteres no permitidos")
+                return render_template(ventanas[source],form=form,action=source)
+    else: 
+        return render_template(ventanas[source],form=form,action=source)
 
 if __name__ == '__main__':
     app.run(debug=True)
