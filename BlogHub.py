@@ -93,7 +93,9 @@ def registro():
                 with sqlite3.connect('BlogHubDB.db') as con:
                     cur = con.cursor()
                     #usuarios = uribeparaco, email = rovin, username= luffy, password = nami
-                    cur.execute('INSERT INTO uribeparaco(rovin,luffy,nami,kt) VALUES(?,?,?,?)',(e_mail,user_name,pwd_enc,number)) #Cuando son varios, es con paréntesis
+                    cur.execute('INSERT INTO uribeparaco(rovin,luffy,nami,soxo) VALUES(?,?,?,?)',(e_mail,user_name,pwd_enc,0)) #Cuando son varios, es con paréntesis
+                    con.commit()
+                    cur.execute('INSERT INTO validacion(codigo,estado,email) VALUES(?,?,?)',(number,0,e_mail)) #Cuando son varios, es con paréntesis
                     con.commit()
                     return render_template('Vista_Registro_Exitoso.html')
             except:
@@ -112,10 +114,12 @@ def activate():
         with sqlite3.connect('BlogHubDB.db') as con:
             
             cur = con.cursor()
-            user = cur.execute("SELECT luffy FROM uribeparaco WHERE kt = ?",[code['auth']]).fetchone()
+            user = cur.execute("SELECT email FROM validacion WHERE codigo = ?",[code['auth']]).fetchone()
+            print(user)
             if user:
-            
-                cur.execute("UPDATE uribeparaco SET soxo=? WHERE kt=?",["1",code['auth']])
+               
+                cur.execute("UPDATE uribeparaco SET soxo=? WHERE rovin=?",[1,user[0]])
+                cur.execute(f"DELETE from validacion WHERE codigo = '{code['auth']}'")
                 con.commit()
                 return render_template("activate.html",name=user)
 
