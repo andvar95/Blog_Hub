@@ -164,6 +164,7 @@ def login():
             print(user1[0][4])
             if user1 and check_password_hash(user1[0][2],pwd) and user1[0][4] != None:
                 session['user'] = usr
+                session['email'] = user1[0][0] 
                 
                 return render_template("inicio.html",form=form,row=row)
             elif user1 and user1[0][4] != 1:
@@ -231,17 +232,31 @@ def perfil():
         return render_template('perfil.html',datos=datos, row=row,email2=email2)
     else:
         return "Acción no permitida <a href='/'>login</a>"
-
+@app.route('/comentar/<int:post_id>',methods=['GET','POST'])
+def comentar(post_id):
+    if "user" in session:
+        print("en sesion")
+        frm = formComentarios()
+        if request.method == "POST":
+            print("Comentar")
+            print(frm.cuerpo.data)
+            conn = get_db_connection()
+            conn.execute('INSERT INTO lulite (blac, wite, ambres,celfone ) VALUES (?,?,?,?)',[post_id, session['email'],frm.cuerpo.data,1])
+            conn.commit()
+            conn.close()
+            return redirect(url_for('post',post_id=post_id))
+    return "no sesion"
 
 @app.route('/<int:post_id>')
 def post(post_id):
-    post = get_post(post_id)
-    frm_c = formComentarios()
-    conn = get_db_connection()
-    coments = conn.execute('SELECT wite, ambres, boocis FROM lulite WHERE blac = ?', (post_id,)).fetchall()
-    conn.commit()
-    conn.close()
-    return render_template('post.html',post=post,comentarios = coments,form=frm_c)
+    if "user" in session:
+        post = get_post(post_id)
+        frm_c = formComentarios()
+        conn = get_db_connection()
+        coments = conn.execute('SELECT wite, ambres, boocis FROM lulite WHERE blac = ?', (post_id,)).fetchall()
+        conn.commit()
+        conn.close()
+        return render_template('post.html',post=post,comentarios = coments,form=frm_c)
 
 @app.route('/edit/<int:post_id>',methods=['GET','POST'])
 def edit_post(post_id):

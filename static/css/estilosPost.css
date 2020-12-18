@@ -317,3 +317,7 @@ border-radius: 20px;
 .nuevo_comentario{
     padding-left: 12.5%;
 }
+
+.id_com{
+    display:none;
+}

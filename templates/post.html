@@ -50,7 +50,7 @@
 <!--Lo que esté en block content es lo particular del codigo-->
 {% block content %}
         <title>{{post['kuadno']}}</title>
-
+        {{form.hidden_tag}}
         <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
         <link rel="stylesheet" href="/static/css/estilosPost.css">
         <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -118,15 +118,16 @@
                     <div class = "prof"><img src="/static/img/foto.jpg" widt="30" height="30" class=> </div>
                     <div class = "com">
                         <div class="name">{{coment[0]}}</div>
+                        
                         <p class="text_c">{{coment[1]}}</p>
                     </div>
                 </div>
                     {%endfor%}
-                    {{form.hidden_tag}}
+                   
                     <div class="nuevo_comentario">
-                        <form method="post" action="{{url_for('comentar',usuario=coment[0])}}">
+                        <form method="post" action="{{url_for('comentar',post_id=post['afrax'])}}">
                         <div>{{form.cuerpo(cols="40",row="10")}}</div>
-
+                     
                         <div> {{form.enviar()}}</div>
                     </form>
                 </div>
