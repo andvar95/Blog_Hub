@@ -242,8 +242,10 @@ def post(post_id):
 def edit_post(post_id):
     post = get_post(post_id)
     if "user" in session:
+        
         datos=session['user']
         if request.method == 'POST':
+            print("entre")
             titulo = request.form['titulo']
             cuerpo = request.form['body_blog']
             if not titulo:

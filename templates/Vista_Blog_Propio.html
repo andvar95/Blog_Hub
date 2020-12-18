@@ -105,7 +105,9 @@
                     </div>
                     <div class="botones">
                         <a href="{{url_for('Preview',post_id=post['afrax'])}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
+                        <form action="{{url_for('edit_post',post_id=post['afrax'])}}" method=POST>
                         <a href = "{{url_for('edit_post',post_id=post['afrax'])}}"><button class="b_update" type="submit"><span>Actualizar</span></button></a>
+                    </form>
                     </div>
                 </nav>
         
