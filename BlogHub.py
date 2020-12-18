@@ -4,7 +4,7 @@ from flask_wtf import form
 import yagmail as yg
 import utils
 from markupsafe import escape
-from form import formLogueo, formRegistro
+from form import formLogueo, formRegistro, formComentarios
 import hashlib
 import sqlite3
 from werkzeug.exceptions import abort
@@ -236,7 +236,12 @@ def perfil():
 @app.route('/<int:post_id>')
 def post(post_id):
     post = get_post(post_id)
-    return render_template('post.html',post=post)
+    frm_c = formComentarios()
+    conn = get_db_connection()
+    coments = conn.execute('SELECT wite, ambres, boocis FROM lulite WHERE blac = ?', (post_id,)).fetchall()
+    conn.commit()
+    conn.close()
+    return render_template('post.html',post=post,comentarios = coments,form=frm_c)
 
 @app.route('/edit/<int:post_id>',methods=['GET','POST'])
 def edit_post(post_id):
@@ -309,6 +314,7 @@ def BlogPublico():
 @app.route('/Preview/<int:post_id>')
 def Preview(post_id):
     post = get_post(post_id)
+
     return render_template('Vista_Previa.html',post=post)
 
 @app.route('/delete/<int:post_id>',methods=('POST','GET'))

@@ -26,3 +26,8 @@ class formCrearBlog(FlaskForm):
     visibilidad = RadioField("Visibilidad", choices=[('value','Público'),('value_two','Privado')])
     publicacion = DateTimeField("Fecha",validators=[DataRequired(message="No dejar vacío")])
     comentarios = RadioField("Comentarios", choices=[('value','Permitido'),('value_two','No permitido')])
+
+class formComentarios(FlaskForm):
+    cuerpo = StringField("Cuerpo",validators=[DataRequired(message="No dejar vacío")])
+    enviar = SubmitField("Comentar")
+

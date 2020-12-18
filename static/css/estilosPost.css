@@ -253,14 +253,67 @@ input[type="search"]:focus{
 .comentarios{
     background: #fff;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .logo_comentarios a{
+    width: 13%;
+    float:right;
     margin: 20px;
 }
 
 .comentarios p{
-    padding: 35px;
+    padding: 10px;
+}
+
+.texto{
+    margin-top: 20px;
+    float:left;
+    
+    overflow:hidden;
+    width: 74%;
+    border:1px solid blue;
+
+
+}
+.box_c{
+    overflow:hidden;
+    height:50%;
+    margin:2%;
 }
 
 
+
+.com{
+    border:1px solid red;
+    float:right;
+    width:89%;
+    overflow:hidden;
+    
+}
+.prof{
+    float:left;
+    width:10%;
+    overflow:hidden;
+  
+    border:1px solid green;
+}
+
+.prof img{
+border-radius: 20px;
+}
+
+
+.name{
+    border:1px black solid;
+    display:inline;
+    font-weight: bold;    
+}
+
+.text_c{
+    padding: 0;
+}
+
+.nuevo_comentario{
+    padding-left: 12.5%;
+}
