@@ -79,12 +79,28 @@
         <section id="publicaciones">    
             {%for r in row%}    
             <article class="post">
-                <a href="" class="enlace-post">
-                    <h2 class="titulo-post">{{r['kuadno']}}</h2>
+
+                {%if r['mabida'] == 1%}
+                <a href="{{url_for('post',post_id=r['afrax'])}}" class="enlace-post">
+                    <span>
+                    <h2 class="titulo-post">{{r['kuadno']}}</h2> 
+                    <h3>Público</h3>
+                </span>
                 </a>
+                {% else %}
+
+                <div href="#" class="enlace-post">
+                    <span>
+                    <h2 class="titulo-post">{{r['kuadno']}}</h2>
+                    <h3>Privado</h3>
+                </span>
+            </div>
+
+                {% endif %}
+
                 <img src="/static/img/deportes.png"class="img-post">
                 <p>
-                    <strong>Por: </strong><span class="datos-publicaciones">Arned Martelo</span>
+                    <strong>Por: </strong><span class="datos-publicaciones">{{r['waptro']}}</span>
                     &nbsp; &nbsp;
                     <strong>Fecha: </strong><span class="datos-publicaciones">{{r['moan']}}</span>
                 </p>

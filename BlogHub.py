@@ -4,12 +4,14 @@ from flask_wtf import form
 import yagmail as yg
 import utils
 from markupsafe import escape
-from form import formLogueo, formRegistro, formComentarios
+from form import formLogueo, formRegistro, formComentarios,formCrearBlog
 import hashlib
 import sqlite3
 from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
+import htmlentities
+from html.parser import HTMLParser
 
 # Función para realizar conexión a la DB
 def get_db_connection():
@@ -261,13 +263,22 @@ def post(post_id):
 @app.route('/edit/<int:post_id>',methods=['GET','POST'])
 def edit_post(post_id):
     post = get_post(post_id)
+    form  = formCrearBlog()
     if "user" in session:
         
         datos=session['user']
         if request.method == 'POST':
             print("entre")
-            titulo = request.form['titulo']
-            cuerpo = request.form['body_blog']
+            #titulo = request.form['titulo']
+            #cuerpo = request.form['body_blog']
+            
+            cuerpo = form.body_blog.data
+            print(cuerpo)
+            titulo = escape(form.titulo.data)
+            vis = 0
+            if form.visibilidad.data == 'Público':
+                vis = 1
+            
             if not titulo:
                 flash('Se requiere título')
             elif not cuerpo:
@@ -277,14 +288,23 @@ def edit_post(post_id):
                 conn1= get_db_connection()
                 post = conn1.execute('SELECT rovin FROM uribeparaco WHERE luffy = ?',[datos]).fetchone()
                 print(post[0])
-                conn.execute('UPDATE hawai SET kuadno = ?, tavle = ? WHERE afrax = ?',
-                            (titulo, cuerpo, post_id))
+                conn.execute('UPDATE hawai SET kuadno = ?, tavle = ?,mabida =? WHERE afrax = ?',
+                            (titulo, cuerpo, vis,post_id))
                 conn.commit()
                 conn.close()
                 return redirect(url_for('perfil'))
     else:
         return "Acción no permitida <a href='/'>login</a>"
-    return render_template('Vista_Blog_Propio.html', post=post)
+    
+    if post['mabida'] == 1:
+        form.visibilidad.data = "Público"
+    else:
+        form.visibilidad.data = "Privado"
+
+
+    form.body_blog.data = post['tavle']
+     
+    return render_template('Vista_Blog_Propio.html', post=post,form= form)
     
 @app.route('/BlogPropio')
 def BlogPropio():
@@ -296,11 +316,20 @@ def BlogPropio():
 
 @app.route('/CrearBlog',methods=['GET','POST'])
 def CrearBlog():
+    form = formCrearBlog()
     if "user" in session:
         datos=session['user']
         if request.method == 'POST':
-            titulo = request.form['titulo']
-            cuerpo = request.form['body_blog']
+            #titulo = request.form['titulo']
+            #cuerpo = request.form['body_blog']
+         
+            cuerpo = form.body_blog.data
+            print(cuerpo)
+            titulo = escape(form.titulo.data)
+            vis = 0
+            if form.visibilidad.data == 'Público':
+                vis = 1
+
             if not titulo:
                 flash('Se requiere título')
             elif not cuerpo:
@@ -313,13 +342,14 @@ def CrearBlog():
                 print(post[0])
                 #posts = hawai, titulo =kuadno, id_usuario = waptro, cuerpo= tavle, estado = mabida, fecha= moan 
                 conn.execute('INSERT INTO hawai (kuadno, waptro, tavle,mabida) VALUES (?, ?, ?, ?)',
-                            (titulo, post[0], cuerpo, 1))
+                            (titulo, post[0], cuerpo, vis))
                 conn.commit()
                 conn.close()
                 return redirect(url_for('perfil'))
     else:
         return "Acción no permitida <a href='/'>login</a>"
-    return render_template('Vista_Crear_Blog.html')
+    
+    return render_template('Vista_Crear_Blog.html',form = form)
 
 
 @app.route('/BlogPublico')

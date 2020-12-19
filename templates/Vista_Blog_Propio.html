@@ -99,9 +99,12 @@
             <header class="sencond_line">
                 <nav class="second_nav">
                     <div class="titulo">
+                        {{form.hidden_tag()}}
                         <label for="">Titulo</label>
                         <br>
-                        <Input type="text" name="titulo" placeholder="Titulo del blog" value="{{request.form['titulo'] or post['kuadno']}}"></Input>
+                        <!--Input type="text" name="titulo" placeholder="Titulo del blog" value="{{request.form['titulo'] or post['kuadno']}}"></Input-->
+                        {{form.titulo(value = post['kuadno']  )}}
+
                     </div>
                     <div class="botones">
                         <a href="{{url_for('Preview',post_id=post['afrax'])}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
@@ -139,7 +142,8 @@
                 </div> -->
                 <div class="fondo_hoja">
                     <div class="hoja">
-                        <textarea name="body_blog" id="body_blog" cols="90" rows="28">{{request.form['cuerpo'] or post['tavle']}}</textarea>
+                        <!--textarea name="body_blog" id="body_blog" cols="90" rows="28">{{request.form['cuerpo'] or post['tavle']}}</textarea-->
+                        {{form.body_blog(cols="10", rows="60")}}
                     </div>
                 </div>
                 <div class="container-menu">
@@ -152,13 +156,14 @@
                             </ul>                  
                         </li>
                         <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Visibilidad</a>
-                            <ul>
+                            <!--ul>
                             <input type="radio" name="tipo" id="public">
                             <label for="public">Publico</label>
                             <br>
                             <input type="radio" name="tipo" id="private">
                             <label for="private">Privado</label>
-                            </ul>
+                            </ul-->
+                            {{form.visibilidad()}}
                         </li>
                         <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Publicación</a>
                             <ul class="fecha">

@@ -95,14 +95,15 @@
     
     <!-- <style src="{{url_for('static',filename='css/estilosBlogPropio.css')}}"></style> -->
      <script src="/static/js/funciones.js"></script> 
+     {{ form.hidden_tag()}}
         <br>
-    <form method="post">    
+    <form method="post" action = "{{url_for('CrearBlog')}}" novalidate>    
         <header class="sencond_line">
             <nav class="second_nav">
                 <div class="titulo">
                     <label for="titulo">Titulo</label>
                     <br>
-                    <Input type="text" placeholder="Titulo del blog" name="titulo" value="{{request.form['titulo']}}"></Input>
+                    {{form.titulo()}}
                 </div>
                 <div class="botones">
                     <a href="{{url_for('Preview_new')}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
@@ -114,7 +115,8 @@
         <nav class="body">
             <div class="fondo_hoja">
                 <div class="hoja">
-                    <textarea name="body_blog" id="body_blog" cols="90" rows="28">{{request.form['body_blog']}}</textarea>
+                    <!--textarea name="body_blog" id="body_blog" cols="90" rows="28">{{request.form['body_blog']}}</textarea-->
+                    {{form.body_blog(cols="10", rows="60")}}
                 </div>
             </div>
             <div class="container-menu">
@@ -127,13 +129,8 @@
                         </ul>                  
                     </li>
                     <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Visibilidad</a>
-                        <ul>
-                        <input type="radio" name="tipo" id="public">
-                        <label for="public">Publico</label>
-                        <br>
-                        <input type="radio" name="tipo" id="private">
-                        <label for="private">Privado</label>
-                        </ul>
+                      
+                        {{form.visibilidad()}}
                     </li>
                     <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Publicación</a>
                         <ul class="fecha">
@@ -158,7 +155,7 @@
     </form>
 
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="/static/js/main.js"></script>
+        <!--script src="/static/js/main.js"></script-->
 
     
     {% endblock %}
