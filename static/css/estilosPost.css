@@ -257,9 +257,10 @@ input[type="search"]:focus{
 }
 
 .logo_comentarios a{
+    margin-left: 20px;
     width: 13%;
     float:right;
-    margin: 20px;
+
 }
 
 .comentarios p{
@@ -267,13 +268,13 @@ input[type="search"]:focus{
 }
 
 .texto{
-    margin-top: 20px;
-    float:left;
     
+    float:left;
+    border-radius: 10px;
     overflow:hidden;
     width: 74%;
-    border:1px solid blue;
-
+    box-shadow: 1px 1px #cccccc;
+    border: 1px outset #ccc;
 
 }
 .box_c{
@@ -285,22 +286,31 @@ input[type="search"]:focus{
 
 
 .com{
-    border:1px solid red;
+
     float:right;
     width:89%;
     overflow:hidden;
-    
+    padding:5px;
+    border-radius: 10px;
+    border:1px outset #ccc;
 }
 .prof{
     float:left;
     width:10%;
     overflow:hidden;
+    margin:0;
+    padding:0;
+    align-content: center;
   
-    border:1px solid green;
+    
 }
 
 .prof img{
-border-radius: 20px;
+    width:80%;
+    height: 80%;
+
+    align-content: center;
+border-radius: 50%;
 }
 
 
@@ -320,4 +330,21 @@ border-radius: 20px;
 
 .id_com{
     display:none;
+}
+
+.label_comentarios{
+    font-family: sans-serif;
+    font-size: 20px;
+    color:white;
+    background-color: #304FFE;
+    display:inline-block;
+    width:15%;
+    height: 10%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.label_comentarios_box{
+padding-left: 16.551%;
+background-color: white;
 }

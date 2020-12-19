@@ -103,10 +103,14 @@
                 </p>
 
             </section>
-            <br>
+            
+            <div class="label_comentarios_box">
             <div class="label_comentarios">
                 Comentarios
             </div>
+            </div>
+
+
             <section class="comentarios">
                 <div class="logo_comentarios">
                     <a href=""><img src="/static/img/logo2.png" alt="" srcset=""></a>
@@ -115,7 +119,11 @@
                 <div class="texto">
                     {%for coment in comentarios%}
                     <div class="box_c">
-                    <div class = "prof"><img src="/static/img/foto.jpg" widt="30" height="30" class=> </div>
+                    <div class = "prof">
+                        <center>
+                        <img src="/static/img/foto.jpg" widt="25" height="25" class=> 
+                            </center>
+                    </div>
                     <div class = "com">
                         <div class="name">{{coment[0]}}</div>
                         
