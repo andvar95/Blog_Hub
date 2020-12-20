@@ -4,7 +4,7 @@ from flask_wtf import form
 import yagmail as yg
 import utils
 from markupsafe import escape
-from form import formLogueo, formRegistro, formComentarios,formCrearBlog
+from form import formLogueo, formRegistro, formComentarios,formCrearBlog,formRecuperar
 import hashlib
 import sqlite3
 from werkzeug.exceptions import abort
@@ -114,6 +114,45 @@ def registro():
 def index():
    return render_template('index.html')
    
+@app.route("/recuperar",methods=["POST","GET"])
+
+
+            #return nombre[0]
+            
+
+
+def recupe():
+    formR = formRecuperar()
+    formL = formLogueo()
+    con = get_db_connection()
+    cur = con.cursor()
+    code = request.args.to_dict()
+    if request.method == "POST":
+        
+        if formR.clave1.data == formR.clave2.data:
+            enc = generate_password_hash(formR.clave1.data)
+            cur.execute("UPDATE uribeparaco SET nami=? WHERE luffy=?",[enc,formR.nombre.data])
+            flash("Contraseña Cambiada con exito")
+            return render_template("login.html",form=formL)
+        else:
+            flash("Contraseñas diferentes")
+            return render_template('nueva_c.html',form=formR,nombre = formR.nombre.data)
+
+    else:
+        print("aca")
+        exist = cur.execute("SELECT * FROM validacion WHERE codigo = ?",[code['auth']]).fetchall()
+        print(exist[0][0])
+        if exist:
+            nombre = cur.execute("SELECT luffy FROM uribeparaco WHERE rovin=?",[exist[0][2]]).fetchone()
+            cur.execute(f"DELETE from validacion WHERE codigo = '{code['auth']}'")
+            con.commit()
+
+            return render_template('nueva_c.html',form=formR,nombre = nombre[0])
+        else:
+            return "Error de codigo"
+        
+
+
 @app.route("/activate",methods=["GET","POST"])
 def activate():
     code = request.args.to_dict()
@@ -155,8 +194,9 @@ def login():
             cur1 = con.cursor()
             cur1 = con.cursor()
             #posts = hawai
-            cur1.execute("SELECT * FROM hawai") 
-            row = cur1.fetchall() #para traer un solo registro. Fetchall para traer todos
+            cur1.execute("SELECT uribeparaco.luffy, hawai.afrax, hawai.kuadno, hawai.mabida, hawai.moan, hawai.tavle FROM hawai, uribeparaco WHERE uribeparaco.rovin = hawai.waptro") 
+            row = cur1.fetchall()
+            #para traer un solo registro. Fetchall para traer todos
             
             #cur.execute("Select * FROM Usuario WHERE nombre = '"+user+"' AND clave= '"+pas+"';")
             #print(usr)
@@ -191,27 +231,35 @@ def logout():
         session.pop("user",None)
         return render_template("login.html",form=frm)
     else:
-        return "Ya se cerró la sesión"
+        return render_template("sesion_expiro.html")
 
 
 @app.route('/inicio',methods=["GET","POST"])
 def inicio():
     if "user" in session:
+        print("en sesion")
         frm = formLogueo()
         print(session['user'])
-        # try:
-        with sqlite3.connect('BlogHubDB.db') as con:
+        con = get_db_connection()
+
+        try:
+        #with sqlite3.connect('BlogHubDB.db') as con:
             con.row_factory = sqlite3.Row
             cur = con.cursor()
             #posts = hawai
-            cur.execute("SELECT * FROM hawai") 
+            cur.execute("SELECT uribeparaco.luffy, hawai.afrax, hawai.kuadno, hawai.mabida, hawai.moan, hawai.tavle FROM hawai, uribeparaco WHERE uribeparaco.rovin = hawai.waptro") 
             row = cur.fetchall()
+            print("paso")
             return render_template('inicio.html',row = row, form=frm)
-        #except: 
-            # con.rollback() 
+        except:
+            print("falle") 
+            con.rollback()
+            print(con.rollback()) 
+        con.close()
+
         return render_template('inicio.html',form=frm)
     else:
-        return "Acción no permitida <a href='/'>login</a>"
+        return render_template("sesion_expiro.html")
 
 @app.route('/perfil')
 def perfil():
@@ -233,7 +281,8 @@ def perfil():
             row = cur.fetchall()
         return render_template('perfil.html',datos=datos, row=row,email2=email2)
     else:
-        return "Acción no permitida <a href='/'>login</a>"
+        return render_template("sesion_expiro.html")
+
 @app.route('/comentar/<int:post_id>',methods=['GET','POST'])
 def comentar(post_id):
     if "user" in session:
@@ -247,7 +296,7 @@ def comentar(post_id):
             conn.commit()
             conn.close()
             return redirect(url_for('post',post_id=post_id))
-    return "no sesion"
+    return render_template("sesion_expiro.html")
 
 @app.route('/<int:post_id>')
 def post(post_id):
@@ -259,6 +308,7 @@ def post(post_id):
         conn.commit()
         conn.close()
         return render_template('post.html',post=post,comentarios = coments,form=frm_c)
+    return render_template("sesion_expiro.html")
 
 @app.route('/edit/<int:post_id>',methods=['GET','POST'])
 def edit_post(post_id):
@@ -294,7 +344,7 @@ def edit_post(post_id):
                 conn.close()
                 return redirect(url_for('perfil'))
     else:
-        return "Acción no permitida <a href='/'>login</a>"
+        return render_template("sesion_expiro.html")
     
     if post['mabida'] == 1:
         form.visibilidad.data = "Público"
@@ -311,7 +361,7 @@ def BlogPropio():
     if "user" in session:
         return render_template('Vista_Blog_Propio.html')
     else:
-        return "Acción no permitida <a href='/'>login</a>"
+        return render_template("sesion_expiro.html")
     return render_template('Vista_Blog_Propio.html')
 
 @app.route('/CrearBlog',methods=['GET','POST'])
@@ -347,7 +397,7 @@ def CrearBlog():
                 conn.close()
                 return redirect(url_for('perfil'))
     else:
-        return "Acción no permitida <a href='/'>login</a>"
+        return render_template("sesion_expiro.html")
     
     return render_template('Vista_Crear_Blog.html',form = form)
 
@@ -377,7 +427,7 @@ def Preview_new():
     if "user" in session:
         return render_template('Vista_Previa_N.html')
     else:
-        return "Acción no permitida <a href='/'>login</a>"
+        return render_template("sesion_expiro.html")
     return render_template('Vista_Crear_Blog.html')
 
 @app.route('/reenviar',methods=['GET','POST'])
@@ -393,28 +443,49 @@ def reenviar_codigo():
 
 @app.route("/cambiarpass/<int:source>",methods=["GET","POST"])
 def cambiarpass(source):
+    
     form = formRegistro()
     ventanas = ['vista_Cambiar_password.html','recuperar.html'] 
     retorno =['/perfil','/']
+    print("entre")
     if request.method =="POST":
         email = form.correo.data
-        newpass = form.clave.data 
-        with sqlite3.connect('BlogHubDB.db') as con:
-            con.row_factory = sqlite3.Row #recibir bien la lista
-            cur = con.cursor()
-            #usuarios = uribeparaco, email= rovin
-            user = cur.execute(f"SELECT * FROM uribeparaco WHERE  rovin= '{email}'").fetchall() 
+        print(email)
+        con = get_db_connection()
+        
+    
+        con.row_factory = sqlite3.Row #recibir bien la lista
+        cur = con.cursor()
+        
+        #usuarios = uribeparaco, email= rovin
+        user = cur.execute(f"SELECT * FROM uribeparaco WHERE  rovin= '{email}'").fetchall() 
+
+        con.close()
+        
+        
+        if user:
             
-            if user and  utils.isPasswordValid(newpass) :
-                newpass_enc = generate_password_hash(newpass)
-                #usuario = uribeparaco, password = nami , email= rovin 
-                cur.execute("UPDATE  uribeparaco SET nami=? WHERE rovin=?",[newpass_enc,email])
-                print(retorno[source])
-                return "Cambiado con exito <a href='"+retorno[source]+"'>Volver </a>"
-            else:
-                flash("Contraseña con caracteres no permitidos")
-                return render_template(ventanas[source],form=form,action=source)
-    else: 
+            con1 = get_db_connection()
+            cur1 = con1.cursor()
+            number  = hex(random.getrandbits(256))[2:]
+            cur1.execute("INSERT INTO validacion (codigo,estado,email) VALUES (?,?,?)",(number,0,email))
+            con1.commit()
+            con1.close()
+            yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
+            yag.send(to=email, subject="Recuperar Contraseña", contents="Estimado "+user[0][1]+ " Su link de recuperación es "+url_for('recupe',_external=True)+'?auth='+number)
+
+            #newpass_enc = generate_password_hash(newpass)
+            #usuario = uribeparaco, password = nami , email= rovin 
+            #cur.execute("UPDATE  uribeparaco SET nami=? WHERE rovin=?",[newpass_enc,email])
+            #print(retorno[source])
+            
+            return "Cambiado con exito <a href='"+retorno[source]+"'>Volver </a>"
+        else:
+            flash("Correo no existe")
+            return render_template(ventanas[source],form=form,action=source)
+    else:
+        
+         
         return render_template(ventanas[source],form=form,action=source)
 
 if __name__ == '__main__':

@@ -80,10 +80,10 @@
             {%for r in row%}    
             <article class="post">
 
-                {%if r['mabida'] == 1%}
+                {%if r[3] == 1%}
                 <a href="{{url_for('post',post_id=r['afrax'])}}" class="enlace-post">
                     <span>
-                    <h2 class="titulo-post">{{r['kuadno']}}</h2> 
+                    <h2 class="titulo-post">{{r[2]}}</h2> 
                     <h3>Público</h3>
                 </span>
                 </a>
@@ -91,7 +91,7 @@
 
                 <div href="#" class="enlace-post">
                     <span>
-                    <h2 class="titulo-post">{{r['kuadno']}}</h2>
+                    <h2 class="titulo-post">{{r[2]}}</h2>
                     <h3>Privado</h3>
                 </span>
             </div>
@@ -100,18 +100,22 @@
 
                 <img src="/static/img/deportes.png"class="img-post">
                 <p>
-                    <strong>Por: </strong><span class="datos-publicaciones">{{r['waptro']}}</span>
+                    <strong>Por: </strong><span class="datos-publicaciones">{{r[0]}}</span>
                     &nbsp; &nbsp;
-                    <strong>Fecha: </strong><span class="datos-publicaciones">{{r['moan']}}</span>
+                    <strong>Fecha: </strong><span class="datos-publicaciones">{{r[4]}}</span>
                 </p>
                 <p class="parrafo-post">
                     <textarea name="corpus" id="corpus" cols="30" rows="1">
-                        {{r['tavle'][:140]}}...
+                        {{r[5][:140]}}...
                     </textarea>
                 </p>
-                <center>
-                <a href="" class="leer-mas">Leer más...</a>&nbsp; &nbsp;
-                <span class="num-comentarios">8 Comentarios</span>&nbsp; &nbsp;
+                                <center>
+                {%if r[3] == 1%}
+                <a href="{{url_for('post',post_id=r['afrax'])}}" class="leer-mas">Leer más...</a>&nbsp; &nbsp;
+                {%else%}
+                <div class="leer-mas_" > Privado</div>&nbsp; &nbsp;
+                {%endif%}
+                <!--span class="num-comentarios">8 Comentarios</span>&nbsp; &nbsp;-->
                 <strong>Categoria: </strong><span class="datos-publicaciones">Deportes</span>
                 </center>
 

@@ -252,6 +252,16 @@ input[type="search"]:focus{
     margin-top: 20px;
     border-radius: 5px;
 }
+#publicaciones .leer-mas_{
+    display:inline;
+    background:red ;
+    color: #ffffff;
+    border: 0px;
+    padding: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 5px;    
+}
 
 #publicaciones .leer-mas:hover{
     background:#aeb6bf ;

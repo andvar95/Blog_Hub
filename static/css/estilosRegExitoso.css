@@ -73,7 +73,7 @@ h3, p, label, input{
 
 
 #container1 input[type="email"],
-#container1 input[type="password"]
+#container1 input[type="password"],#container1 input[type="text"]
 {
     text-align: center;
     border: none;

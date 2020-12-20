@@ -51,12 +51,14 @@
             {%endfor%}
         </section>  
     
-        <form action="{{url_for('cambiarpass',source=action)}}" method="post">
+        <form action="{{url_for('recupe')}}" method="post">
             <img src="/static/img/icons8_mailing_120px_1.png" id="icon" alt="">
             <center>
-            <h3>¿Tienes problemas con tu contraseña?</h3>
-            <p>Para cambiar o recuperar tu contraseña digite  tu correo electrónico y  la nueva contraseña</p>
-            <div > {{form.correo}} </div>
+            <h3>Recuperación de Contraseña</h3>
+            <p>Digita tu contraseña nueva dos veces para cambiarla</p>
+            <div > {{form.nombre(value = nombre)}} </div>
+            <div > {{form.clave1}} </div>
+            <div > {{form.clave2}} </div>
            
               
             {{form.enviar}}

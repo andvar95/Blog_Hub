@@ -31,3 +31,8 @@ class formComentarios(FlaskForm):
     cuerpo = StringField("Cuerpo",validators=[DataRequired(message="No dejar vacío")])
     enviar = SubmitField("Comentar")
 
+class formRecuperar(FlaskForm):
+    clave1 = PasswordField("clave1",validators=[DataRequired(message="No dejar vacío")],render_kw={"placeholder":"Escriba su contraseña"})
+    clave2= PasswordField("clave2",validators=[DataRequired(message="No dejar vacío")],render_kw={"placeholder":"Repita Contraseña"})
+    nombre = StringField("nombre",validators=[DataRequired(message="No dejar vacío")], render_kw={"placeholder": "Elige un título"})
+    enviar = SubmitField("Cambiar Contraseña")
