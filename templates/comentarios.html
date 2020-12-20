@@ -1,0 +1,22 @@
+{% extends 'post.html' %} 
+
+{% block comentarios %}
+
+
+
+        {%for coment in comentarios%}
+        <div class="box_c">
+        <div class = "prof">
+            <center>
+            <img src="/static/img/foto.jpg" widt="25" height="25" class=> 
+                </center>
+        </div>
+        <div class = "com">
+            <div class="name">{{coment[0]}}</div>
+            
+            <p class="text_c">{{coment[1]}}</p>
+        </div>
+    </div>
+        {%endfor%}
+       
+{ % endblock %}

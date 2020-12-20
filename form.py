@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, RadioField, DateTimeField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, RadioField, DateTimeField, IntegerField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired
 
@@ -28,6 +28,8 @@ class formCrearBlog(FlaskForm):
     comentarios = RadioField("Comentarios", choices=[('value','Permitido'),('value_two','No permitido')])
 
 class formComentarios(FlaskForm):
+    id_blog = StringField("id_blog",validators=[DataRequired(message="No dejar vacío")])
     cuerpo = StringField("Cuerpo",validators=[DataRequired(message="No dejar vacío")])
+    correo =  EmailField("Email",validators=[DataRequired(message="No Dejar vacío")],render_kw={"placeholder": "Correo Electrónico"})
     enviar = SubmitField("Comentar")
 

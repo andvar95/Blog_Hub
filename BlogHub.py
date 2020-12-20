@@ -1,4 +1,4 @@
-from flask import Flask,render_template,flash,request,redirect, url_for,session
+from flask import Flask,render_template,flash,request,redirect, url_for,session,jsonify
 import os
 from flask_wtf import form
 import yagmail as yg
@@ -12,6 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import random
 import htmlentities
 from html.parser import HTMLParser
+import json
 
 # Función para realizar conexión a la DB
 def get_db_connection():
@@ -234,7 +235,7 @@ def perfil():
         return render_template('perfil.html',datos=datos, row=row,email2=email2)
     else:
         return "Acción no permitida <a href='/'>login</a>"
-@app.route('/comentar/<int:post_id>',methods=['GET','POST'])
+@app.route('/comentar/<int:post_id>',methods=['POST'])
 def comentar(post_id):
     if "user" in session:
         print("en sesion")
@@ -246,14 +247,55 @@ def comentar(post_id):
             conn.execute('INSERT INTO lulite (blac, wite, ambres,celfone ) VALUES (?,?,?,?)',[post_id, session['email'],frm.cuerpo.data,1])
             conn.commit()
             conn.close()
-            return redirect(url_for('post',post_id=post_id))
+            #return redirect(url_for('post',post_id=post_id))
+            print("comente")
     return "no sesion"
+
+
+#copia comentar#############################
+
+@app.route('/comentario',methods=['POST'])
+def comentario():
+    if "user" in session:
+        print("en sesion")
+        
+        if request.method == "POST":
+            print("llego")
+            print(request.form)
+            cuerpo = request.form['cuerpo']
+            autor = request.form['correo']
+            post_id = request.form['id_blog']
+            #print("Comentar")
+            #print(frm.cuerpo.data)
+            conn = get_db_connection()
+            conn.row_factory = sqlite3.Row
+            conn.execute('INSERT INTO lulite (blac, wite, ambres,celfone ) VALUES (?,?,?,?)',[post_id, autor,cuerpo,1])
+            conn.commit()
+            coments = conn.execute('SELECT wite, ambres, boocis FROM lulite WHERE blac = ?', (post_id,)).fetchall()
+            conn.commit()
+            conn.close()
+            out=[]
+            for c in coments:
+                t = (c[0],c[1],c[2])
+                out.append(t)
+            sal = json.dumps(out)
+            return render_template('comentarios.html',comentarios = coments)
+            #return redirect(url_for('post',post_id=post_id))
+            return sal
+    return "no sesion"
+
+
+#copia comentar#############################
+
+
 
 @app.route('/<int:post_id>')
 def post(post_id):
     if "user" in session:
         post = get_post(post_id)
         frm_c = formComentarios()
+        frm_c.correo.data = session['email']
+    
         conn = get_db_connection()
         coments = conn.execute('SELECT wite, ambres, boocis FROM lulite WHERE blac = ?', (post_id,)).fetchall()
         conn.commit()

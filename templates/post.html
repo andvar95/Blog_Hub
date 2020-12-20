@@ -1,56 +1,72 @@
-<!--DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Hub</title>
-    <link rel="icon" type="image/png" href="Imagenes/favicon.png"/>
-    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
-    <link rel="stylesheet" href="/static/css/estilosPreview.css">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <div id="cabecera">
-                <div id="encabezado1">
-                    <div id="logo">
-                        <img src="/static/img/logo2.png">
-                    </div>
-                    <div id="menu">
-                        <div id="inicio">
-                            <img src="/static/img/logo_house_grey.png" href="" class="inicio">                      
-                        </div>
-                        <div id="perfil">
-                            <img src="/static/img/icons8_staff_24px_1_blue.png" href="" class="perfil">
-                        </div>
-                    </div>
-                </div>
-            
-                <div id=encabezado2>
-                    <div id="buscar">
-                        <div class="cont">
-                            <input type="search" placeholder="Busca en Hub Blog"  title="Presione Esc para supender la búsqueda">
-                        </div>                    
-                    </div>
-                    <div id="sesion">
-                        <img src="/static/img/avatar.jpeg" class="usuario" alt="Imagen del avatar">
-                        <ul>
-                            <li><a href="" class="usuario">Usuario XXXX</a></li>
-                            <br>
-                            <li><a href="" class="salir">Cerrar sesión</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>        
-        </header-->
-  <!-- Ya la barra superior no es neceasria porque está en la sección de codigo común (layout)-->
 
-{%extends 'layout.html' %} <!--Obtengo la barra del archivo principal layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
+    <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="/static/js/funciones.js"></script>
+    <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
+    <!--link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/estilosLayout.css')}}"/-->
+    <script>
+        tinymce.init({
+            selector: "#body_blog",
+            plugins: 'image',
+            menubar: 'insert',
+            branding: false
+        });
+
+    </script>
+</head>
+<body >
+    <header class="header" >
+        <div id="cabecera">
+            <div id="encabezado1">
+                <div id="logo">
+                    <img src="/static/img/logo2.png">
+                </div>
+                <div id="menu">
+                    <div id="inicio">
+                        <a href="{{ url_for('inicio')}}"><img   href="{{ url_for('inicio')}}" class="inicio" onclick="{{ url_for('inicio')}}"></a>                      
+                    </div>
+                    <div id="perfil">
+                        <a href="{{ url_for('perfil')}}"><img  href="{{ url_for('perfil')}}" class="perfil" onclick="{{ url_for('perfil')}}"></a>
+                    </div>
+                </div>
+            </div>
+        
+            <div id=encabezado2>
+                <div id="buscar">
+                    <div class="cont">
+                        <input type="search" placeholder="Busca en Hub Blog"  title="Presione Esc para supender la búsqueda">
+                    </div>                    
+                </div>
+                <div id="sesion">
+                    <img src="/static/img/avatar.jpg" class="usuario" alt="Imagen del avatar" onclick="ver();">
+                    <div id="Seccion_sesion">
+                        
+                        <div class="opciones_s">
+                        <div><img src="/static/img/user.png"><a href="{{ url_for('perfil')}}"> Perfil </a></div>
+                        <br>
+                        <div><img src="/static/img/Exit.png"> <a href= "{{ url_for('logout')}}">Salir</a></div>  
+                        <br>                  
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </header>
+
+
+<!--{%extends 'layout.html' %} Obtengo la barra del archivo principal layout-->
     
 <!--Lo que esté en block content es lo particular del codigo-->
-{% block content %}
+<!--{% block content %}-->
         <title>{{post['kuadno']}}</title>
         {{form.hidden_tag}}
+        <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src ="/static/js/jquery.js"></script>
         <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
         <link rel="stylesheet" href="/static/css/estilosPost.css">
         <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -110,40 +126,35 @@
             </div>
             </div>
 
-
             <section class="comentarios">
                 <div class="logo_comentarios">
                     <a href=""><img src="/static/img/logo2.png" alt="" srcset=""></a>
                    
                 </div>
-                <div class="texto">
-                    {%for coment in comentarios%}
-                    <div class="box_c">
-                    <div class = "prof">
-                        <center>
-                        <img src="/static/img/foto.jpg" widt="25" height="25" class=> 
-                            </center>
-                    </div>
-                    <div class = "com">
-                        <div class="name">{{coment[0]}}</div>
-                        
-                        <p class="text_c">{{coment[1]}}</p>
-                    </div>
-                </div>
-                    {%endfor%}
-                   
-                    <div class="nuevo_comentario">
-                        <form method="post" action="{{url_for('comentar',post_id=post['afrax'])}}">
-                        <div>{{form.cuerpo(cols="40",row="10")}}</div>
-                     
-                        <div> {{form.enviar()}}</div>
-                    </form>
-                </div>
-                </div>
                 
+                <div class="texto">
+
+            {%block comentarios%}
+  
+            {%endblock%}
             
-            </section>
+        <div class="nuevo_comentario">
+            <form method="post" action="{{url_for('comentar',post_id=post['afrax'])}}" id="formComent"> 
+                {{form.csrf_token}}
+            <div>{{form.cuerpo(cols="40",row="10")}}</div>
+            
+            <div style='display:none'>{{form.correo()}}</div>
+            <div style='display:none'>{{form.id_blog(value=post['afrax'])}}</div>
+            <div> {{form.enviar()}}</div>
+        </form>
+    </div>
+    </div>
+   
+    
+
+</section>
+
         </nav>
-        {% endblock %}
-<!--/body>
-</html-->
+       <!-- {% endblock %}-->
+</body>
+</html
