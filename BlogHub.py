@@ -139,7 +139,7 @@ def recupe():
             return render_template('nueva_c.html',form=formR,nombre = formR.nombre.data)
 
     else:
-        print("aca")
+        
         exist = cur.execute("SELECT * FROM validacion WHERE codigo = ?",[code['auth']]).fetchall()
         print(exist[0][0])
         if exist:
@@ -149,7 +149,8 @@ def recupe():
 
             return render_template('nueva_c.html',form=formR,nombre = nombre[0])
         else:
-            return "Error de codigo"
+            flash("Error en el enlace de recuperación")
+            return render_template("login.html",form=formL)
         
 
 
@@ -194,7 +195,7 @@ def login():
             cur1 = con.cursor()
             cur1 = con.cursor()
             #posts = hawai
-            cur1.execute("SELECT uribeparaco.luffy, hawai.afrax, hawai.kuadno, hawai.mabida, hawai.moan, hawai.tavle FROM hawai, uribeparaco WHERE uribeparaco.rovin = hawai.waptro") 
+            cur1.execute("SELECT uribeparaco.luffy, hawai.afrax, hawai.kuadno, hawai.mabida, hawai.moan, hawai.tavle,hawai.ketchup FROM hawai, uribeparaco WHERE uribeparaco.rovin = hawai.waptro") 
             row = cur1.fetchall()
             #para traer un solo registro. Fetchall para traer todos
             
@@ -372,7 +373,7 @@ def CrearBlog():
         if request.method == 'POST':
             #titulo = request.form['titulo']
             #cuerpo = request.form['body_blog']
-         
+            categoria = form.categoria.data
             cuerpo = form.body_blog.data
             print(cuerpo)
             titulo = escape(form.titulo.data)
@@ -391,8 +392,8 @@ def CrearBlog():
                 post = conn1.execute('SELECT rovin FROM uribeparaco WHERE luffy = ?',[datos]).fetchone()
                 print(post[0])
                 #posts = hawai, titulo =kuadno, id_usuario = waptro, cuerpo= tavle, estado = mabida, fecha= moan 
-                conn.execute('INSERT INTO hawai (kuadno, waptro, tavle,mabida) VALUES (?, ?, ?, ?)',
-                            (titulo, post[0], cuerpo, vis))
+                conn.execute('INSERT INTO hawai (kuadno, waptro, tavle,mabida,ketchup) VALUES (?,?, ?, ?, ?)',
+                            (titulo, post[0], cuerpo, vis,categoria))
                 conn.commit()
                 conn.close()
                 return redirect(url_for('perfil'))

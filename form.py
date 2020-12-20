@@ -24,6 +24,7 @@ class formCrearBlog(FlaskForm):
     titulo = StringField("titulo",validators=[DataRequired(message="No dejar vacío")], render_kw={"placeholder": "Elige un título"})
     body_blog = TextAreaField("body_blog",validators=[DataRequired(message="No dejar vacío")])
     visibilidad = RadioField("visibilidad", choices=['Público','Privado'])
+    categoria = RadioField("categoria", choices=['Deportes','Cocinba','Programación','Música','Hogar','Politica'])
     publicacion = DateTimeField("Fecha",validators=[DataRequired(message="No dejar vacío")])
     comentarios = RadioField("Comentarios", choices=[('value','Permitido'),('value_two','No permitido')])
 
