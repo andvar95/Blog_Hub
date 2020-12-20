@@ -33,6 +33,10 @@
     margin-top: 20px;
 }
 
+.info input[type="submit"]:hover{
+    cursor: pointer;
+}
+
 #cont{
     width: 12.5%;
     height: auto;
