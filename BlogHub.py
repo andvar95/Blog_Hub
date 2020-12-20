@@ -10,7 +10,7 @@ import sqlite3
 from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
-import htmlentities
+#import htmlentities
 from html.parser import HTMLParser
 
 # Función para realizar conexión a la DB
@@ -82,7 +82,7 @@ def registro():
                 flash(error)
                 return render_template('Vista_Registro.html')
             if not utils.isPasswordValid(pass_word):
-                error = "La contraseña contiene caracteres no válidos"
+                error = "La contraseña debe ser una combinación de mayúsculas, minusculas, números y al menos un caracter especial"
                 flash(error)
                 return render_template('Vista_Registro.html')
             

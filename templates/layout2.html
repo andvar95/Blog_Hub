@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Hub {% block titulo %}{% endblock %}</title>     
+    <title>Blog Hub {% block title %}{% endblock %}</title>     
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='/css/estilosLayout.css')}}"/>
+    {% block style %}{% endblock %}
 </head>
 <body>
     <header class="header" >        
@@ -13,7 +14,7 @@
         </div>             
     </header>
 
-    {% block contenido %}
+    {% block content %}
     {% endblock %}
 </body>
 </html>
