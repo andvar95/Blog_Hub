@@ -1,18 +1,21 @@
 {% extends 'layout2.html' %}
-{% block titulo %}
- | Inicio
+
+{% block title %}| Bienvenido{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static', filename = '/css/estilosIndex.css')}}">
 {% endblock %}
 
-{% block contenido %}
-
-<link rel="stylesheet" href="{{url_for('static', filename = '/css/estilosIndex.css')}}">
+{% block content %}
 
 <div class="contenedor">
     <div class="info">
         <p class="texto">Miles de personas en el mundo usan BlogHub</p>
-        <a href="{{url_for('login')}}"><input  type="submit" value="Únete"></a>
-        
+        <div class="wrap">
+            <a href="{{url_for('registro')}}"><button class="button">Únete</button></a>
+        </div>       
     </div>
+    
     <div id="cont"> 
         <div class="slider">
             <ul class="slider-left">

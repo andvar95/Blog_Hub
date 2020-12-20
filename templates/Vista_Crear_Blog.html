@@ -1,102 +1,17 @@
-<!--DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Hub</title>
-    <link rel="icon" type="/static/img/png" href="/static/img/favicon.png"/>
-    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
-    <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="js/funciones.js"></script>
-    <script>
-        tinymce.init({
-            selector: "#body_blog",
-            plugins: 'image',
-            menubar: 'insert',
-        });
-    </script>
-    <link rel="stylesheet" href="/static/css/estilosBlogPropio.css">
-</head>
-<body>
-    
-         <nav class="nav-main">
-            <nav class="logo_back">
-                <a href="#"><img src="/static/img/back_arrow_50px.png" alt="back" class="back"></a>
-            </nav>
-            <nav class="logo_blog">
-                <a href="#"><img src="/static/img/logo.png" alt="logo_blog" class="logo_blog_icon"></a>
-            </nav>
-            <ul class="nav-menu">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Perfil</a></li>
-            </ul>
-            <div class="search-bar">
-                <img src="/static/img/search_20px.png" alt="" class="icon-search">
-                <Input type="search" placeholder="keyword"></Input>
-            </div>
-            <div class="menu2">
-                <label for="" class="username">Usuario</label>
-                <br>
-                <a href="#">Cerrar Sesión</a>
-            </div>
-        </nav> 
-        <header class="header">
-            <div id="cabecera">
-                <div id="encabezado1">
-                    <div id="logo">
-                        <img src="/static/img/logo2.png">
-                    </div>
-                    <div id="menu">
-                        <div id="inicio">
-                            <img src="/static/img/icons8_home_24px_6.png" href="" class="inicio">                      
-                        </div>
-                        <div id="perfil">
-                            <img src="/static/img/icons8_staff_24px_1.png" href="" class="perfil">
-                        </div>
-                    </div>
-                </div>
-            
-                <div id=encabezado2>
-                    <div id="buscar">
-                        <div class="cont">
-                            <input type="search" placeholder="Busca en Hub Blog"  title="Presione Esc para supender la búsqueda">
-                        </div>                    
-                    </div>
-                    <div id="sesion">
-                        <img src="/static/img/avatar.jpg" class="usuario" alt="Imagen del avatar" onclick="ver();">
-                        <div id="Seccion_sesion">
-                            
-                            <div class="opciones_s">
-                            <div><img src="/static/img/user.png"><a> Perfil </a></div>
-                            <br>
-                            <div><img src="/static/img/Exit.png"> <a>Salir</a></div>  
-                            <br>                  
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>        
-        </header-->
-        
-<!-- Ya la barra superior no es neceasria porque está en la sección de codigo común (layout)-->
+{% extends 'layout.html' %} 
 
-{%extends 'layout.html' %} <!--Obtengo la barra del archivo principal layout-->
-    
-<!--Lo que esté en block content es lo particular del codigo-->
-{% block content %}
-    <title>Mi Blog</title>
-    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/ef42925346/UntitledProject/style.cs">
-    <style>
-        .container-menu .menu li:hover ul{
-        display: block;
-        }
-    </style>
+{% block title %}| Crear blog{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/ef42925346/UntitledProject/style.css">
+    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
     <link rel="stylesheet" href="{{url_for('static',filename='css/estilosCrearBlog.css')}}">
-    
-    <!-- <style src="{{url_for('static',filename='css/estilosBlogPropio.css')}}"></style> -->
-     <script src="/static/js/funciones.js"></script> 
-     {{ form.hidden_tag()}}
-        <br>
+{% endblock %}
+
+{% block content %} 
+     
+    {{ form.hidden_tag()}}
+      
     <form method="post" action = "{{url_for('CrearBlog')}}" novalidate>    
         <header class="sencond_line">
             <nav class="second_nav">
@@ -158,10 +73,16 @@
         </nav>
     </form>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <!--script src="/static/js/main.js"></script-->
+    <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="/static/js/funciones.js"></script>    
+    <script>
+        tinymce.init({
+            selector: "#body_blog",
+            plugins: 'image',
+            menubar: 'insert',
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!--script src="/static/js/main.js"></script-->    
+{% endblock %}
 
-    
-    {% endblock %}
-<!--/body>
-</html-->

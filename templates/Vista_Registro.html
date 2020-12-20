@@ -1,11 +1,13 @@
 
 {% extends 'layout2.html' %}
 
-{% block titulo %} | Registro {% endblock %}
+{% block title %} | Registro {% endblock %}
 
-{% block contenido %}
+{% block style %}
+    <link rel="stylesheet" href="{{url_for('static', filename ='/css/estilosRegistro.css')}}">
+{% endblock %}
 
-<link rel="stylesheet" href="{{url_for('static', filename ='/css/estilosRegistro.css')}}">
+{% block content %}
 
 <div class="Ventana_Registro">    
     <div class = "logo">
@@ -41,7 +43,7 @@
 
         <div>¿Ya estás Registrado?</div>
     
-        <button class="ir_login" type="button"><span>INICIAR SESIÓN</span></button><!-- Boton cambiar foto-->
+        <button class="ir_login" type="button"><span>Iniciar sesión</span></button><!-- Boton cambiar foto-->
     </form>
 </div>
 {% endblock %}

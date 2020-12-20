@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
@@ -10,21 +11,13 @@
 
                         
 
+=======
+>>>>>>> 42d9cb8962bf75da90bb1192b5d608d9b7c6da9b
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
-    <script src="https://cdn.tiny.cloud/1/zxwtd88scjyivtscmsjofxescltescewg3lwrsoxofe7231g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="/static/js/funciones.js"></script>
+    <title>Blog Hub {% block title %}{% endblock %}</title>   
     <link rel="icon" type="/static/image/png" href="/static/img/icono.png"/>
-    <!--link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/estilosLayout.css')}}"/-->
-    <script>
-        tinymce.init({
-            selector: "#body_blog",
-            plugins: 'image',
-            menubar: 'insert',
-            branding: false
-        });
-
-    </script>
+    <!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/estilosLayout.css')}}"/> -->
+    {% block style %}{% endblock %}
 </head>
 <body >
     <header class="header" >

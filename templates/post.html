@@ -1,55 +1,9 @@
-<!--DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Hub</title>
-    <link rel="icon" type="image/png" href="Imagenes/favicon.png"/>
-    <link rel="stylesheet" href="https://i.icomoon.io/public/temp/23ed017cad/UntitledProject/style.css">
-    <link rel="stylesheet" href="/static/css/estilosPreview.css">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <div id="cabecera">
-                <div id="encabezado1">
-                    <div id="logo">
-                        <img src="/static/img/logo2.png">
-                    </div>
-                    <div id="menu">
-                        <div id="inicio">
-                            <img src="/static/img/logo_house_grey.png" href="" class="inicio">                      
-                        </div>
-                        <div id="perfil">
-                            <img src="/static/img/icons8_staff_24px_1_blue.png" href="" class="perfil">
-                        </div>
-                    </div>
-                </div>
-            
-                <div id=encabezado2>
-                    <div id="buscar">
-                        <div class="cont">
-                            <input type="search" placeholder="Busca en Hub Blog"  title="Presione Esc para supender la búsqueda">
-                        </div>                    
-                    </div>
-                    <div id="sesion">
-                        <img src="/static/img/avatar.jpeg" class="usuario" alt="Imagen del avatar">
-                        <ul>
-                            <li><a href="" class="usuario">Usuario XXXX</a></li>
-                            <br>
-                            <li><a href="" class="salir">Cerrar sesión</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>        
-        </header-->
-  <!-- Ya la barra superior no es neceasria porque está en la sección de codigo común (layout)-->
+{%extends 'layout.html' %}
 
-{%extends 'layout.html' %} <!--Obtengo la barra del archivo principal layout-->
-    
-<!--Lo que esté en block content es lo particular del codigo-->
+{% block title %}{{post['kuadno']}}{% endblock %}
+
 {% block content %}
-        <title>{{post['kuadno']}}</title>
+
         {{form.hidden_tag}}
         <!-- jQuery library -->
 
@@ -151,6 +105,7 @@
             
             </section>
         </nav>
+<<<<<<< HEAD
         <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
@@ -159,3 +114,7 @@
         {% endblock %}
 <!--/body>
 </html-->
+=======
+{% endblock %}
+
+>>>>>>> 42d9cb8962bf75da90bb1192b5d608d9b7c6da9b
