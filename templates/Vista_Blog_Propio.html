@@ -180,7 +180,10 @@
                             <label for="private">No Permitir</label>
                             </ul>                    
                         </li>
-                        <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Otras</a></li>
+                        <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Categorias</a>
+                        
+                            {{form.categoria()}}
+                        </li>
                     </ul>
                 </div>
         

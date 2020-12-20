@@ -348,7 +348,7 @@ def edit_post(post_id):
             print("entre")
             #titulo = request.form['titulo']
             #cuerpo = request.form['body_blog']
-            
+            categoria = form.categoria.data
             cuerpo = form.body_blog.data
             print(cuerpo)
             titulo = escape(form.titulo.data)
@@ -365,8 +365,8 @@ def edit_post(post_id):
                 conn1= get_db_connection()
                 post = conn1.execute('SELECT rovin FROM uribeparaco WHERE luffy = ?',[datos]).fetchone()
                 print(post[0])
-                conn.execute('UPDATE hawai SET kuadno = ?, tavle = ?,mabida =? WHERE afrax = ?',
-                            (titulo, cuerpo, vis,post_id))
+                conn.execute('UPDATE hawai SET kuadno = ?, tavle = ?,mabida =?,ketchup=? WHERE afrax = ?',
+                            (titulo, cuerpo, vis,categoria,post_id))
                 conn.commit()
                 conn.close()
                 return redirect(url_for('perfil'))
@@ -376,6 +376,7 @@ def edit_post(post_id):
         else:
             form.visibilidad.data = "Privado"
 
+        form.categoria.data = post['ketchup']
 
         form.body_blog.data = post['tavle']
     
