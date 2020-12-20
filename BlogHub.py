@@ -116,11 +116,6 @@ def index():
    
 @app.route("/recuperar",methods=["POST","GET"])
 
-
-            #return nombre[0]
-            
-
-
 def recupe():
     formR = formRecuperar()
     formL = formLogueo()
@@ -132,6 +127,12 @@ def recupe():
         if formR.clave1.data == formR.clave2.data:
             enc = generate_password_hash(formR.clave1.data)
             cur.execute("UPDATE uribeparaco SET nami=? WHERE luffy=?",[enc,formR.nombre.data])
+            con.commit()
+            correo = cur.execute("SELECT rovin FROM uribeparaco WHERE luffy=?",[formR.nombre.data]).fetchone()
+            con.commit()
+            
+            cur.execute(f"DELETE from validacion WHERE email = '{correo[0]}'")
+            con.commit()
             flash("Contraseña Cambiada con exito")
             return render_template("login.html",form=formL)
         else:
@@ -144,7 +145,7 @@ def recupe():
         print(exist[0][0])
         if exist:
             nombre = cur.execute("SELECT luffy FROM uribeparaco WHERE rovin=?",[exist[0][2]]).fetchone()
-            cur.execute(f"DELETE from validacion WHERE codigo = '{code['auth']}'")
+           
             con.commit()
 
             return render_template('nueva_c.html',form=formR,nombre = nombre[0])
@@ -282,6 +283,7 @@ def perfil():
             row = cur.fetchall()
         return render_template('perfil.html',datos=datos, row=row,email2=email2)
     else:
+        print("aca")
         return render_template("sesion_expiro.html")
 
 @app.route('/comentar/<int:post_id>',methods=['GET','POST'])
@@ -344,18 +346,21 @@ def edit_post(post_id):
                 conn.commit()
                 conn.close()
                 return redirect(url_for('perfil'))
+
+        if post['mabida'] == 1:
+            form.visibilidad.data = "Público"
+        else:
+            form.visibilidad.data = "Privado"
+
+
+        form.body_blog.data = post['tavle']
+    
+        return render_template('Vista_Blog_Propio.html', post=post,form= form)
+        
     else:
         return render_template("sesion_expiro.html")
     
-    if post['mabida'] == 1:
-        form.visibilidad.data = "Público"
-    else:
-        form.visibilidad.data = "Privado"
-
-
-    form.body_blog.data = post['tavle']
-     
-    return render_template('Vista_Blog_Propio.html', post=post,form= form)
+    
     
 @app.route('/BlogPropio')
 def BlogPropio():
@@ -397,12 +402,13 @@ def CrearBlog():
                 conn.commit()
                 conn.close()
                 return redirect(url_for('perfil'))
+        else:
+            return render_template("Vista_Crear_Blog.html",form=form)
+            
     else:
         return render_template("sesion_expiro.html")
     
-    return render_template('Vista_Crear_Blog.html',form = form)
-
-
+   
 @app.route('/BlogPublico')
 def BlogPublico():
     return render_template('blog_publico.html')
@@ -480,7 +486,7 @@ def cambiarpass(source):
             #cur.execute("UPDATE  uribeparaco SET nami=? WHERE rovin=?",[newpass_enc,email])
             #print(retorno[source])
             
-            return "Cambiado con exito <a href='"+retorno[source]+"'>Volver </a>"
+            return render_template("correo_enviado.html")
         else:
             flash("Correo no existe")
             return render_template(ventanas[source],form=form,action=source)

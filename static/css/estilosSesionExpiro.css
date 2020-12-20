@@ -7,7 +7,7 @@ body{
 
 .contenedor{
     width: 470px;
-    height: 220px;
+    height: 250px;
     border-radius: 10px;
     background: white;
     color: black;
@@ -31,4 +31,22 @@ body{
     margin-top: 40px;
     float: right;
     font: bold;
+}
+
+.contenedor input[type="submit"]{
+ 
+        border: none;
+        outline: none;
+        padding-bottom: 7%;
+    
+        height: 40px;
+        background: #304FFE;
+        color: #ffffff;
+        font-size: 16px;
+        border-radius: 20px;
+        margin-top: 10px; 
+        margin-bottom: 8px;  
+        position: relative; /*Posicionado relativo a su posicion normal*/
+        overflow: hidden;
+     
 }
