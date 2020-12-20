@@ -1,0 +1,15 @@
+{% extends 'layout2.html' %}
+
+{% block contenido %}
+<link rel="stylesheet" href="{{url_for('static', filename ='/css/estilosSesionExpiro.css')}}">
+
+<div class="contenedor">
+    <h3>Su ha enviado a su correo Electrónico</h3>
+    <h4>Revise su bandeja de entrada o correo no deseado 
+        y se el link de recuperación, en cado
+        de no recibir el mensaje generelo de nuevo
+    </h4>
+    <a href="{{url_for('login')}}"><input type="submit" value="Volver al inicio" ></a>
+</div>
+
+{% endblock %}

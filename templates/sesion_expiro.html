@@ -1,12 +1,12 @@
 {% extends 'layout2.html' %}
 
-{% block content %}
+{% block contenido %}
 <link rel="stylesheet" href="{{url_for('static', filename ='/css/estilosSesionExpiro.css')}}">
 
 <div class="contenedor">
     <h3>Su sesión caducó</h3>
     <h4>Vuelve a iniciar sesión</h4>
-    <a href="/">ACEPTAR</a>
+    <a href="{{url_for('login')}}"><input type="submit" value="Aceptar" ></a>
 </div>
 
 {% endblock %}
