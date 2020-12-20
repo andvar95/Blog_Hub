@@ -30,6 +30,15 @@ def get_post(post_id):
         abort(404)
     return post
 
+def get_post_cat(post_cat):
+    conn = get_db_connection()
+    post = conn.execute('SELECT * FROM hawai WHERE ketchup = ?',
+                        (post_cat,)).fetchall()
+    conn.close()
+    if post is None:
+        abort(404)
+    return post
+
 # def get_post_name(post_name):
 #     with sqlite3.connect('BlogHubDB.db') as con:
 #         cur = con.cursor()
@@ -46,9 +55,6 @@ app.secret_key = os.urandom(24)
 #variabless globales para  reenviar correo
 global username1
 global email1
-tittle = ""
-content = ""
-date = ""
 username1 = ""
 email1 = ""
 
@@ -243,13 +249,12 @@ def inicio():
         frm = formLogueo()
         print(session['user'])
         con = get_db_connection()
-
         try:
         #with sqlite3.connect('BlogHubDB.db') as con:
             con.row_factory = sqlite3.Row
             cur = con.cursor()
             #posts = hawai
-            cur.execute("SELECT uribeparaco.luffy, hawai.afrax, hawai.kuadno, hawai.mabida, hawai.moan, hawai.tavle FROM hawai, uribeparaco WHERE uribeparaco.rovin = hawai.waptro") 
+            cur.execute("SELECT uribeparaco.luffy, hawai.afrax, hawai.kuadno, hawai.mabida, hawai.moan, hawai.tavle, hawai.ketchup FROM hawai, uribeparaco WHERE uribeparaco.rovin = hawai.waptro") 
             row = cur.fetchall()
             print("paso")
             return render_template('inicio.html',row = row, form=frm)
@@ -265,7 +270,7 @@ def inicio():
 
 @app.route('/perfil')
 def perfil():
-    
+
     if "user" in session:
         datos = session['user']
         with sqlite3.connect('BlogHubDB.db') as con:
@@ -301,6 +306,7 @@ def comentar(post_id):
             return redirect(url_for('post',post_id=post_id))
     return render_template("sesion_expiro.html")
 
+
 @app.route('/<int:post_id>')
 def post(post_id):
     if "user" in session:
@@ -312,6 +318,24 @@ def post(post_id):
         conn.close()
         return render_template('post.html',post=post,comentarios = coments,form=frm_c)
     return render_template("sesion_expiro.html")
+
+@app.route('/inicio/<string:post_cat>',methods=['GET','POST'])
+def inicio_cat(post_cat):
+    if "user" in session:
+        frm = formLogueo()
+        con = get_db_connection()
+        try:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            #posts = hawai
+            cur.execute("SELECT uribeparaco.luffy, hawai.afrax, hawai.kuadno, hawai.mabida, hawai.moan, hawai.tavle, hawai.ketchup FROM hawai, uribeparaco WHERE uribeparaco.rovin = hawai.waptro AND ketchup = ?",[post_cat]) 
+            row = cur.fetchall()
+            post = get_post_cat(post_cat)
+            return render_template('inicio_cat.html',post=post, row=row,form=frm)
+        except :
+            con.rollback()
+    else:
+        return render_template("sesion_expiro.html")
 
 @app.route('/edit/<int:post_id>',methods=['GET','POST'])
 def edit_post(post_id):

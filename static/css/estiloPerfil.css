@@ -312,6 +312,10 @@ background-color: rgb(211, 47, 47 );
 
 }
 
+.c_contraseña:hover, .b_cambiarfoto:hover{
+  cursor: pointer;
+}
+
 
 /* Lado derecho*/
 
