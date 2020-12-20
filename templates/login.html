@@ -29,11 +29,14 @@
             <div>      
                 {{form.clave(size=30)}}<br>
             </div>
-
-            <div>                
-                {{form.recordar()}}
-                {{form.recordar.label}}
+           
+            <div class="check">                
+                {{form.recordar()}}                
             </div>
+            
+            <div class="label">
+            {{form.recordar.label}}
+            </div>           
             
             <div >
                 {{form.enviar()}}
