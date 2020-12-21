@@ -30,11 +30,21 @@
             <div>      
                 <div style="display:inline-block;">{{form.clave(size=30)}}</div> <div onclick="verpass()"  style="display:inline-block;" ><img   src="/static/img/eye.png" width="15" height="15"></div>
             </div>
+<<<<<<< HEAD
 
             <div>                
                 <div style=" display:inline-block; width: 5%;">{{form.recordar()}}</div>
                 <div style="display:inline-block" >{{form.recordar.label}}</div>
+=======
+           
+            <div class="check">                
+                {{form.recordar()}}                
+>>>>>>> 8902403065ee7e24e4dec018531e40b62cb937de
             </div>
+            
+            <div class="label">
+            {{form.recordar.label}}
+            </div>           
             
             <div >
                 {{form.enviar()}}
