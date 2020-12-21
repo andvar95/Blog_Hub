@@ -322,7 +322,8 @@ input[type="search"]:focus{
     color: white;
     text-decoration: none;
     float: right;
-    display: flex;
+    display: inline;
+
 }
 
 button{
@@ -333,7 +334,7 @@ button{
     text-decoration: none;
     }
 
-.b_preview{
+.b_preview,.b_update {
     background-color: rgb(48, 79, 254);
     padding: 0;
     margin: 30px;
@@ -343,29 +344,18 @@ button{
     outline: none;
     overflow: hidden;
     position: relative; /*Posicionado relativo a su posicion normal*/
-    border: 1px solid black;
+
     
 
     }
 
-.b_update {
-        background-color: rgb(48, 79, 254);
-        padding: 0;
-        margin: 30px auto;
-        border-radius: 2px;
-        border: 0px;
-        
-        outline: none;
-        overflow: hidden;
-        position: relative; /*Posicionado relativo a su posicion normal*/
-        border: 1px solid black;
-    
-        }
+
 
 .b_preview span,.b_update span{
     display: block;
     padding: 14px 24px;
     /*border: 1px solid black;*/
+    border: 1px solid green;
     }
 
       

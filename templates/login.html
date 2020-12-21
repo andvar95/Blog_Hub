@@ -6,7 +6,8 @@
 {% block content %}
 
 <link rel="stylesheet" href="{{url_for('static', filename = '/css/estilosLogin.css')}}">
-
+<script src="{{url_for('static',filename='/js/verpass.js')}}"></script>
+<script src="{{url_for('static',filename='/js/funciones.js')}}"></script>
     <div class="login-box">
         <img class="avatar" src="/static/img/logo2.png">
 
@@ -27,12 +28,12 @@
             </div>
             
             <div>      
-                {{form.clave(size=30)}}<br>
+                <div style="display:inline-block;">{{form.clave(size=30)}}</div> <div onclick="verpass()"  style="display:inline-block;" ><img   src="/static/img/eye.png" width="15" height="15"></div>
             </div>
 
             <div>                
-                {{form.recordar()}}
-                {{form.recordar.label}}
+                <div style=" display:inline-block; width: 5%;">{{form.recordar()}}</div>
+                <div style="display:inline-block" >{{form.recordar.label}}</div>
             </div>
             
             <div >

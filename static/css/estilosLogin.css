@@ -9,7 +9,7 @@ body{
 }
 
 .login-box{
-    width: 330px;
+    width: 380px;
     height: 470px;
     border-radius: 10px;
     background: white;
@@ -44,7 +44,12 @@ body{
     background: transparent;
     outline: none;
     height: 40px;
-    font-size: 16px;    
+    font-size: 16px;   
+    width:290px;
+} 
+
+.login-box input[type="password"],.login-box input[type="text"]{
+ width:290px;
 }
 
 /*.login-box input[type="submit"]*/

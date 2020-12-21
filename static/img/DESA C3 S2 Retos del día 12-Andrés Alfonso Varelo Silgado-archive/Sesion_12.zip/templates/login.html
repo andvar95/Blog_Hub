@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link href="{{url_for('static', filename = 'EstiloCSS.css')}}" rel="stylesheet">
+</head>
+<body>
+  
+    <form name="formulario">
+        <label for="" >usuario</label>
+        <input type="text" name="usuario" id="usuario"> 
+        <br><br>
+        <label for="">password</label>
+        <input type="password" name="password" id ="password">
+        <br><br>
+        <input type="submit" class="boton"  onclick="validar_formulario();" id="boton" >
+        <img src="{{url_for('static', filename = 'ojo.png')}}"  id="img" name="img" onmouseover="mostrar();" onmouseleave="no_mostrar();">
+        <button value="Rcuperar" > <a href="{{url_for('forgot')}}" >Recuperar</a></button>
+        
+    </form>
+ 
+<script src="{{url_for('static', filename = 'validacion.js')}}"></script>
+</body>
+</html>

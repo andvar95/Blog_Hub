@@ -1,0 +1,15 @@
+*{
+
+    font-family: Arial;
+}
+
+.boton{
+ background-color: rgb(72, 255, 0);
+ color: wheat;
+
+}
+
+#img{
+    background-color: blue;
+    border:1px solid black;
+}

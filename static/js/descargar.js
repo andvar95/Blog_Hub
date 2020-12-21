@@ -23,9 +23,20 @@ var specialElementHandlers = {
 */
 function descargar(){
     var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#final': function (element, renderer) {
+            return true;
+        }
+    };
+    doc.fromHTML(document.getElementById('blog_corpus').value, 15, 15, {
+        'width': 170,
+        'elementHandlers': specialElementHandlers
+    });
+
+
    
-;
-    doc.fromHTML(document.getElementById('blog_corpus').value)
+
+    
     doc.save("Mi_Blog.pdf")
     
 };

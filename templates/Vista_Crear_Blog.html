@@ -11,8 +11,8 @@
 {% block content %} 
      
     {{ form.hidden_tag()}}
-      
-    <form method="post" action = "{{url_for('CrearBlog')}}" novalidate>    
+    <form method="post" action = "{{url_for('CrearBlog')}}" novalidate>  
+     
         <header class="sencond_line">
             <nav class="second_nav">
                 <div class="titulo">
@@ -20,13 +20,10 @@
                     <br>
                     {{form.titulo()}}
                 </div>
-                <div class="botones">
-                    <a href="{{url_for('Preview_new')}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
-                    <button class="b_create" type="submit"><span>Publicar</span></button>
-                </div>
+                
             </nav>
     
-        <br><br>
+        <br><br>  <br><br>  <br><br>
         <nav class="body">
             <div class="fondo_hoja">
                 <div class="hoja" id="hoja"> 
@@ -35,25 +32,32 @@
                 </div>
             </div>
             <div class="container-menu">
+                <center>
+                <div class="botones">
+                    <a href="{{url_for('Preview_new')}}" ><button class="b_preview" type="button" value="Vista Previa"><span>Vista Previa</span></button></a>
+                    {{form.enviar}}}
+                </div>
+            </center>
+                <br><br><br><br><br><br>
                 <ul class="menu">
-                    <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Palabras Clave</a>
+                    <!--li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Palabras Clave</a>
                         <ul>
                         <label for="">Palabras Clave</label>
                         <br>
                         <Input type="text" placeholder="Separe por comas"></Input>  
                         </ul>                  
-                    </li>
+                    </li-->
                     <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Visibilidad</a>
                       
                         {{form.visibilidad()}}
                     </li>
-                    <li><a href="{{url_for('inicio')}}"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Publicación</a>
+                    <!--li><a href="{{url_for('inicio')}}"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Publicación</a>
                         <ul class="fecha">
                             <Input type="date" name="fecha"></Input>
-                            <!-- <iframe src="https://calendar.google.com/calendar/embs?height=162&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FBogota&amp;src=YW5kcmVzc3J5b2RhbUBnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%2333B679&amp;showTitle=0&amp;showDate=1&amp;showNav=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="236" height="162" frameborder="0" scrolling="no"></iframe> -->
+                             <iframe src="https://calendar.google.com/calendar/embs?height=162&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FBogota&amp;src=YW5kcmVzc3J5b2RhbUBnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%2333B679&amp;showTitle=0&amp;showDate=1&amp;showNav=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border:solid 1px #777" width="236" height="162" frameborder="0" scrolling="no"></iframe> 
                         </ul>
-                    </li>
-                    <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Comentarios</a>
+                    </li-->
+                    <!--li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Comentarios</a>
                         <ul>
                         <input type="radio" name="enabled" id="enabled">
                         <label for="public">Permitir</label>
@@ -61,7 +65,7 @@
                         <input type="radio" name="enabled" id="disable">
                         <label for="private">No Permitir</label>
                         </ul>                    
-                    </li>
+                    </li-->
                     <li><a href="#"><span class="icono derecha icon-circle-down"><img src="{{url_for('static',filename='img/down_button_25px.png')}}" alt=""></span>Categorias</a>
                     
                     {{form.categoria}}

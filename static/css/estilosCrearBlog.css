@@ -322,7 +322,7 @@ input[type="search"]:focus{
     color: white;
     text-decoration: none;
     float: right;
-    display: flex;
+
 }
 
 button{
@@ -334,6 +334,7 @@ button{
     }
 
 .b_preview{
+
     background-color: rgb(48, 79, 254);
     padding: 0;
     margin: 30px;
@@ -343,33 +344,36 @@ button{
     outline: none;
     overflow: hidden;
     position: relative; /*Posicionado relativo a su posicion normal*/
-    border: 1px solid black;
-    
+   
 
     }
 
-.b_create {
+    .container-menu input[type=submit]{
+    
         background-color: rgb(48, 79, 254);
         padding: 0;
-        margin: 30px auto;
+        font-size: 16px;
         border-radius: 2px;
         border: 0px;
-        
+        color: white;
         outline: none;
-        overflow: hidden;
-        position: relative; /*Posicionado relativo a su posicion normal*/
-        border: 1px solid black;
+        padding-left:18% ;
+        padding-right:15% ;
+        padding-top:6% ;
+        padding-bottom:6% ;
+ 
+      
     
         }
 
-.b_preview span,.b_create span{
+.b_preview span{
     display: block;
     padding: 14px 24px;
     /*border: 1px solid black;*/
     }
 
       
-.b_preview:before, .b_create:before {
+.b_preview:before{
     content: "";
     
     position: absolute;
@@ -390,14 +394,14 @@ button{
     transform: translate(-50%, -50%);
   }
   
-  .b_preview:active:before, .b_create:active:before{
+  .b_preview:active:before{
     width: 120%;
     padding-top: 120%;
     transition: width .2s ease-out, padding-top .2s ease-out;
   
   }
 
-  .b_preview:hover, .b_create:hover{
+  .b_preview:hover{
       cursor: pointer;
   }
 

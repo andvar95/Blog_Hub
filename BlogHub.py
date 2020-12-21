@@ -64,6 +64,8 @@ email1 = ""
 def registro():
     try:
         if request.method=="POST":
+           
+
             # Ahora se actualizan los métodos de llamado a wtf
             form = formRegistro()
             global username1
@@ -78,6 +80,14 @@ def registro():
             email1 = escape(form.correo.data)
             pass_word = escape(form.clave.data)
             pwd_enc = generate_password_hash(pass_word)
+
+            #verifico si existe
+            conn = get_db_connection()
+            exist = conn.execute('SELECT * FROM uribeparaco WHERE rovin = ?',
+                        [e_mail]).fetchall()
+            conn.close()
+
+
             error = None
             if not utils.isUsernameValid(user_name):
                 error = "El usuario debe ser alfanumérico"
@@ -91,7 +101,12 @@ def registro():
                 error = "La contraseña debe ser una combinación de mayúsculas, minusculas, números y al menos un caracter especial"
                 flash(error)
                 return render_template('Vista_Registro.html')
-            
+            if exist:
+                error = "Este Correo ya está registrado"
+                flash(error)
+                return render_template('Vista_Registro.html')
+
+
             number = hex(random.getrandbits(256))[2:]
             
             yag = yg.SMTP('bloghub2@gmail.com','BlogHub1234**')
@@ -427,6 +442,8 @@ def CrearBlog():
                 conn.commit()
                 conn.close()
                 return redirect(url_for('perfil'))
+            return render_template("Vista_Crear_Blog.html",form=form)
+
         else:
             return render_template("Vista_Crear_Blog.html",form=form)
             
