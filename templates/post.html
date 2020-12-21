@@ -41,11 +41,11 @@
         <br>
         <nav class="section1">
             <div class="section1_encabezado_izquierda">
-                <a href="{{url_for('inicio')}}"><img src="/static/img/back_to_20px.png" alt="back" id="volver"></a>
+                <a href="{{url_for('inicio')}}"><img src="/static/img/back_to_20px.png" alt="back" id="volver" width="30" height="30"></a>
                 <h1>{{post['kuadno']}}</h1>
             </div>
             <div class="section1_encabezado_derecha">
-                <a href="" id ="share"class="share" onclick="descargar()"><img src="/static/img/share_35px.png" alt="share" id="share"></a>
+                <a href="" id ="share"class="share" onclick="descargar()"><img src="{{url_for('static',filename='img/save.png')}}" alt="share" id="share"></a>
             </div>
             <br><br><br><br><hr color="white"><br>
             <section class="cuerpo">
