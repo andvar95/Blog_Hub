@@ -42,7 +42,8 @@
     <header class="header">                    
         <div id="logo">
             <img src="/static/img/logo2.png">
-        </div>            
+        </div>           
+        <script src="{{url_for('static',filename='/js/verpass2.js')}}"></script> 
     </header>
     <div id="container1">
         <section class="content">
@@ -59,7 +60,10 @@
             <div > {{form.nombre(value = nombre)}} </div>
             <div > {{form.clave1}} </div>
             <div > {{form.clave2}} </div>
-           
+            <div>
+            <div style="display:inline-block"><input onclick="verpass()" type="checkbox" value="Ver Contraseña" name="vc" id="vc"></div>
+            <div style="display:inline-block"><label for ="vc">Ver Contraseña</label></div>
+        </div>
               
             {{form.enviar}}
             {% block content %}     

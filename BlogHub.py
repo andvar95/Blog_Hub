@@ -163,7 +163,7 @@ def recupe():
     else:
         
         exist = cur.execute("SELECT * FROM validacion WHERE codigo = ?",[code['auth']]).fetchall()
-        print(exist[0][0])
+     
         if exist:
             nombre = cur.execute("SELECT luffy FROM uribeparaco WHERE rovin=?",[exist[0][2]]).fetchone()
            
@@ -227,14 +227,14 @@ def login():
             #usuarios = uribeparaco, username = luffy
             user1 = cur.execute(f"Select * FROM uribeparaco WHERE luffy ='{usr}' ").fetchall()
             print(user1[0][4])
-            if user1 and check_password_hash(user1[0][2],pwd) and user1[0][4] != None:
+            if user1 and check_password_hash(user1[0][2],pwd) and  user1[0][4] == 1 :
                 session['user'] = usr
                 session['email'] = user1[0][0] 
                 
                 return render_template("inicio.html",form=form,row=row)
-            elif user1 and user1[0][4] != 1:
+            elif user1 and user1[0][4] == 0:
                 form = formLogueo()
-                flash("Activa tu cuneta")
+                flash("Activa tu cuenta")
                 return render_template('login.html',form=form)
             else:
                 form = formLogueo()

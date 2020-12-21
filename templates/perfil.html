@@ -22,17 +22,19 @@
                     <br>
                     <p>Correo Electrónico:</p>
                     <p>{{email2[0]}}</p>
+
+                    <a href="{{url_for('cambiarpass',source=0)}}"><button class="c_contraseña" type="button"> <span> Cambiar Contraseña</span></button></a>
+
+                    <a href="{{ url_for('CrearBlog')}}"><button class="c_contraseña" type="button"> <span> Crear BLOG</span></button></a>
+                     
                     
-                <button class="b_cambiarfoto" type="button"><span>Cambiar foto</span></button><!-- Boton cambiar foto--> 
+                <!--button class="b_cambiarfoto" type="button"><span>Cambiar foto</span></button><!-- Boton cambiar foto--> 
                 
               
                 </center>
                 
             </div>
-           <a href="{{url_for('cambiarpass',source=0)}}"><button class="c_contraseña" type="button"> <span> Cambiar Contraseña</span></button></a>
-
-           <a href="{{ url_for('CrearBlog')}}"><button class="c_contraseña" type="button"> <span> Crear BLOG</span></button></a>
-            
+  
 
         </div>
 
